@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './App.css';
+import SecretariatApp from './components/SecretariatApp';
 
-function App() {
+// Separate component for the original app functionality
+function OriginalApp() {
   const [count, setCount] = useState(0);
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState('');
@@ -93,6 +95,40 @@ function App() {
           )}
         </ul>
       </div>
+    </div>
+  );
+}
+
+// Main App component
+function App() {
+  const [currentView, setCurrentView] = useState('secretariat');
+  
+  // Function to render the appropriate view based on the current selection
+  const renderView = () => {
+    switch (currentView) {
+      case 'secretariat':
+        return <SecretariatApp />;
+      case 'original':
+        return <OriginalApp />;
+      default:
+        return <SecretariatApp />;
+    }
+  };
+
+  return (
+    <div className="main-app">
+      {/* View selector - can be removed or modified as needed */}
+      <div className="view-selector">
+        <button 
+          className={currentView === 'secretariat' ? 'active' : ''}
+          onClick={() => setCurrentView('secretariat')}
+        >
+          Secretariat View
+        </button>
+      </div>
+      
+      {/* Render the current view */}
+      {renderView()}
     </div>
   );
 }
