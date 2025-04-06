@@ -1,70 +1,96 @@
-# Getting Started with Create React App
+# TWAAOS-SIC: Exam and Colloquium Planning System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
 
-## Available Scripts
+The TWAAOS-SIC (Exam and Colloquium Planning Information System) is a web-based application developed for the Faculty of Electrical Engineering and Computer Science (FIESC) at "Ștefan cel Mare" University of Suceava (USV). This system aims to assist group leaders, professors, secretariat staff, and other stakeholders in planning and scheduling examinations for undergraduate and master's degree courses.
 
-In the project directory, you can run:
+## Purpose
 
-### `npm start`
+The application is designed to streamline the process of establishing examination dates for undergraduate and master's courses and generating the corresponding schedules. By leveraging web technologies, services, and microservices, TWAAOS-SIC provides an efficient solution for exam planning and management.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Key Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Secretariat Role
+- Google authentication with @usm.ro email verification
+- Download Excel templates for data entry
+- Generate discipline lists from the Orar application
+- Upload and manage group leader information
+- Configure examination periods for exams and colloquiums
+- Generate reports in Excel and PDF formats
+- Monitor examination schedule completion status
 
-### `npm test`
+### Group Leader Role (Coming Soon)
+- Authentication with @student.usv.ro email
+- View available examination slots
+- Propose examination dates
+- Coordinate with professors for scheduling
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Professor Role (Coming Soon)
+- Authentication with @usm.ro email
+- Review and approve proposed examination dates
+- Manage personal examination schedule
+- Request specific rooms or resources
 
-### `npm run build`
+## Technology Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Frontend: React.js
+- State Management: React Hooks
+- Styling: CSS
+- Authentication: Google Sign-In
+- Data Format: JSON, Excel
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Prerequisites
 
-### `npm run eject`
+- Node.js (v14.0.0 or higher)
+- npm (v6.0.0 or higher)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Installation
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Clone the repository:
+   ```
+   git clone https://github.com/razvanalexuc/frontendtwaaos.git
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. Navigate to the project directory:
+   ```
+   cd frontendtwaaos/my-react-app
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+3. Install dependencies:
+   ```
+   npm install
+   ```
 
-## Learn More
+4. Start the development server:
+   ```
+   npm start
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+5. Open your browser and navigate to:
+   ```
+   http://localhost:3000
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Project Structure
 
-### Code Splitting
+- `/src/components/roles`: Role-specific components (Secretariat, Group Leader, Professor)
+- `/src/components/auth`: Authentication components
+- `/src/components/common`: Shared UI components
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Contributing
 
-### Analyzing the Bundle Size
+To contribute to this project:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. Create a feature branch
+2. Implement your changes
+3. Submit a pull request
 
-### Making a Progressive Web App
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+This project is developed for educational purposes at "Ștefan cel Mare" University of Suceava.
 
-### Advanced Configuration
+## Contact
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+For more information, please contact the Faculty of Electrical Engineering and Computer Science at USV.
