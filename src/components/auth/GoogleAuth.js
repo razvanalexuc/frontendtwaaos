@@ -13,12 +13,17 @@ const GoogleAuth = ({ onLoginSuccess, onLogout }) => {
       // For demo purposes, we'll determine the user type based on the current URL
       let mockUser;
       
-      if (window.location.href.includes('group-leader')) {
+      // Check if we're in the Group Leader section
+      const isGroupLeaderSection = window.location.pathname.includes('group-leader') || 
+                                  document.querySelector('.group-leader-app') !== null;
+      
+      if (isGroupLeaderSection) {
         mockUser = {
           email: 'student@student.usv.ro',
           name: 'Student Group Leader',
           imageUrl: 'https://via.placeholder.com/50',
         };
+        console.log('Mock login as Group Leader:', mockUser);
       } else {
         mockUser = {
           email: 'secretariat@usm.ro',
@@ -52,12 +57,17 @@ const GoogleAuth = ({ onLoginSuccess, onLogout }) => {
       // For demo purposes, we'll determine the user type based on the current URL
       let mockUser;
       
-      if (window.location.href.includes('group-leader')) {
+      // Check if we're in the Group Leader section
+      const isGroupLeaderSection = window.location.pathname.includes('group-leader') || 
+                                  document.querySelector('.group-leader-app') !== null;
+      
+      if (isGroupLeaderSection) {
         mockUser = {
           email: 'student@student.usv.ro',
           name: 'Student Group Leader',
           imageUrl: 'https://via.placeholder.com/50',
         };
+        console.log('Mock login as Group Leader:', mockUser);
       } else if (window.location.href.includes('teacher')) {
         mockUser = {
           email: 'teacher@usm.ro',

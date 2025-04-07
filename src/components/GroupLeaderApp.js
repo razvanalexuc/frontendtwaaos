@@ -10,12 +10,25 @@ const GroupLeaderApp = () => {
   const handleLoginSuccess = (userData) => {
     // In a real app, you would validate if the email domain is @student.usv.ro
     // and check if the user is registered as a group leader
-    if (userData.email.endsWith('@student.usv.ro')) {
-      setIsAuthenticated(true);
-      setUser(userData);
-    } else {
-      alert('Access denied. Only @student.usv.ro email addresses are allowed.');
-    }
+    
+    // For demo purposes, we'll accept any email, but in a real app we would validate
+    // if (userData.email.endsWith('@student.usv.ro')) {
+    
+    // DEMO MODE: Accept any email for testing
+    console.log('Demo mode: Accepting any email for Group Leader role');
+    setIsAuthenticated(true);
+    setUser({
+      ...userData,
+      email: userData.email.includes('@') ? userData.email : 'student@student.usv.ro'
+    });
+    
+    // In production, we would use this code instead:
+    // if (userData.email.endsWith('@student.usv.ro')) {
+    //   setIsAuthenticated(true);
+    //   setUser(userData);
+    // } else {
+    //   alert('Access denied. Only @student.usv.ro email addresses are allowed.');
+    // }
   };
 
   const handleLogout = () => {
@@ -42,6 +55,7 @@ const GroupLeaderApp = () => {
             <div className="auth-card">
               <h2>Group Leader Login</h2>
               <p>Please sign in with your @student.usv.ro email address to access the Group Leader dashboard.</p>
+              <p className="demo-note">(Demo mode: Any email will be accepted for testing purposes)</p>
               <GoogleAuth 
                 onLoginSuccess={handleLoginSuccess} 
                 onLogout={handleLogout} 

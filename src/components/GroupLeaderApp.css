@@ -68,3 +68,11 @@
 .app-footer p {
   margin: 0;
 }
+
+.demo-note {
+  color: #e74c3c;
+  font-size: 14px;
+  font-style: italic;
+  margin-top: -10px;
+  margin-bottom: 15px;
+}
