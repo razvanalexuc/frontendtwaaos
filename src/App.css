@@ -70,8 +70,8 @@ body {
 }
 
 .usv-logo {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: auto;
   margin-bottom: 20px;
   filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
 }
