@@ -1,0 +1,183 @@
+.group-leader-dashboard {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.group-leader-dashboard h2 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.group-leader-dashboard p {
+  color: #7f8c8d;
+  margin-bottom: 20px;
+}
+
+.disciplines-container {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.disciplines-container h3 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ecf0f1;
+  padding-bottom: 10px;
+}
+
+.no-disciplines {
+  color: #95a5a6;
+  font-style: italic;
+}
+
+.disciplines-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.disciplines-table th,
+.disciplines-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.disciplines-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.discipline-row {
+  transition: background-color 0.2s;
+}
+
+.discipline-row:hover {
+  background-color: #f8f9fa;
+}
+
+.discipline-row.rejected {
+  background-color: #ffecec;
+}
+
+.discipline-row.approved {
+  background-color: #e8f5e9;
+}
+
+.discipline-row.pending_approval {
+  background-color: #fff8e1;
+}
+
+.discipline-row input[type="date"] {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.submit-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-button:hover {
+  background-color: #2980b9;
+}
+
+.submit-button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.status-message {
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+.rejection {
+  color: #e74c3c;
+  display: flex;
+  align-items: center;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  margin-left: 8px;
+}
+
+.info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background-color: #e74c3c;
+  color: white;
+  border-radius: 50%;
+  font-style: normal;
+  font-size: 12px;
+  cursor: help;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  width: 200px;
+  background-color: #34495e;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.instructions {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  border-left: 4px solid #3498db;
+}
+
+.instructions h3 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.instructions ol {
+  margin-left: 20px;
+  color: #34495e;
+}
+
+.instructions li {
+  margin-bottom: 8px;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 40px;
+  color: #7f8c8d;
+}
+
+.error {
+  color: #e74c3c;
+}

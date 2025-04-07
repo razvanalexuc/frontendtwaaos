@@ -1,129 +1,74 @@
 import React, { useState } from 'react';
 import './App.css';
 import SecretariatApp from './components/SecretariatApp';
+import GroupLeaderApp from './components/GroupLeaderApp';
+import TeacherApp from './components/TeacherApp';
+import AdminApp from './components/AdminApp';
 
-// Separate component for the original app functionality
-function OriginalApp() {
-  const [count, setCount] = useState(0);
-  const [todos, setTodos] = useState([]);
-  const [newTodo, setNewTodo] = useState('');
 
-  const increment = () => {
-    setCount(count + 1);
-  };
-
-  const decrement = () => {
-    setCount(count - 1);
-  };
-
-  const handleAddTodo = () => {
-    if (newTodo.trim() !== '') {
-      setTodos([...todos, { id: Date.now(), text: newTodo, completed: false }]);
-      setNewTodo('');
-    }
-  };
-
-  const handleToggleTodo = (id) => {
-    setTodos(
-      todos.map(todo =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
-  };
-
-  const handleDeleteTodo = (id) => {
-    setTodos(todos.filter(todo => todo.id !== id));
-  };
-
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      handleAddTodo();
-    }
-  };
-
-  return (
-    <div className="app-container">
-      <h1>My React Application</h1>
-      
-      <div className="card">
-        <h2>Welcome to my React App!</h2>
-        <p>This is a simple React application created with Create React App.</p>
-        
-        <div className="counter">
-          <h3>Counter: {count}</h3>
-          <div className="button-group">
-            <button onClick={decrement}>-</button>
-            <button onClick={increment}>+</button>
-          </div>
-        </div>
-      </div>
-
-      <div className="card">
-        <h2>To-Do List</h2>
-        <div className="todo-input-container">
-          <input
-            type="text"
-            value={newTodo}
-            onChange={(e) => setNewTodo(e.target.value)}
-            onKeyPress={handleKeyPress}
-            placeholder="Add a new task..."
-            className="todo-input"
-          />
-          <button onClick={handleAddTodo} className="add-button">Add</button>
-        </div>
-        
-        <ul className="todo-list">
-          {todos.length === 0 ? (
-            <li className="empty-message">No tasks yet. Add one above!</li>
-          ) : (
-            todos.map(todo => (
-              <li key={todo.id} className={`todo-item ${todo.completed ? 'completed' : ''}`}>
-                <span 
-                  className="todo-text" 
-                  onClick={() => handleToggleTodo(todo.id)}
-                >
-                  {todo.text}
-                </span>
-                <button 
-                  onClick={() => handleDeleteTodo(todo.id)}
-                  className="delete-button"
-                >
-                  Delete
-                </button>
-              </li>
-            ))
-          )}
-        </ul>
-      </div>
-    </div>
-  );
-}
 
 // Main App component
 function App() {
-  const [currentView, setCurrentView] = useState('secretariat');
+  const [currentRole, setCurrentRole] = useState('home');
   
-  // Function to render the appropriate view based on the current selection
+  // Function to render the appropriate view based on the selected role
   const renderView = () => {
-    switch (currentView) {
+    switch (currentRole) {
       case 'secretariat':
         return <SecretariatApp />;
-      case 'original':
-        return <OriginalApp />;
+      case 'groupLeader':
+        return <GroupLeaderApp />;
+      case 'teacher':
+        return <TeacherApp />;
+      case 'admin':
+        return <AdminApp />;
+      case 'home':
       default:
-        return <SecretariatApp />;
+        return (
+          <div className="home-container">
+            <h1>TWAAOS-SIC</h1>
+            <p className="subtitle">Sistem Informatic pentru Colocvii și Examene</p>
+            <p className="description">
+              Bine ați venit în aplicația TWAAOS-SIC! Vă rugăm să selectați rolul dvs. pentru a continua.
+            </p>
+          </div>
+        );
     }
   };
 
   return (
     <div className="main-app">
-      {/* View selector - can be removed or modified as needed */}
-      <div className="view-selector">
+      {/* Role selector */}
+      <div className="role-selector">
         <button 
-          className={currentView === 'secretariat' ? 'active' : ''}
-          onClick={() => setCurrentView('secretariat')}
+          className={`role-button ${currentRole === 'home' ? 'active' : ''}`}
+          onClick={() => setCurrentRole('home')}
         >
-          Secretariat View
+          Acasă
+        </button>
+        <button 
+          className={`role-button ${currentRole === 'secretariat' ? 'active' : ''}`}
+          onClick={() => setCurrentRole('secretariat')}
+        >
+          Secretariat
+        </button>
+        <button 
+          className={`role-button ${currentRole === 'groupLeader' ? 'active' : ''}`}
+          onClick={() => setCurrentRole('groupLeader')}
+        >
+          Șef Grupă
+        </button>
+        <button 
+          className={`role-button ${currentRole === 'teacher' ? 'active' : ''}`}
+          onClick={() => setCurrentRole('teacher')}
+        >
+          Cadru Didactic
+        </button>
+        <button 
+          className={`role-button ${currentRole === 'admin' ? 'active' : ''}`}
+          onClick={() => setCurrentRole('admin')}
+        >
+          Administrator
         </button>
       </div>
       
