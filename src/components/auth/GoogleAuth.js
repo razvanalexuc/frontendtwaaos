@@ -10,11 +10,22 @@ const GoogleAuth = ({ onLoginSuccess, onLogout }) => {
     // Define mockSignIn function first
     const mockSignIn = () => {
       // Simulate a successful sign-in
-      const mockUser = {
-        email: 'secretariat@usm.ro',
-        name: 'Secretariat User',
-        imageUrl: 'https://via.placeholder.com/50',
-      };
+      // For demo purposes, we'll determine the user type based on the current URL
+      let mockUser;
+      
+      if (window.location.href.includes('group-leader')) {
+        mockUser = {
+          email: 'student@student.usv.ro',
+          name: 'Student Group Leader',
+          imageUrl: 'https://via.placeholder.com/50',
+        };
+      } else {
+        mockUser = {
+          email: 'secretariat@usm.ro',
+          name: 'Secretariat User',
+          imageUrl: 'https://via.placeholder.com/50',
+        };
+      }
       
       setUser(mockUser);
       setIsSignedIn(true);
@@ -38,11 +49,28 @@ const GoogleAuth = ({ onLoginSuccess, onLogout }) => {
     // Mock sign-in function
     window.mockSignIn = () => {
       // Simulate a successful sign-in
-      const mockUser = {
-        email: 'secretariat@usm.ro',
-        name: 'Secretariat User',
-        imageUrl: 'https://via.placeholder.com/50',
-      };
+      // For demo purposes, we'll determine the user type based on the current URL
+      let mockUser;
+      
+      if (window.location.href.includes('group-leader')) {
+        mockUser = {
+          email: 'student@student.usv.ro',
+          name: 'Student Group Leader',
+          imageUrl: 'https://via.placeholder.com/50',
+        };
+      } else if (window.location.href.includes('teacher')) {
+        mockUser = {
+          email: 'teacher@usm.ro',
+          name: 'Teacher User',
+          imageUrl: 'https://via.placeholder.com/50',
+        };
+      } else {
+        mockUser = {
+          email: 'secretariat@usm.ro',
+          name: 'Secretariat User',
+          imageUrl: 'https://via.placeholder.com/50',
+        };
+      }
       
       setUser(mockUser);
       setIsSignedIn(true);

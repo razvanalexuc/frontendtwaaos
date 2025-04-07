@@ -8,13 +8,13 @@ const GroupLeaderApp = () => {
   const [user, setUser] = useState(null);
 
   const handleLoginSuccess = (userData) => {
-    // In a real app, you would validate if the email domain is @usm.ro
+    // In a real app, you would validate if the email domain is @student.usv.ro
     // and check if the user is registered as a group leader
-    if (userData.email.endsWith('@usm.ro')) {
+    if (userData.email.endsWith('@student.usv.ro')) {
       setIsAuthenticated(true);
       setUser(userData);
     } else {
-      alert('Access denied. Only @usm.ro email addresses are allowed.');
+      alert('Access denied. Only @student.usv.ro email addresses are allowed.');
     }
   };
 
@@ -41,7 +41,7 @@ const GroupLeaderApp = () => {
           <div className="auth-container">
             <div className="auth-card">
               <h2>Group Leader Login</h2>
-              <p>Please sign in with your @usm.ro email address to access the Group Leader dashboard.</p>
+              <p>Please sign in with your @student.usv.ro email address to access the Group Leader dashboard.</p>
               <GoogleAuth 
                 onLoginSuccess={handleLoginSuccess} 
                 onLogout={handleLogout} 
