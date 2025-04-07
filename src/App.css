@@ -69,6 +69,13 @@ body {
   margin: 0 auto;
 }
 
+.usv-logo {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
 .home-container h1 {
   color: #2c3e50;
   font-size: 36px;
@@ -78,6 +85,13 @@ body {
 .subtitle {
   color: #3498db;
   font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.subtitle-university {
+  color: #1E4388;
+  font-size: 18px;
+  font-weight: 500;
   margin-bottom: 30px;
 }
 

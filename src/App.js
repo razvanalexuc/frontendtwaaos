@@ -26,8 +26,10 @@ function App() {
       default:
         return (
           <div className="home-container">
+            <img src="/usv-logo.svg" alt="USV Logo" className="usv-logo" />
             <h1>TWAAOS-SIC</h1>
             <p className="subtitle">Sistem Informatic pentru Colocvii și Examene</p>
+            <p className="subtitle-university">Universitatea Ștefan cel Mare din Suceava</p>
             <p className="description">
               Bine ați venit în aplicația TWAAOS-SIC! Vă rugăm să selectați rolul dvs. pentru a continua.
             </p>
