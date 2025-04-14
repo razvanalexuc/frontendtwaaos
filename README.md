@@ -146,3 +146,11 @@ This project is developed for educational purposes at "Ștefan cel Mare" Univers
 ## Contact
 
 For more information, please contact the Faculty of Electrical Engineering and Computer Science at USV.
+
+## Credits
+
+This application was developed by:
+- **Alexuc Razvan** - Frontend Development
+- **Samuel Dascalu** - Backend Development
+
+The TWAAOS-SIC system was created to simplify the process of reserving rooms for exams and colloquiums at "Ștefan cel Mare" University of Suceava.
