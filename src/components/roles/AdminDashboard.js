@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import api from '../../utils/api';
 import './AdminDashboard.css';
 
 const AdminDashboard = () => {
@@ -38,77 +39,41 @@ const AdminDashboard = () => {
     facultyId: ''
   });
 
-  // Mock data - in a real application, this would come from an API
+  // Fetch data from API
   useEffect(() => {
-    // Simulate API call
-    setTimeout(() => {
-      const mockFaculties = [
-        {
-          id: 1,
-          fullName: 'Facultatea de Automatică și Calculatoare',
-          shortName: 'AC'
-        },
-        {
-          id: 2,
-          fullName: 'Facultatea de Electronică, Telecomunicații și Tehnologia Informației',
-          shortName: 'ETTI'
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        
+        // Fetch settings (which includes faculties)
+        const settingsResponse = await api.admin.getSettings();
+        if (settingsResponse.faculties) {
+          setFaculties(settingsResponse.faculties);
         }
-      ];
-      
-      const mockTeachers = [
-        {
-          id: 1,
-          firstName: 'Ion',
-          lastName: 'Popescu',
-          title: 'Prof. Dr.',
-          email: 'ion.popescu@usm.ro',
-          facultyId: 1
-        },
-        {
-          id: 2,
-          firstName: 'Maria',
-          lastName: 'Ionescu',
-          title: 'Conf. Dr.',
-          email: 'maria.ionescu@usm.ro',
-          facultyId: 1
-        },
-        {
-          id: 3,
-          firstName: 'Andrei',
-          lastName: 'Georgescu',
-          title: 'Prof. Dr.',
-          email: 'andrei.georgescu@usm.ro',
-          facultyId: 2
+        
+        // Fetch users
+        const usersResponse = await api.admin.getUsers();
+        if (usersResponse.users) {
+          // Filter users by role
+          const teacherUsers = usersResponse.users.filter(user => user.role === 'teacher');
+          const secretaryUsers = usersResponse.users.filter(user => user.role === 'secretary');
+          
+          setTeachers(teacherUsers);
+          setSecretaries(secretaryUsers);
         }
-      ];
-      
-      const mockSecretaries = [
-        {
-          id: 1,
-          firstName: 'Elena',
-          lastName: 'Vasilescu',
-          title: 'Ing.',
-          email: 'elena.vasilescu@usm.ro',
-          facultyId: 1
-        },
-        {
-          id: 2,
-          firstName: 'Mihai',
-          lastName: 'Dumitrescu',
-          title: 'Ec.',
-          email: 'mihai.dumitrescu@usm.ro',
-          facultyId: 2
-        }
-      ];
-      
-      setFaculties(mockFaculties);
-      setTeachers(mockTeachers);
-      setSecretaries(mockSecretaries);
-      setLoading(false);
-    }, 1000);
+        
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching admin data:', error);
+        setError('Failed to load data. Please try again later.');
+        setLoading(false);
+      }
+    };
+    
+    fetchData();
   }, []);
 
-  const handleChangePassword = (e) => {
+  const handleChangePassword = async (e) => {
     e.preventDefault();
     
     // Validate password
@@ -127,17 +92,24 @@ const AdminDashboard = () => {
       return;
     }
     
-    // In a real application, this would send the password change to the backend
-    
-    alert('Parola a fost schimbată cu succes.');
-    
-    // Reset form
-    setCurrentPassword('');
-    setNewPassword('');
-    setConfirmPassword('');
+    try {
+      await api.auth.changePassword({
+        current_password: currentPassword,
+        new_password: newPassword
+      });
+      
+      alert('Parola a fost schimbată cu succes.');
+      
+      // Reset form
+      setCurrentPassword('');
+      setNewPassword('');
+      setConfirmPassword('');
+    } catch (error) {
+      alert(`Eroare la schimbarea parolei: ${error.message}`);
+    }
   };
 
-  const handleAddFaculty = (e) => {
+  const handleAddFaculty = async (e) => {
     e.preventDefault();
     
     // Validate faculty
@@ -146,42 +118,60 @@ const AdminDashboard = () => {
       return;
     }
     
-    // In a real application, this would send the new faculty to the backend
-    
-    // Add to local state
-    const newId = faculties.length > 0 ? Math.max(...faculties.map(f => f.id)) + 1 : 1;
-    const faculty = {
-      id: newId,
-      fullName: newFaculty.fullName,
-      shortName: newFaculty.shortName
-    };
-    
-    setFaculties([...faculties, faculty]);
-    
-    // Reset form
-    setNewFaculty({
-      fullName: '',
-      shortName: ''
-    });
-    
-    alert('Facultatea a fost adăugată cu succes.');
+    try {
+      // Get current settings
+      const currentSettings = await api.admin.getSettings();
+      
+      // Add new faculty to the faculties array
+      const updatedFaculties = [...(currentSettings.faculties || []), {
+        fullName: newFaculty.fullName,
+        shortName: newFaculty.shortName
+      }];
+      
+      // Update settings with new faculties array
+      await api.admin.updateSettings({
+        ...currentSettings,
+        faculties: updatedFaculties
+      });
+      
+      // Refresh faculties from server
+      const updatedSettings = await api.admin.getSettings();
+      setFaculties(updatedSettings.faculties || []);
+      
+      // Reset form
+      setNewFaculty({
+        fullName: '',
+        shortName: ''
+      });
+      
+      alert('Facultate adăugată cu succes!');
+    } catch (error) {
+      alert(`Eroare la adăugarea facultății: ${error.message}`);
+    }
   };
 
   const handleUpdateFaculty = (id, field, value) => {
-    setFaculties(faculties.map(faculty => 
+    // Update locally first for immediate UI feedback
+    const updatedFaculties = faculties.map(faculty => 
       faculty.id === id ? { ...faculty, [field]: value } : faculty
-    ));
+    );
+    setFaculties(updatedFaculties);
   };
 
-  const handleSaveFaculty = (id) => {
+  const handleSaveFaculty = async (id) => {
     const faculty = faculties.find(f => f.id === id);
     
-    // In a real application, this would send the updated faculty to the backend
-    
-    alert(`Facultatea "${faculty.shortName}" a fost actualizată cu succes.`);
+    try {
+      // Update faculty via API
+      await api.admin.updateFaculty(id, faculty);
+      
+      alert(`Facultatea "${faculty.shortName}" a fost actualizată cu succes.`);
+    } catch (error) {
+      alert(`Eroare la actualizarea facultății: ${error.message}`);
+    }
   };
 
-  const handleAddTeacher = (e) => {
+  const handleAddTeacher = async (e) => {
     e.preventDefault();
     
     // Validate teacher
@@ -190,39 +180,49 @@ const AdminDashboard = () => {
       return;
     }
     
-    if (!newTeacher.email.endsWith('@usm.ro')) {
-      alert('Adresa de email trebuie să fie de tipul @usm.ro');
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(newTeacher.email)) {
+      alert('Vă rugăm să introduceți o adresă de email validă.');
       return;
     }
     
-    // In a real application, this would send the new teacher to the backend
-    
-    // Add to local state
-    const newId = teachers.length > 0 ? Math.max(...teachers.map(t => t.id)) + 1 : 1;
-    const teacher = {
-      id: newId,
-      firstName: newTeacher.firstName,
-      lastName: newTeacher.lastName,
-      title: newTeacher.title || '',
-      email: newTeacher.email,
-      facultyId: parseInt(newTeacher.facultyId)
-    };
-    
-    setTeachers([...teachers, teacher]);
-    
-    // Reset form
-    setNewTeacher({
-      firstName: '',
-      lastName: '',
-      title: '',
-      email: '',
-      facultyId: ''
-    });
-    
-    alert('Cadrul didactic a fost adăugat cu succes.');
+    try {
+      // Create new user with teacher role
+      const response = await api.admin.createUser({
+        first_name: newTeacher.firstName,
+        last_name: newTeacher.lastName,
+        email: newTeacher.email,
+        title: newTeacher.title || '',
+        faculty_id: parseInt(newTeacher.facultyId),
+        role: 'teacher',
+        // Generate a temporary password or let the backend handle it
+        password: 'TemporaryPassword123!' // This should be changed by the user on first login
+      });
+      
+      // Refresh the teachers list
+      const usersResponse = await api.admin.getUsers();
+      if (usersResponse.users) {
+        const teacherUsers = usersResponse.users.filter(user => user.role === 'teacher');
+        setTeachers(teacherUsers);
+      }
+      
+      // Reset form
+      setNewTeacher({
+        firstName: '',
+        lastName: '',
+        title: '',
+        email: '',
+        facultyId: ''
+      });
+      
+      alert('Cadru didactic adăugat cu succes!');
+    } catch (error) {
+      alert(`Eroare la adăugarea cadrului didactic: ${error.message}`);
+    }
   };
 
-  const handleAddSecretary = (e) => {
+  const handleAddSecretary = async (e) => {
     e.preventDefault();
     
     // Validate secretary
@@ -231,55 +231,85 @@ const AdminDashboard = () => {
       return;
     }
     
-    if (!newSecretary.email.endsWith('@usm.ro')) {
-      alert('Adresa de email trebuie să fie de tipul @usm.ro');
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(newSecretary.email)) {
+      alert('Vă rugăm să introduceți o adresă de email validă.');
       return;
     }
     
-    // In a real application, this would send the new secretary to the backend
-    
-    // Add to local state
-    const newId = secretaries.length > 0 ? Math.max(...secretaries.map(s => s.id)) + 1 : 1;
-    const secretary = {
-      id: newId,
-      firstName: newSecretary.firstName,
-      lastName: newSecretary.lastName,
-      title: newSecretary.title || '',
-      email: newSecretary.email,
-      facultyId: parseInt(newSecretary.facultyId)
-    };
-    
-    setSecretaries([...secretaries, secretary]);
-    
-    // Reset form
-    setNewSecretary({
-      firstName: '',
-      lastName: '',
-      title: '',
-      email: '',
-      facultyId: ''
-    });
-    
-    alert('Operatorul de secretariat a fost adăugat cu succes.');
-  };
-
-  const handleDeleteTeacher = (id) => {
-    if (window.confirm('Sunteți sigur că doriți să ștergeți acest cadru didactic?')) {
-      // In a real application, this would send the delete request to the backend
+    try {
+      // Create new user with secretary role
+      const response = await api.admin.createUser({
+        first_name: newSecretary.firstName,
+        last_name: newSecretary.lastName,
+        email: newSecretary.email,
+        title: newSecretary.title || '',
+        faculty_id: parseInt(newSecretary.facultyId),
+        role: 'secretary',
+        // Generate a temporary password or let the backend handle it
+        password: 'TemporaryPassword123!' // This should be changed by the user on first login
+      });
       
-      setTeachers(teachers.filter(teacher => teacher.id !== id));
+      // Refresh the secretaries list
+      const usersResponse = await api.admin.getUsers();
+      if (usersResponse.users) {
+        const secretaryUsers = usersResponse.users.filter(user => user.role === 'secretary');
+        setSecretaries(secretaryUsers);
+      }
       
-      alert('Cadrul didactic a fost șters cu succes.');
+      // Reset form
+      setNewSecretary({
+        firstName: '',
+        lastName: '',
+        title: '',
+        email: '',
+        facultyId: ''
+      });
+      
+      alert('Operator adăugat cu succes!');
+    } catch (error) {
+      alert(`Eroare la adăugarea operatorului: ${error.message}`);
     }
   };
 
-  const handleDeleteSecretary = (id) => {
-    if (window.confirm('Sunteți sigur că doriți să ștergeți acest operator de secretariat?')) {
-      // In a real application, this would send the delete request to the backend
-      
-      setSecretaries(secretaries.filter(secretary => secretary.id !== id));
-      
-      alert('Operatorul de secretariat a fost șters cu succes.');
+  const handleDeleteTeacher = async (id) => {
+    if (window.confirm('Sunteți sigur că doriți să ștergeți acest cadru didactic?')) {
+      try {
+        // Delete user via API
+        await api.admin.updateUser(id, { active: false }); // Soft delete by setting active to false
+        
+        // Refresh the teachers list
+        const usersResponse = await api.admin.getUsers();
+        if (usersResponse.users) {
+          const teacherUsers = usersResponse.users.filter(user => user.role === 'teacher');
+          setTeachers(teacherUsers);
+        }
+        
+        alert('Cadru didactic șters cu succes!');
+      } catch (error) {
+        alert(`Eroare la ștergerea cadrului didactic: ${error.message}`);
+      }
+    }
+  };
+
+  const handleDeleteSecretary = async (id) => {
+    if (window.confirm('Sunteți sigur că doriți să ștergeți acest operator?')) {
+      try {
+        // Delete user via API
+        await api.admin.updateUser(id, { active: false }); // Soft delete by setting active to false
+        
+        // Refresh the secretaries list
+        const usersResponse = await api.admin.getUsers();
+        if (usersResponse.users) {
+          const secretaryUsers = usersResponse.users.filter(user => user.role === 'secretary');
+          setSecretaries(secretaryUsers);
+        }
+        
+        alert('Operator șters cu succes!');
+      } catch (error) {
+        alert(`Eroare la ștergerea operatorului: ${error.message}`);
+      }
     }
   };
 

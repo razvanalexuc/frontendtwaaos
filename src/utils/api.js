@@ -94,6 +94,39 @@ const makeRequest = async (endpoint, options = {}) => {
   return handleResponse(response);
 };
 
+// Function to upload files
+const uploadFile = async (endpoint, file, additionalData = {}, options = {}) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  
+  // Add any additional data to the form
+  Object.entries(additionalData).forEach(([key, value]) => {
+    formData.append(key, value);
+  });
+  
+  // Prepare headers (don't set Content-Type, it will be set automatically with the boundary)
+  const headers = {
+    ...options.headers,
+  };
+  
+  // Add auth token if available
+  const token = getAuthToken();
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+  
+  // Make the request
+  const url = endpoint.startsWith('http') ? endpoint : `${API_URL}${endpoint}`;
+  const response = await fetch(url, {
+    ...options,
+    method: 'POST',
+    headers,
+    body: formData,
+  });
+  
+  return handleResponse(response);
+};
+
 // Convenience methods for common HTTP methods
 const api = {
   get: (endpoint, options = {}) => makeRequest(endpoint, { ...options, method: 'GET' }),
@@ -108,6 +141,54 @@ const api = {
     body: JSON.stringify(data),
   }),
   delete: (endpoint, options = {}) => makeRequest(endpoint, { ...options, method: 'DELETE' }),
+  uploadFile: uploadFile,
+  
+  // Authentication endpoints
+  auth: {
+    login: (credentials) => api.post('/auth/login', credentials),
+    register: (userData) => api.post('/auth/register', userData),
+    refreshToken: (refreshToken) => api.post('/auth/refresh', { refresh_token: refreshToken }),
+    getProfile: () => api.get('/auth/me'),
+    changePassword: (passwordData) => api.put('/auth/change-password', passwordData),
+    loginWithGoogle: (googleToken) => api.post('/auth/login', { googleToken }),
+  },
+  
+  // Admin endpoints
+  admin: {
+    getSettings: () => api.get('/admin/settings'),
+    updateSettings: (settings) => api.put('/admin/settings', settings),
+    getUsers: () => api.get('/admin/users'),
+    createUser: (userData) => api.post('/admin/users', userData),
+    updateUser: (userId, userData) => api.put(`/admin/users/${userId}`, userData),
+    createRoom: (roomData) => api.post('/admin/rooms', roomData),
+    updateRoom: (roomId, roomData) => api.put(`/admin/rooms/${roomId}`, roomData),
+    importSchedule: (file, options) => api.uploadFile('/admin/schedule/import', file, options),
+    importUsvSchedule: (data) => api.post('/admin/schedule/import-usv', data),
+    resetSemester: (data) => api.post('/admin/reset-semester', data),
+  },
+  
+  // Secretary endpoints
+  secretary: {
+    getPendingReservations: () => api.get('/secretary/reservations/pending'),
+    approveReservation: (id) => api.put(`/secretary/reservations/${id}/approve`),
+    rejectReservation: (id) => api.put(`/secretary/reservations/${id}/reject`),
+    editReservation: (id, data) => api.put(`/secretary/reservations/${id}`, data),
+    getReservationHistory: () => api.get('/secretary/reservation-history'),
+    getDailyReport: (date) => api.get('/secretary/reports/daily', { params: { date } }),
+    getPeriodReport: (startDate, endDate) => api.get('/secretary/reports/period', { 
+      params: { start_date: startDate, end_date: endDate } 
+    }),
+  },
+  
+  // Student endpoints
+  student: {
+    getRooms: () => api.get('/student/rooms'),
+    getRoomAvailability: (roomId) => api.get(`/student/room/${roomId}/availability`),
+    createReservation: (reservationData) => api.post('/student/reservations', reservationData),
+    getUserReservations: () => api.get('/student/reservations'),
+    getReservationDetails: (id) => api.get(`/student/reservations/${id}`),
+    cancelReservation: (id) => api.delete(`/student/reservations/${id}`),
+  },
 };
 
 export default api;
