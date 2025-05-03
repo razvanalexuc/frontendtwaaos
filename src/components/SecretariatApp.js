@@ -8,12 +8,14 @@ const SecretariatApp = () => {
   const [user, setUser] = useState(null);
 
   const handleLoginSuccess = (userData) => {
-    // In a real app, you would validate if the email domain is @usm.ro
-    if (userData.email.endsWith('@usm.ro')) {
+    // Verificarea domeniului se face acum în componenta GoogleAuth
+    // Aici doar verificăm dacă utilizatorul are rolul corect
+    if (userData.role === 'SECRETARY' || userData.email.endsWith('@usm.ro')) {
       setIsAuthenticated(true);
       setUser(userData);
+      console.log('Secretariat login successful:', userData);
     } else {
-      alert('Access denied. Only @usm.ro email addresses are allowed.');
+      alert('Access denied. This dashboard is only for Secretariat users.');
     }
   };
 
