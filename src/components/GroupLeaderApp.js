@@ -32,8 +32,15 @@ const GroupLeaderApp = () => {
   };
 
   const handleLogout = () => {
+    // Șterge datele de autentificare din localStorage
+    localStorage.removeItem('googleToken');
+    localStorage.removeItem('userData');
+    
+    // Resetează starea componentei
     setIsAuthenticated(false);
     setUser(null);
+    
+    console.log('Utilizator delogat din Group Leader');
   };
 
   return (
@@ -43,8 +50,22 @@ const GroupLeaderApp = () => {
           <h1>TWAAOS-SIC</h1>
         </div>
         {isAuthenticated && (
-          <div className="user-welcome">
+          <div className="user-welcome" style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
             <span>Welcome, {user.name}</span>
+            <button 
+              onClick={handleLogout}
+              style={{ 
+                padding: '6px 12px', 
+                backgroundColor: '#e74c3c', 
+                color: 'white', 
+                border: 'none', 
+                borderRadius: '4px', 
+                fontWeight: 'bold',
+                cursor: 'pointer'
+              }}
+            >
+              Sign Out
+            </button>
           </div>
         )}
       </header>
