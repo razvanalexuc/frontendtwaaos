@@ -1,14 +1,19 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './GoogleAuth.css';
+import { Alert } from 'react-bootstrap';
 
 // API URL for backend
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
+// Token pentru testare automatizată
+const TEST_TOKEN = 'test_token_for_automated_testing';
 
 const GoogleAuth = ({ onLoginSuccess, onLogout }) => {
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [isGoogleScriptLoaded, setIsGoogleScriptLoaded] = useState(false);
   const [googleAuth, setGoogleAuth] = useState(null);
+  const [error, setError] = useState(null);
 
   // Load Google API script
   useEffect(() => {
@@ -85,10 +90,22 @@ const GoogleAuth = ({ onLoginSuccess, onLogout }) => {
       });
 
       if (!backendResponse.ok) {
-        throw new Error(`Backend response error: ${backendResponse.status}`);
+        // Parse error response
+        const errorData = await backendResponse.json();
+        
+        // Check if this is an unauthorized domain error
+        if (errorData.error === 'unauthorized_domain') {
+          setError(`Autentificare eșuată: Doar adresele de email de la domeniile student.usv.ro și usm.ro sunt acceptate. Domeniul tău (${errorData.domain}) nu este autorizat.`);
+          return;
+        }
+        
+        throw new Error(errorData.message || `Backend response error: ${backendResponse.status}`);
       }
 
       const data = await backendResponse.json();
+      
+      // Clear any previous errors
+      setError(null);
       
       // Store tokens in localStorage
       localStorage.setItem('accessToken', data.access_token);
@@ -182,10 +199,174 @@ const GoogleAuth = ({ onLoginSuccess, onLogout }) => {
     checkExistingAuth();
   }, [onLoginSuccess]);
 
+  // Funcția pentru testarea cu diferite adrese de email și bypass Google Auth
+  const testWithEmail = async () => {
+    // Aflăm URL-ul curent pentru debug
+    const currentUrl = window.location.href;
+    console.log('URL curent:', currentUrl);
+    
+    // Determinăm rolul în funcție de componenta părinte
+    let role = 'STUDENT';
+    let email = 'test.student@student.usv.ro';
+    
+    // Verificăm dacă suntem în pagina de cadru didactic
+    const isTeacherPage = document.querySelector('.teacher-app') !== null || 
+                         currentUrl.includes('teacher');
+    
+    // Verificăm dacă suntem în pagina de secretariat
+    const isSecretariatPage = document.querySelector('.secretariat-app') !== null || 
+                             currentUrl.includes('secretariat');
+    
+    // Verificăm dacă suntem în pagina de șef grupă
+    const isGroupLeaderPage = document.querySelector('.group-leader-app') !== null || 
+                              currentUrl.includes('groupLeader');
+    
+    console.log('Pagini detectate:', {
+      isTeacherPage,
+      isSecretariatPage,
+      isGroupLeaderPage
+    });
+    
+    // Setăm rolul și email-ul în funcție de pagină
+    if (isTeacherPage) {
+      role = 'TEACHER';
+      email = 'test.teacher@usm.ro';
+    } else if (isSecretariatPage) {
+      role = 'SECRETARY';
+      email = 'test.secretary@usm.ro';
+    } else if (isGroupLeaderPage) {
+      role = 'GROUP_LEADER';
+      email = 'test.group.leader@student.usv.ro';
+    }
+    
+    // Creăm datele utilizatorului de test
+    const userData = {
+      id: 'test-user-id',
+      email: email,
+      name: `Test ${role}`,
+      imageUrl: 'https://via.placeholder.com/50',
+      role: role
+    };
+    
+    try {
+      console.log('Se încearcă comunicarea cu backend-ul...');
+      console.log('Rol detectat:', role);
+      console.log('Email:', email);
+      
+      // Trimite cerere către backend pentru autentificare cu token-ul de test
+      const response = await Promise.race([
+        fetch(`${API_URL}/auth/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Origin': window.location.origin
+          },
+          body: JSON.stringify({
+            googleToken: TEST_TOKEN
+          }),
+          mode: 'cors',
+          credentials: 'omit'
+        }),
+        // Timeout după 3 secunde dacă backend-ul nu răspunde
+        new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('Timeout - backend-ul nu răspunde')), 3000)
+        )
+      ]);
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        let errorMessage = 'Eroare la autentificare';
+        
+        try {
+          const errorData = JSON.parse(errorText);
+          errorMessage = errorData.message || errorMessage;
+        } catch (e) {
+          // Dacă răspunsul nu este JSON valid, folosim textul brut
+          errorMessage = errorText || errorMessage;
+        }
+        
+        throw new Error(errorMessage);
+      }
+      
+      const responseData = await response.json();
+      console.log('Răspuns de la backend:', responseData);
+      
+      // Salvează token-ul și datele utilizatorului primite de la backend
+      localStorage.setItem('accessToken', TEST_TOKEN);
+      localStorage.setItem('refreshToken', TEST_TOKEN);
+      localStorage.setItem('userData', JSON.stringify(responseData.user || userData));
+      
+      // Actualizează starea componentei
+      setUser(responseData.user || userData);
+      setIsSignedIn(true);
+      setError(null);
+      
+      // Apelează callback-ul de succes
+      if (onLoginSuccess) {
+        onLoginSuccess(responseData.user || userData);
+      }
+      
+      return; // Ieșim din funcție dacă autentificarea cu backend a reușit
+    } catch (error) {
+      console.error('Eroare la autentificarea cu token de test:', error);
+      console.log('Folosim autentificare locală ca fallback');
+      
+      // Folosim autentificarea locală ca fallback
+      localStorage.setItem('accessToken', TEST_TOKEN);
+      localStorage.setItem('refreshToken', TEST_TOKEN);
+      localStorage.setItem('userData', JSON.stringify(userData));
+      
+      // Actualizează starea componentei
+      setUser(userData);
+      setIsSignedIn(true);
+      setError(null);
+      
+      // Apelează callback-ul de succes
+      if (onLoginSuccess) {
+        onLoginSuccess(userData);
+      }
+    }
+  };
+  
+  // Verifică dacă există un token în localStorage
+  const hasToken = localStorage.getItem('accessToken') !== null;
+  
   return (
     <div className="google-auth-container">
+      {error && (
+        <Alert variant="danger" onClose={() => setError(null)} dismissible>
+          {error}
+        </Alert>
+      )}
+      
+      {/* Buton de Sign Out global - mereu vizibil dacă există un token */}
+      {hasToken && (
+        <div style={{ marginBottom: '20px' }}>
+          <button 
+            className="signout-button"
+            onClick={handleSignOut}
+            style={{ padding: '8px 16px', backgroundColor: '#e74c3c', color: 'white', border: 'none', borderRadius: '4px', fontWeight: 'bold', width: '100%' }}
+          >
+            Sign Out
+          </button>
+        </div>
+      )}
+      
       {!isSignedIn ? (
-        <div id="google-signin-button" className="google-signin-button-container"></div>
+        <div>
+          <div id="google-signin-button" className="google-signin-button-container"></div>
+          
+          <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <button 
+              className="test-button"
+              onClick={testWithEmail}
+              style={{ padding: '8px 16px', backgroundColor: '#4285f4', color: 'white', border: 'none', borderRadius: '4px', fontWeight: 'bold' }}
+            >
+              Bypass Google Auth (Test)
+            </button>
+          </div>
+        </div>
       ) : (
         <div className="user-profile">
           <img 
