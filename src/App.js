@@ -4,17 +4,40 @@ import SecretariatApp from './components/SecretariatApp';
 import GroupLeaderApp from './components/GroupLeaderApp';
 import TeacherApp from './components/TeacherApp';
 import AdminApp from './components/AdminApp';
+import GoogleAuth from './components/auth/GoogleAuth';
+import { AuthProvider, useAuth } from './utils/AuthContext';
 
 
-// Main App component
-function App() {
+// AppContent component that uses the auth context
+function AppContent() {
   const [currentRole, setCurrentRole] = useState('home');
   const [fadeIn, setFadeIn] = useState(false);
+  const { currentUser, isAuthenticated, logout } = useAuth();
   
   // Effect for fade-in animation when component mounts
   useEffect(() => {
     setFadeIn(true);
   }, []);
+  
+  // Handle successful login
+  const handleLoginSuccess = (userData) => {
+    // Determine role based on user data
+    if (userData.role === 'admin') {
+      setCurrentRole('admin');
+    } else if (userData.role === 'secretary') {
+      setCurrentRole('secretariat');
+    } else if (userData.role === 'student') {
+      setCurrentRole('groupLeader');
+    } else {
+      setCurrentRole('teacher');
+    }
+  };
+  
+  // Handle logout
+  const handleLogout = () => {
+    logout();
+    setCurrentRole('home');
+  };
   
   // Function to render the appropriate view based on the selected role
   const renderView = () => {
@@ -85,43 +108,77 @@ function App() {
           </a>
           <span className="header-title">TWAAOS-SIC</span>
         </div>
-        <nav className="role-selector">
-          <button 
-            className={`role-button ${currentRole === 'home' ? 'active' : ''}`}
-            onClick={() => setCurrentRole('home')}
-          >
-            <span className="button-icon">🏠</span> Acasă
-          </button>
-          <button 
-            className={`role-button ${currentRole === 'secretariat' ? 'active' : ''}`}
-            onClick={() => setCurrentRole('secretariat')}
-          >
-            <span className="button-icon">🏢</span> Secretariat
-          </button>
-          <button 
-            className={`role-button ${currentRole === 'groupLeader' ? 'active' : ''}`}
-            onClick={() => setCurrentRole('groupLeader')}
-          >
-            <span className="button-icon">👨‍🎓</span> Șef Grupă
-          </button>
-          <button 
-            className={`role-button ${currentRole === 'teacher' ? 'active' : ''}`}
-            onClick={() => setCurrentRole('teacher')}
-          >
-            <span className="button-icon">👨‍🏫</span> Cadru Didactic
-          </button>
-          <button 
-            className={`role-button ${currentRole === 'admin' ? 'active' : ''}`}
-            onClick={() => setCurrentRole('admin')}
-          >
-            <span className="button-icon">⚙️</span> Administrator
-          </button>
-        </nav>
+        {isAuthenticated ? (
+          <nav className="role-selector">
+            <button 
+              className={`role-button ${currentRole === 'home' ? 'active' : ''}`}
+              onClick={() => setCurrentRole('home')}
+            >
+              <span className="button-icon">🏠</span> Acasă
+            </button>
+            {currentUser.role === 'secretary' && (
+              <button 
+                className={`role-button ${currentRole === 'secretariat' ? 'active' : ''}`}
+                onClick={() => setCurrentRole('secretariat')}
+              >
+                <span className="button-icon">🏢</span> Secretariat
+              </button>
+            )}
+            {currentUser.role === 'student' && (
+              <button 
+                className={`role-button ${currentRole === 'groupLeader' ? 'active' : ''}`}
+                onClick={() => setCurrentRole('groupLeader')}
+              >
+                <span className="button-icon">👨‍🎓</span> Șef Grupă
+              </button>
+            )}
+            {currentUser.role === 'teacher' && (
+              <button 
+                className={`role-button ${currentRole === 'teacher' ? 'active' : ''}`}
+                onClick={() => setCurrentRole('teacher')}
+              >
+                <span className="button-icon">👨‍🏫</span> Cadru Didactic
+              </button>
+            )}
+            {currentUser.role === 'admin' && (
+              <button 
+                className={`role-button ${currentRole === 'admin' ? 'active' : ''}`}
+                onClick={() => setCurrentRole('admin')}
+              >
+                <span className="button-icon">⚙️</span> Administrator
+              </button>
+            )}
+            <div className="auth-container">
+              <GoogleAuth 
+                onLoginSuccess={handleLoginSuccess} 
+                onLogout={handleLogout} 
+              />
+            </div>
+          </nav>
+        ) : (
+          <div className="auth-container">
+            <GoogleAuth 
+              onLoginSuccess={handleLoginSuccess} 
+              onLogout={handleLogout} 
+            />
+          </div>
+        )}
       </header>
       
       {/* Main content area */}
       <main className="main-content">
-        {renderView()}
+        {!isAuthenticated && currentRole !== 'home' ? (
+          <div className="auth-required">
+            <h2>Autentificare necesară</h2>
+            <p>Vă rugăm să vă autentificați pentru a accesa această secțiune.</p>
+            <GoogleAuth 
+              onLoginSuccess={handleLoginSuccess} 
+              onLogout={handleLogout} 
+            />
+          </div>
+        ) : (
+          renderView()
+        )}
       </main>
       
       {/* Footer */}
@@ -131,6 +188,15 @@ function App() {
         </div>
       </footer>
     </div>
+  );
+}
+
+// Main App component that wraps the content with AuthProvider
+function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 }
 
