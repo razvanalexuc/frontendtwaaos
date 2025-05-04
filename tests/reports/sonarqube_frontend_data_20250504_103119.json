@@ -1,0 +1,5078 @@
+{
+  "total": 112,
+  "p": 1,
+  "ps": 100,
+  "paging": {
+    "pageIndex": 1,
+    "pageSize": 100,
+    "total": 112
+  },
+  "effortTotal": 562,
+  "issues": [
+    {
+      "key": "50fc82f1-addb-478b-a2b0-8cdcbb9b12ca",
+      "rule": "javascript:S6582",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/auth/GoogleAuth.js",
+      "project": "frontendtwaaos",
+      "line": 100,
+      "hash": "3f22cc2abdfcff4a2120bb26d7b18411",
+      "textRange": {
+        "startLine": 100,
+        "endLine": 100,
+        "startOffset": 14,
+        "endOffset": 44
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Prefer using an optional chain expression instead, as it's more concise and easier to read.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [],
+      "creationDate": "2025-05-04T09:56:00+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "14d7aff8-4d43-4401-9a43-5919ea6c697d",
+      "rule": "python:S1192",
+      "severity": "CRITICAL",
+      "component": "frontendtwaaos:tests/generate_report.py",
+      "project": "frontendtwaaos",
+      "line": 107,
+      "hash": "5e4025225a6e2f355e186679a9d1fa4f",
+      "textRange": {
+        "startLine": 107,
+        "endLine": 107,
+        "startOffset": 46,
+        "endOffset": 78
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/generate_report.py",
+              "textRange": {
+                "startLine": 108,
+                "endLine": 108,
+                "startOffset": 50,
+                "endOffset": 82
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/generate_report.py",
+              "textRange": {
+                "startLine": 109,
+                "endLine": 109,
+                "startOffset": 51,
+                "endOffset": 83
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/generate_report.py",
+              "textRange": {
+                "startLine": 125,
+                "endLine": 125,
+                "startOffset": 49,
+                "endOffset": 81
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/generate_report.py",
+              "textRange": {
+                "startLine": 127,
+                "endLine": 127,
+                "startOffset": 53,
+                "endOffset": 85
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/generate_report.py",
+              "textRange": {
+                "startLine": 129,
+                "endLine": 129,
+                "startOffset": 54,
+                "endOffset": 86
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/generate_report.py",
+              "textRange": {
+                "startLine": 221,
+                "endLine": 221,
+                "startOffset": 26,
+                "endOffset": 58
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/generate_report.py",
+              "textRange": {
+                "startLine": 222,
+                "endLine": 222,
+                "startOffset": 30,
+                "endOffset": 62
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/generate_report.py",
+              "textRange": {
+                "startLine": 223,
+                "endLine": 223,
+                "startOffset": 31,
+                "endOffset": 63
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Define a constant instead of duplicating this literal 'Utilizatorul este autentificat' 9 times.",
+      "effort": "18min",
+      "debt": "18min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "design"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "DISTINCT",
+      "cleanCodeAttributeCategory": "ADAPTABLE",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "50152236-b3cd-4946-99b2-170a3548ee10",
+      "rule": "python:S1192",
+      "severity": "CRITICAL",
+      "component": "frontendtwaaos:tests/generate_report.py",
+      "project": "frontendtwaaos",
+      "line": 110,
+      "hash": "3922400b2cee08e44633aa40ca12e6d8",
+      "textRange": {
+        "startLine": 110,
+        "endLine": 110,
+        "startOffset": 40,
+        "endOffset": 70
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/generate_report.py",
+              "textRange": {
+                "startLine": 131,
+                "endLine": 131,
+                "startOffset": 43,
+                "endOffset": 73
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/generate_report.py",
+              "textRange": {
+                "startLine": 224,
+                "endLine": 224,
+                "startOffset": 20,
+                "endOffset": 50
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Define a constant instead of duplicating this literal 'Utilizatorul este deconectat' 3 times.",
+      "effort": "6min",
+      "debt": "6min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "design"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "DISTINCT",
+      "cleanCodeAttributeCategory": "ADAPTABLE",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "372d87bc-a2ac-4dc5-8377-dd7dbe8e75b1",
+      "rule": "python:S1192",
+      "severity": "CRITICAL",
+      "component": "frontendtwaaos:tests/generate_report.py",
+      "project": "frontendtwaaos",
+      "line": 147,
+      "hash": "e657bec9cb94be78e332c1673bba0eb8",
+      "textRange": {
+        "startLine": 147,
+        "endLine": 147,
+        "startOffset": 45,
+        "endOffset": 66
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/generate_report.py",
+              "textRange": {
+                "startLine": 167,
+                "endLine": 167,
+                "startOffset": 48,
+                "endOffset": 69
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/generate_report.py",
+              "textRange": {
+                "startLine": 225,
+                "endLine": 225,
+                "startOffset": 25,
+                "endOffset": 46
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Define a constant instead of duplicating this literal 'Token stocat corect' 3 times.",
+      "effort": "6min",
+      "debt": "6min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "design"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "DISTINCT",
+      "cleanCodeAttributeCategory": "ADAPTABLE",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "50887065-3cfb-4c11-83ad-580c356fcb69",
+      "rule": "python:S1192",
+      "severity": "CRITICAL",
+      "component": "frontendtwaaos:tests/generate_report.py",
+      "project": "frontendtwaaos",
+      "line": 148,
+      "hash": "ed947effaf23e59553ab46d0a7c1e45f",
+      "textRange": {
+        "startLine": 148,
+        "endLine": 148,
+        "startOffset": 45,
+        "endOffset": 65
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/generate_report.py",
+              "textRange": {
+                "startLine": 169,
+                "endLine": 169,
+                "startOffset": 48,
+                "endOffset": 68
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/generate_report.py",
+              "textRange": {
+                "startLine": 226,
+                "endLine": 226,
+                "startOffset": 25,
+                "endOffset": 45
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Define a constant instead of duplicating this literal 'Token șters corect' 3 times.",
+      "effort": "6min",
+      "debt": "6min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "design"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "DISTINCT",
+      "cleanCodeAttributeCategory": "ADAPTABLE",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "a68baf3a-03f3-4ee7-bfca-947e08f18ad1",
+      "rule": "Web:S5254",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:tests/reports/test_report_20250503_190548.html",
+      "project": "frontendtwaaos",
+      "line": 2,
+      "hash": "166248a6129a1e4370d20adc2d4c23f3",
+      "textRange": {
+        "startLine": 2,
+        "endLine": 2,
+        "startOffset": 0,
+        "endOffset": 6
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Add \"lang\" and/or \"xml:lang\" attributes to this \"<html>\" element",
+      "effort": "2min",
+      "debt": "2min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "wcag2-a"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "e47baa7a-9063-4449-9922-f83c71354e52",
+      "rule": "javascript:S4138",
+      "severity": "MINOR",
+      "component": "frontendtwaaos:tests/reports/test_report_20250503_190548.html",
+      "project": "frontendtwaaos",
+      "line": 264,
+      "hash": "206c40b339d7fe83a193f7a32ed74ff9",
+      "textRange": {
+        "startLine": 264,
+        "endLine": 271,
+        "startOffset": 4,
+        "endOffset": 5
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Expected a `for-of` loop instead of a `for` loop with this simple iteration.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "clumsy"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": true,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "4f65404b-abb2-4c9c-983a-3e70a1b33b39",
+      "rule": "javascript:S1125",
+      "severity": "MINOR",
+      "component": "frontendtwaaos:tests/reports/test_report_20250503_190548.html",
+      "project": "frontendtwaaos",
+      "line": 422,
+      "hash": "60ae378db95435feff2e82a974322df2",
+      "textRange": {
+        "startLine": 422,
+        "endLine": 422,
+        "startOffset": 27,
+        "endOffset": 32
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Refactor the code to avoid using this boolean literal.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "clumsy"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "b9778af4-aa2d-4c44-8938-8b9e6f3e6fd7",
+      "rule": "javascript:S4138",
+      "severity": "MINOR",
+      "component": "frontendtwaaos:tests/reports/test_report_20250503_190548.html",
+      "project": "frontendtwaaos",
+      "line": 431,
+      "hash": "f6f83050c3ac1a0fa3f6977baf38c0fb",
+      "textRange": {
+        "startLine": 431,
+        "endLine": 433,
+        "startOffset": 4,
+        "endOffset": 5
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Expected a `for-of` loop instead of a `for` loop with this simple iteration.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "clumsy"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": true,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "7e6f7925-40bd-4409-ae38-d45acc1b2bdb",
+      "rule": "javascript:S6644",
+      "severity": "MINOR",
+      "component": "frontendtwaaos:tests/reports/test_report_20250503_190548.html",
+      "project": "frontendtwaaos",
+      "line": 436,
+      "hash": "a8269a8633a2b1121b6abb18a3cc3f08",
+      "textRange": {
+        "startLine": 436,
+        "endLine": 436,
+        "startOffset": 26,
+        "endOffset": 57
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Unnecessary use of boolean literals in conditional expression.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": true,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "e9f6bf26-b6ce-49ee-85b1-98288c0c6097",
+      "rule": "Web:TableHeaderHasIdOrScopeCheck",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:tests/reports/test_report_20250503_190548.html",
+      "project": "frontendtwaaos",
+      "line": 450,
+      "hash": "7f2d315c40837107baac6efce12a931b",
+      "textRange": {
+        "startLine": 450,
+        "endLine": 450,
+        "startOffset": 10,
+        "endOffset": 64
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Add either an 'id' or a 'scope' attribute to this <th> tag.",
+      "effort": "10min",
+      "debt": "10min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "wcag2-a"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "48386dd4-caf4-4201-9de0-34a0b93bbb80",
+      "rule": "Web:TableHeaderHasIdOrScopeCheck",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:tests/reports/test_report_20250503_190548.html",
+      "project": "frontendtwaaos",
+      "line": 451,
+      "hash": "698bbdd869f4a9ba17128317e953a435",
+      "textRange": {
+        "startLine": 451,
+        "endLine": 451,
+        "startOffset": 10,
+        "endOffset": 42
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Add either an 'id' or a 'scope' attribute to this <th> tag.",
+      "effort": "10min",
+      "debt": "10min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "wcag2-a"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "aa498d52-9c22-4cb5-b231-8b9f0d52c52c",
+      "rule": "Web:TableHeaderHasIdOrScopeCheck",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:tests/reports/test_report_20250503_190548.html",
+      "project": "frontendtwaaos",
+      "line": 452,
+      "hash": "602e9cb034c4ad1ee1f7c693f5da97ea",
+      "textRange": {
+        "startLine": 452,
+        "endLine": 452,
+        "startOffset": 10,
+        "endOffset": 46
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Add either an 'id' or a 'scope' attribute to this <th> tag.",
+      "effort": "10min",
+      "debt": "10min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "wcag2-a"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "13bf263f-c37c-4951-b377-ce47ea791e46",
+      "rule": "Web:TableHeaderHasIdOrScopeCheck",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:tests/reports/test_report_20250503_190548.html",
+      "project": "frontendtwaaos",
+      "line": 453,
+      "hash": "da135519bb4ff1638662c11f04fedb6b",
+      "textRange": {
+        "startLine": 453,
+        "endLine": 453,
+        "startOffset": 10,
+        "endOffset": 49
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Add either an 'id' or a 'scope' attribute to this <th> tag.",
+      "effort": "10min",
+      "debt": "10min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "wcag2-a"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "6063a909-81c5-4b73-9f2e-b20f0d3cce1a",
+      "rule": "Web:TableHeaderHasIdOrScopeCheck",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:tests/reports/test_report_20250503_190548.html",
+      "project": "frontendtwaaos",
+      "line": 455,
+      "hash": "49855666f1f6dafbae19c81db1c360a7",
+      "textRange": {
+        "startLine": 455,
+        "endLine": 455,
+        "startOffset": 10,
+        "endOffset": 26
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Add either an 'id' or a 'scope' attribute to this <th> tag.",
+      "effort": "10min",
+      "debt": "10min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "wcag2-a"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "57f0ca14-1227-4dd2-ac81-0fb641692658",
+      "rule": "python:S3457",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:tests/run_tests.py",
+      "project": "frontendtwaaos",
+      "line": 38,
+      "hash": "bf43c03b21fb87beaa6e65fa5e638192",
+      "textRange": {
+        "startLine": 38,
+        "endLine": 38,
+        "startOffset": 10,
+        "endOffset": 62
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Add replacement fields or use a normal string instead of an f-string.",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "confusing"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "0c3ce431-9e8f-45fe-b690-8cde0e9f6522",
+      "rule": "python:S112",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:tests/selenium/conftest.py",
+      "project": "frontendtwaaos",
+      "line": 48,
+      "hash": "e8f2423f04749ccbd075e3e380c2a38e",
+      "textRange": {
+        "startLine": 48,
+        "endLine": 48,
+        "startOffset": 18,
+        "endOffset": 83
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Replace this generic exception class with a more specific one.",
+      "effort": "20min",
+      "debt": "20min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "cwe",
+        "error-handling"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "25cb2ef1-1d05-48ea-8fe9-500bbdf15c1c",
+      "rule": "python:S112",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:tests/selenium/conftest.py",
+      "project": "frontendtwaaos",
+      "line": 57,
+      "hash": "dfacb952d5db198dc3362b3fc7f36e42",
+      "textRange": {
+        "startLine": 57,
+        "endLine": 57,
+        "startOffset": 18,
+        "endOffset": 149
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Replace this generic exception class with a more specific one.",
+      "effort": "20min",
+      "debt": "20min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "cwe",
+        "error-handling"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "b4c3d923-5e02-4961-8278-a4c47e7c690a",
+      "rule": "python:S5754",
+      "severity": "CRITICAL",
+      "component": "frontendtwaaos:tests/selenium/generate_simple_report.py",
+      "project": "frontendtwaaos",
+      "line": 200,
+      "hash": "3e264f5fbab10735799511f21ca70842",
+      "textRange": {
+        "startLine": 200,
+        "endLine": 200,
+        "startOffset": 4,
+        "endOffset": 10
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Specify an exception class to catch or reraise the exception",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "error-handling",
+        "bad-practice",
+        "suspicious"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "d4196995-dd0e-42ac-8dca-11c6a6dce918",
+      "rule": "python:S1481",
+      "severity": "MINOR",
+      "component": "frontendtwaaos:tests/selenium/pages/homepage.py",
+      "project": "frontendtwaaos",
+      "line": 39,
+      "hash": "5e11fcffc5ca1f600d0bf53d38f19ae7",
+      "textRange": {
+        "startLine": 39,
+        "endLine": 39,
+        "startOffset": 28,
+        "endOffset": 29
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove the unused local variable \"e\".",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "unused"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "0eef4deb-72da-4553-b4ee-ad8367f90a0b",
+      "rule": "python:S5719",
+      "severity": "BLOCKER",
+      "component": "frontendtwaaos:tests/selenium/pages/secretariatpage.py",
+      "project": "frontendtwaaos",
+      "line": 34,
+      "hash": "77970a4206fa3661c7874b6f98f22dfc",
+      "textRange": {
+        "startLine": 34,
+        "endLine": 34,
+        "startOffset": 4,
+        "endOffset": 31
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Add a \"self\" or class parameter",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "python3",
+        "syntax"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "BLOCKER"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "b93e4d93-a7e8-4f89-af76-16b54c1450d0",
+      "rule": "python:S3457",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:tests/selenium/pages/secretariatpage.py",
+      "project": "frontendtwaaos",
+      "line": 71,
+      "hash": "3f3ed07e809cacef0d7cb39ca260bd97",
+      "textRange": {
+        "startLine": 71,
+        "endLine": 71,
+        "startOffset": 15,
+        "endOffset": 66
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Add replacement fields or use a normal string instead of an f-string.",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "confusing"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "9ea53c96-356c-48b4-9834-080e74c16f47",
+      "rule": "python:S3457",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:tests/selenium/pages/secretariatpage.py",
+      "project": "frontendtwaaos",
+      "line": 78,
+      "hash": "c28e09756fc5c901023a61fe62a89220",
+      "textRange": {
+        "startLine": 78,
+        "endLine": 78,
+        "startOffset": 15,
+        "endOffset": 51
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Add replacement fields or use a normal string instead of an f-string.",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "confusing"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "8a46d8db-037e-409e-a3ae-0d695bb78675",
+      "rule": "python:S3457",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:tests/selenium/pages/secretariatpage.py",
+      "project": "frontendtwaaos",
+      "line": 85,
+      "hash": "78161fb739c24de912b5a7ea1d9fcd7b",
+      "textRange": {
+        "startLine": 85,
+        "endLine": 85,
+        "startOffset": 15,
+        "endOffset": 53
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Add replacement fields or use a normal string instead of an f-string.",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "confusing"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "1300df73-8e47-42aa-9d36-5b01f440d9b8",
+      "rule": "python:S3457",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:tests/selenium/pages/secretariatpage.py",
+      "project": "frontendtwaaos",
+      "line": 92,
+      "hash": "1b9e8f0360c5849275fc8f42d6dd91f0",
+      "textRange": {
+        "startLine": 92,
+        "endLine": 92,
+        "startOffset": 15,
+        "endOffset": 57
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Add replacement fields or use a normal string instead of an f-string.",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "confusing"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "fdd8ca67-aa86-4ee8-9b93-85c40d28c3b5",
+      "rule": "Web:S5254",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:tests/selenium/reports/detailed_report_20250503_212729.html",
+      "project": "frontendtwaaos",
+      "line": 2,
+      "hash": "166248a6129a1e4370d20adc2d4c23f3",
+      "textRange": {
+        "startLine": 2,
+        "endLine": 2,
+        "startOffset": 0,
+        "endOffset": 6
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Add \"lang\" and/or \"xml:lang\" attributes to this \"<html>\" element",
+      "effort": "2min",
+      "debt": "2min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "wcag2-a"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "6104fc3f-2e04-411f-9e93-b4f03abb4845",
+      "rule": "javascript:S6660",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:tests/selenium/reports/detailed_report_20250503_212729.html",
+      "project": "frontendtwaaos",
+      "line": 238,
+      "hash": "50e6c269f0985dfbce8da0e7c52106e7",
+      "textRange": {
+        "startLine": 238,
+        "endLine": 238,
+        "startOffset": 20,
+        "endOffset": 22
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "'If' statement should not be the only statement in 'else' block",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": true,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "802be7ce-fcd3-4299-9f68-4a9532d56618",
+      "rule": "javascript:S6660",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:tests/selenium/reports/detailed_report_20250503_212729.html",
+      "project": "frontendtwaaos",
+      "line": 262,
+      "hash": "6eb72287dafe16b63008b8ef433f0e1d",
+      "textRange": {
+        "startLine": 262,
+        "endLine": 262,
+        "startOffset": 20,
+        "endOffset": 22
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "'If' statement should not be the only statement in 'else' block",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": true,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "42c72d58-53c3-442b-8e5f-94a4c8cd56fd",
+      "rule": "javascript:S6660",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:tests/selenium/reports/detailed_report_20250503_212729.html",
+      "project": "frontendtwaaos",
+      "line": 286,
+      "hash": "2d89e84f89f6ce5d8f3653c9df157282",
+      "textRange": {
+        "startLine": 286,
+        "endLine": 286,
+        "startOffset": 20,
+        "endOffset": 22
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "'If' statement should not be the only statement in 'else' block",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": true,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "5ce82494-7b12-41a1-9541-924e999b575a",
+      "rule": "Web:S5254",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:tests/selenium/reports/test_report_20250503_211926.html",
+      "project": "frontendtwaaos",
+      "line": 2,
+      "hash": "166248a6129a1e4370d20adc2d4c23f3",
+      "textRange": {
+        "startLine": 2,
+        "endLine": 2,
+        "startOffset": 0,
+        "endOffset": 6
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Add \"lang\" and/or \"xml:lang\" attributes to this \"<html>\" element",
+      "effort": "2min",
+      "debt": "2min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "wcag2-a"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "5eb312e6-703e-4ff1-8f16-bfa6311c847c",
+      "rule": "Web:S5254",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:tests/selenium/reports/test_report_authentication_20250503_212453.html",
+      "project": "frontendtwaaos",
+      "line": 2,
+      "hash": "166248a6129a1e4370d20adc2d4c23f3",
+      "textRange": {
+        "startLine": 2,
+        "endLine": 2,
+        "startOffset": 0,
+        "endOffset": 6
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Add \"lang\" and/or \"xml:lang\" attributes to this \"<html>\" element",
+      "effort": "2min",
+      "debt": "2min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "wcag2-a"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "b8010155-ebcd-4b21-8cec-ba0209b78cff",
+      "rule": "python:S3776",
+      "severity": "CRITICAL",
+      "component": "frontendtwaaos:tests/selenium/run_all_tests.py",
+      "project": "frontendtwaaos",
+      "line": 28,
+      "hash": "a49e393efefc7617abe725f9326c6bbd",
+      "textRange": {
+        "startLine": 28,
+        "endLine": 28,
+        "startOffset": 4,
+        "endOffset": 13
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/selenium/run_all_tests.py",
+              "textRange": {
+                "startLine": 42,
+                "endLine": 42,
+                "startOffset": 4,
+                "endOffset": 6
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/selenium/run_all_tests.py",
+              "textRange": {
+                "startLine": 42,
+                "endLine": 42,
+                "startOffset": 17,
+                "endOffset": 19
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/selenium/run_all_tests.py",
+              "textRange": {
+                "startLine": 45,
+                "endLine": 45,
+                "startOffset": 8,
+                "endOffset": 10
+              },
+              "msg": "+2 (incl 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/selenium/run_all_tests.py",
+              "textRange": {
+                "startLine": 52,
+                "endLine": 52,
+                "startOffset": 4,
+                "endOffset": 6
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/selenium/run_all_tests.py",
+              "textRange": {
+                "startLine": 56,
+                "endLine": 56,
+                "startOffset": 4,
+                "endOffset": 6
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/selenium/run_all_tests.py",
+              "textRange": {
+                "startLine": 58,
+                "endLine": 58,
+                "startOffset": 8,
+                "endOffset": 11
+              },
+              "msg": "+2 (incl 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/selenium/run_all_tests.py",
+              "textRange": {
+                "startLine": 59,
+                "endLine": 59,
+                "startOffset": 12,
+                "endOffset": 14
+              },
+              "msg": "+3 (incl 2 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/selenium/run_all_tests.py",
+              "textRange": {
+                "startLine": 62,
+                "endLine": 62,
+                "startOffset": 8,
+                "endOffset": 10
+              },
+              "msg": "+2 (incl 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/selenium/run_all_tests.py",
+              "textRange": {
+                "startLine": 64,
+                "endLine": 64,
+                "startOffset": 8,
+                "endOffset": 12
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/selenium/run_all_tests.py",
+              "textRange": {
+                "startLine": 68,
+                "endLine": 68,
+                "startOffset": 4,
+                "endOffset": 8
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/selenium/run_all_tests.py",
+              "textRange": {
+                "startLine": 70,
+                "endLine": 70,
+                "startOffset": 8,
+                "endOffset": 10
+              },
+              "msg": "+2 (incl 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/selenium/run_all_tests.py",
+              "textRange": {
+                "startLine": 72,
+                "endLine": 72,
+                "startOffset": 8,
+                "endOffset": 12
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/selenium/run_all_tests.py",
+              "textRange": {
+                "startLine": 76,
+                "endLine": 76,
+                "startOffset": 4,
+                "endOffset": 8
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/selenium/run_all_tests.py",
+              "textRange": {
+                "startLine": 93,
+                "endLine": 93,
+                "startOffset": 4,
+                "endOffset": 6
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/selenium/run_all_tests.py",
+              "textRange": {
+                "startLine": 93,
+                "endLine": 93,
+                "startOffset": 17,
+                "endOffset": 19
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/selenium/run_all_tests.py",
+              "textRange": {
+                "startLine": 98,
+                "endLine": 98,
+                "startOffset": 4,
+                "endOffset": 6
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/selenium/run_all_tests.py",
+              "textRange": {
+                "startLine": 98,
+                "endLine": 98,
+                "startOffset": 20,
+                "endOffset": 22
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/selenium/run_all_tests.py",
+              "textRange": {
+                "startLine": 104,
+                "endLine": 104,
+                "startOffset": 4,
+                "endOffset": 6
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:tests/selenium/run_all_tests.py",
+              "textRange": {
+                "startLine": 106,
+                "endLine": 106,
+                "startOffset": 4,
+                "endOffset": 8
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Refactor this function to reduce its Cognitive Complexity from 25 to the 15 allowed.",
+      "effort": "15min",
+      "debt": "15min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "brain-overload"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "FOCUSED",
+      "cleanCodeAttributeCategory": "ADAPTABLE",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "9679cb46-e8c1-45d4-a035-e65a15eee696",
+      "rule": "python:S3457",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:tests/selenium/run_all_tests.py",
+      "project": "frontendtwaaos",
+      "line": 87,
+      "hash": "e5ba93313bcc1f5d03806674aac481b3",
+      "textRange": {
+        "startLine": 87,
+        "endLine": 87,
+        "startOffset": 10,
+        "endOffset": 28
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Add replacement fields or use a normal string instead of an f-string.",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "confusing"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "1e2fdce4-b35b-412e-ba3e-48e2d94c46e8",
+      "rule": "python:S5754",
+      "severity": "CRITICAL",
+      "component": "frontendtwaaos:tests/selenium/run_ascii_tests.py",
+      "project": "frontendtwaaos",
+      "line": 62,
+      "hash": "3e264f5fbab10735799511f21ca70842",
+      "textRange": {
+        "startLine": 62,
+        "endLine": 62,
+        "startOffset": 4,
+        "endOffset": 10
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Specify an exception class to catch or reraise the exception",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "error-handling",
+        "bad-practice",
+        "suspicious"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "d3b7e59c-bcb1-49df-a1dd-1604e2dd6e3c",
+      "rule": "python:S3457",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:tests/selenium/run_ascii_tests.py",
+      "project": "frontendtwaaos",
+      "line": 76,
+      "hash": "3a54a39984e1de3cb28d849cf7ceb2a4",
+      "textRange": {
+        "startLine": 76,
+        "endLine": 76,
+        "startOffset": 8,
+        "endOffset": 13
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Add replacement fields or use a normal string instead of an f-string.",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "confusing"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "dd7e944d-be28-466e-a43b-c4cd7cc4f6c1",
+      "rule": "python:S5754",
+      "severity": "CRITICAL",
+      "component": "frontendtwaaos:tests/selenium/run_ascii_tests.py",
+      "project": "frontendtwaaos",
+      "line": 109,
+      "hash": "3e264f5fbab10735799511f21ca70842",
+      "textRange": {
+        "startLine": 109,
+        "endLine": 109,
+        "startOffset": 4,
+        "endOffset": 10
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Specify an exception class to catch or reraise the exception",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "error-handling",
+        "bad-practice",
+        "suspicious"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "9dc0004f-d1a9-4e31-964e-6fa8036ea283",
+      "rule": "python:S3457",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:tests/selenium/run_marked_tests.py",
+      "project": "frontendtwaaos",
+      "line": 63,
+      "hash": "3a54a39984e1de3cb28d849cf7ceb2a4",
+      "textRange": {
+        "startLine": 63,
+        "endLine": 63,
+        "startOffset": 8,
+        "endOffset": 13
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Add replacement fields or use a normal string instead of an f-string.",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "confusing"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "7ff4bffa-9584-479f-8bcb-79837660c0f9",
+      "rule": "python:S3457",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:tests/selenium/run_marked_tests.py",
+      "project": "frontendtwaaos",
+      "line": 98,
+      "hash": "b3418455c355c4d4cd6d1a3e1cd00ad2",
+      "textRange": {
+        "startLine": 98,
+        "endLine": 98,
+        "startOffset": 8,
+        "endOffset": 13
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Add replacement fields or use a normal string instead of an f-string.",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "confusing"
+      ],
+      "creationDate": "2025-05-04T09:51:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "e78ea0d4-d11d-4255-a6ca-52d58d23015c",
+      "rule": "javascript:S1128",
+      "severity": "MINOR",
+      "component": "frontendtwaaos:src/components/auth/GoogleAuth.js",
+      "project": "frontendtwaaos",
+      "line": 2,
+      "hash": "f4fe973164f4b9640a29d81096550bed",
+      "textRange": {
+        "startLine": 2,
+        "endLine": 2,
+        "startOffset": 9,
+        "endOffset": 23
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove this unused import of 'useGoogleLogin'.",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "es2015",
+        "type-dependent",
+        "unused"
+      ],
+      "creationDate": "2025-05-03T17:05:16+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": true,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "00d28821-f5fa-4e9a-82fe-8180dbd45abf",
+      "rule": "javascript:S1481",
+      "severity": "MINOR",
+      "component": "frontendtwaaos:src/components/auth/GoogleAuth.js",
+      "project": "frontendtwaaos",
+      "line": 16,
+      "hash": "e5ea27c1e1e4841883c10e7dd5dc5129",
+      "textRange": {
+        "startLine": 16,
+        "endLine": 16,
+        "startOffset": 19,
+        "endOffset": 30
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove the declaration of the unused 'setUserInfo' variable.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "unused"
+      ],
+      "creationDate": "2025-05-03T17:05:16+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "0180e2d3-d0a7-46d8-a9ff-bdd9e6562a6e",
+      "rule": "javascript:S1854",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/auth/GoogleAuth.js",
+      "project": "frontendtwaaos",
+      "line": 16,
+      "hash": "e5ea27c1e1e4841883c10e7dd5dc5129",
+      "textRange": {
+        "startLine": 16,
+        "endLine": 16,
+        "startOffset": 19,
+        "endOffset": 30
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove this useless assignment to variable \"setUserInfo\".",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "cwe",
+        "unused"
+      ],
+      "creationDate": "2025-05-03T17:05:16+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "c1a5512b-36fd-4e75-a9fe-37faf402e829",
+      "rule": "javascript:S1481",
+      "severity": "MINOR",
+      "component": "frontendtwaaos:src/components/auth/GoogleAuth.js",
+      "project": "frontendtwaaos",
+      "line": 16,
+      "hash": "e5ea27c1e1e4841883c10e7dd5dc5129",
+      "textRange": {
+        "startLine": 16,
+        "endLine": 16,
+        "startOffset": 9,
+        "endOffset": 17
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove the declaration of the unused 'userInfo' variable.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "unused"
+      ],
+      "creationDate": "2025-05-03T17:05:16+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "fc36da77-4c44-4164-ad5d-7e2c96664dc3",
+      "rule": "javascript:S1854",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/auth/GoogleAuth.js",
+      "project": "frontendtwaaos",
+      "line": 16,
+      "hash": "e5ea27c1e1e4841883c10e7dd5dc5129",
+      "textRange": {
+        "startLine": 16,
+        "endLine": 16,
+        "startOffset": 9,
+        "endOffset": 17
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove this useless assignment to variable \"userInfo\".",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "cwe",
+        "unused"
+      ],
+      "creationDate": "2025-05-03T17:05:16+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "9469b819-831e-4a21-b578-f91b238ab067",
+      "rule": "javascript:S1854",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/AdminDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 192,
+      "hash": "7d1f248f8978ed01f1e28b1777bce9af",
+      "textRange": {
+        "startLine": 192,
+        "endLine": 192,
+        "startOffset": 12,
+        "endOffset": 20
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove this useless assignment to variable \"response\".",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "cwe",
+        "unused"
+      ],
+      "creationDate": "2025-05-03T13:44:17+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "e02b7407-49ef-437f-983c-ff5c0fb7c795",
+      "rule": "javascript:S1481",
+      "severity": "MINOR",
+      "component": "frontendtwaaos:src/components/roles/AdminDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 192,
+      "hash": "7d1f248f8978ed01f1e28b1777bce9af",
+      "textRange": {
+        "startLine": 192,
+        "endLine": 192,
+        "startOffset": 12,
+        "endOffset": 20
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove the declaration of the unused 'response' variable.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "unused"
+      ],
+      "creationDate": "2025-05-03T13:44:17+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "129b85ca-9338-4cd1-8741-c0f550472499",
+      "rule": "javascript:S1854",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/AdminDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 243,
+      "hash": "7d1f248f8978ed01f1e28b1777bce9af",
+      "textRange": {
+        "startLine": 243,
+        "endLine": 243,
+        "startOffset": 12,
+        "endOffset": 20
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove this useless assignment to variable \"response\".",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "cwe",
+        "unused"
+      ],
+      "creationDate": "2025-05-03T13:44:17+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "c49b7d40-6d3e-41bd-8a4b-455d49e3c5ba",
+      "rule": "javascript:S1481",
+      "severity": "MINOR",
+      "component": "frontendtwaaos:src/components/roles/AdminDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 243,
+      "hash": "7d1f248f8978ed01f1e28b1777bce9af",
+      "textRange": {
+        "startLine": 243,
+        "endLine": 243,
+        "startOffset": 12,
+        "endOffset": 20
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove the declaration of the unused 'response' variable.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "unused"
+      ],
+      "creationDate": "2025-05-03T13:44:17+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "42d6a927-d145-4b44-ab9f-aec2bd8b707c",
+      "rule": "javascript:S2004",
+      "severity": "CRITICAL",
+      "component": "frontendtwaaos:src/components/roles/GroupLeaderDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 30,
+      "hash": "8738f746c00b4872e62b9a39a36ca733",
+      "textRange": {
+        "startLine": 30,
+        "endLine": 30,
+        "startOffset": 50,
+        "endOffset": 52
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:src/components/roles/GroupLeaderDashboard.js",
+              "textRange": {
+                "startLine": 5,
+                "endLine": 5,
+                "startOffset": 40,
+                "endOffset": 42
+              },
+              "msg": "Nesting +1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:src/components/roles/GroupLeaderDashboard.js",
+              "textRange": {
+                "startLine": 11,
+                "endLine": 11,
+                "startOffset": 15,
+                "endOffset": 17
+              },
+              "msg": "Nesting +1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:src/components/roles/GroupLeaderDashboard.js",
+              "textRange": {
+                "startLine": 12,
+                "endLine": 12,
+                "startOffset": 38,
+                "endOffset": 40
+              },
+              "msg": "Nesting +1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:src/components/roles/GroupLeaderDashboard.js",
+              "textRange": {
+                "startLine": 28,
+                "endLine": 28,
+                "startOffset": 43,
+                "endOffset": 45
+              },
+              "msg": "Nesting +1",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Refactor this code to not nest functions more than 4 levels deep.",
+      "effort": "20min",
+      "debt": "20min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "brain-overload"
+      ],
+      "creationDate": "2025-05-03T13:44:17+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "FOCUSED",
+      "cleanCodeAttributeCategory": "ADAPTABLE",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "b753605e-b4f7-43f4-bdc7-aaa378260ccc",
+      "rule": "javascript:S6774",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/GroupLeaderDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 32,
+      "hash": "b1f86651d6d13dcefb9e3c34a0949a68",
+      "textRange": {
+        "startLine": 32,
+        "endLine": 32,
+        "startOffset": 46,
+        "endOffset": 51
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "'user.group' is missing in props validation",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "react"
+      ],
+      "creationDate": "2025-05-03T13:44:17+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        },
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "8f3e5ec1-f86e-4e06-bb73-897daffb2220",
+      "rule": "javascript:S6774",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/GroupLeaderDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 68,
+      "hash": "871af02f0e2dd5897fb141adaf13fc56",
+      "textRange": {
+        "startLine": 68,
+        "endLine": 68,
+        "startOffset": 11,
+        "endOffset": 16
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "'user.group' is missing in props validation",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "react"
+      ],
+      "creationDate": "2025-05-03T13:44:17+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        },
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "2b0412e7-68d4-4a88-be30-5ed0ba8fa628",
+      "rule": "javascript:S6582",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/GroupLeaderDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 79,
+      "hash": "8c3c54e1bd6a277d9cfbbfc30514a0ed",
+      "textRange": {
+        "startLine": 79,
+        "endLine": 79,
+        "startOffset": 10,
+        "endOffset": 49
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Prefer using an optional chain expression instead, as it's more concise and easier to read.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [],
+      "creationDate": "2025-05-03T13:44:17+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "17448311-7f6a-4840-bc4c-0ce92832e3f8",
+      "rule": "javascript:S1854",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/SecretariatDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 14,
+      "hash": "2a46a2baba3936acc2fa6e617f7ea2b3",
+      "textRange": {
+        "startLine": 14,
+        "endLine": 14,
+        "startOffset": 9,
+        "endOffset": 16
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove this useless assignment to variable \"loading\".",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "cwe",
+        "unused"
+      ],
+      "creationDate": "2025-05-03T13:44:17+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "47e2c2aa-cf7f-4eeb-bf21-070464587d40",
+      "rule": "javascript:S1481",
+      "severity": "MINOR",
+      "component": "frontendtwaaos:src/components/roles/SecretariatDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 14,
+      "hash": "2a46a2baba3936acc2fa6e617f7ea2b3",
+      "textRange": {
+        "startLine": 14,
+        "endLine": 14,
+        "startOffset": 9,
+        "endOffset": 16
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove the declaration of the unused 'loading' variable.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "unused"
+      ],
+      "creationDate": "2025-05-03T13:44:17+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "971aef1f-bdb8-4bf3-bf0f-c2ba7b8ab78d",
+      "rule": "javascript:S1854",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/SecretariatDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 15,
+      "hash": "15ba41a4b78ce6ad2ae2ce867a025605",
+      "textRange": {
+        "startLine": 15,
+        "endLine": 15,
+        "startOffset": 9,
+        "endOffset": 14
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove this useless assignment to variable \"error\".",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "cwe",
+        "unused"
+      ],
+      "creationDate": "2025-05-03T13:44:17+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "e2d3f450-f700-48a4-8228-51aff4d7f9bb",
+      "rule": "javascript:S1481",
+      "severity": "MINOR",
+      "component": "frontendtwaaos:src/components/roles/SecretariatDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 15,
+      "hash": "15ba41a4b78ce6ad2ae2ce867a025605",
+      "textRange": {
+        "startLine": 15,
+        "endLine": 15,
+        "startOffset": 9,
+        "endOffset": 14
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove the declaration of the unused 'error' variable.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "unused"
+      ],
+      "creationDate": "2025-05-03T13:44:17+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "5f58f8d8-57ec-4b16-8de1-54664710cfc2",
+      "rule": "javascript:S1854",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/SecretariatDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 16,
+      "hash": "83a41b558de1b878e12642006d8cb6af",
+      "textRange": {
+        "startLine": 16,
+        "endLine": 16,
+        "startOffset": 9,
+        "endOffset": 28
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove this useless assignment to variable \"pendingReservations\".",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "cwe",
+        "unused"
+      ],
+      "creationDate": "2025-05-03T13:44:17+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "c7ff0a84-a47e-405a-affe-8b436dd22d8a",
+      "rule": "javascript:S1481",
+      "severity": "MINOR",
+      "component": "frontendtwaaos:src/components/roles/SecretariatDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 16,
+      "hash": "83a41b558de1b878e12642006d8cb6af",
+      "textRange": {
+        "startLine": 16,
+        "endLine": 16,
+        "startOffset": 9,
+        "endOffset": 28
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove the declaration of the unused 'pendingReservations' variable.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "unused"
+      ],
+      "creationDate": "2025-05-03T13:44:17+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "0a3e6f5a-229e-401d-a329-f2c98ca79031",
+      "rule": "javascript:S1854",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/SecretariatDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 17,
+      "hash": "b11c4e042c335114dcf12f9f7ffed26a",
+      "textRange": {
+        "startLine": 17,
+        "endLine": 17,
+        "startOffset": 9,
+        "endOffset": 27
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove this useless assignment to variable \"reservationHistory\".",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "cwe",
+        "unused"
+      ],
+      "creationDate": "2025-05-03T13:44:17+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "b28c4066-cccb-4cb3-bf9c-b772b40df8ee",
+      "rule": "javascript:S1481",
+      "severity": "MINOR",
+      "component": "frontendtwaaos:src/components/roles/SecretariatDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 17,
+      "hash": "b11c4e042c335114dcf12f9f7ffed26a",
+      "textRange": {
+        "startLine": 17,
+        "endLine": 17,
+        "startOffset": 9,
+        "endOffset": 27
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove the declaration of the unused 'reservationHistory' variable.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "unused"
+      ],
+      "creationDate": "2025-05-03T13:44:17+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "2fe989fa-9966-440f-a0a2-13437a4d4378",
+      "rule": "javascript:S3776",
+      "severity": "CRITICAL",
+      "component": "frontendtwaaos:src/components/roles/SecretariatDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 160,
+      "hash": "afb2c249c22a25391ed902efa854a534",
+      "textRange": {
+        "startLine": 160,
+        "endLine": 160,
+        "startOffset": 30,
+        "endOffset": 32
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:src/components/roles/SecretariatDashboard.js",
+              "textRange": {
+                "startLine": 161,
+                "endLine": 161,
+                "startOffset": 4,
+                "endOffset": 6
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:src/components/roles/SecretariatDashboard.js",
+              "textRange": {
+                "startLine": 165,
+                "endLine": 165,
+                "startOffset": 8,
+                "endOffset": 10
+              },
+              "msg": "+2 (incl. 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:src/components/roles/SecretariatDashboard.js",
+              "textRange": {
+                "startLine": 167,
+                "endLine": 167,
+                "startOffset": 15,
+                "endOffset": 17
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:src/components/roles/SecretariatDashboard.js",
+              "textRange": {
+                "startLine": 171,
+                "endLine": 171,
+                "startOffset": 8,
+                "endOffset": 10
+              },
+              "msg": "+2 (incl. 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:src/components/roles/SecretariatDashboard.js",
+              "textRange": {
+                "startLine": 185,
+                "endLine": 185,
+                "startOffset": 8,
+                "endOffset": 10
+              },
+              "msg": "+2 (incl. 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:src/components/roles/SecretariatDashboard.js",
+              "textRange": {
+                "startLine": 188,
+                "endLine": 188,
+                "startOffset": 10,
+                "endOffset": 12
+              },
+              "msg": "+3 (incl. 2 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:src/components/roles/SecretariatDashboard.js",
+              "textRange": {
+                "startLine": 201,
+                "endLine": 201,
+                "startOffset": 15,
+                "endOffset": 17
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:src/components/roles/SecretariatDashboard.js",
+              "textRange": {
+                "startLine": 204,
+                "endLine": 204,
+                "startOffset": 10,
+                "endOffset": 12
+              },
+              "msg": "+3 (incl. 2 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "frontendtwaaos:src/components/roles/SecretariatDashboard.js",
+              "textRange": {
+                "startLine": 215,
+                "endLine": 215,
+                "startOffset": 8,
+                "endOffset": 13
+              },
+              "msg": "+2 (incl. 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Refactor this function to reduce its Cognitive Complexity from 17 to the 15 allowed.",
+      "effort": "7min",
+      "debt": "7min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "brain-overload"
+      ],
+      "creationDate": "2025-05-03T13:44:17+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "FOCUSED",
+      "cleanCodeAttributeCategory": "ADAPTABLE",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "5a3fd7a4-56e4-4661-b6c9-d553dbb40c50",
+      "rule": "javascript:S1854",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/auth/GoogleAuth.js",
+      "project": "frontendtwaaos",
+      "line": 19,
+      "hash": "fb75d009626540ede8038b712cc1b91e",
+      "textRange": {
+        "startLine": 19,
+        "endLine": 19,
+        "startOffset": 21,
+        "endOffset": 34
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove this useless assignment to variable \"setGoogleAuth\".",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "cwe",
+        "unused"
+      ],
+      "creationDate": "2025-05-03T13:33:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "ab94b799-7acb-4b9a-8302-383055c7029f",
+      "rule": "javascript:S1854",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/auth/GoogleAuth.js",
+      "project": "frontendtwaaos",
+      "line": 19,
+      "hash": "fb75d009626540ede8038b712cc1b91e",
+      "textRange": {
+        "startLine": 19,
+        "endLine": 19,
+        "startOffset": 9,
+        "endOffset": 19
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove this useless assignment to variable \"googleAuth\".",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "cwe",
+        "unused"
+      ],
+      "creationDate": "2025-05-03T13:33:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "e2c0f916-5974-498f-81ff-153a4cbb84f3",
+      "rule": "javascript:S1481",
+      "severity": "MINOR",
+      "component": "frontendtwaaos:src/components/auth/GoogleAuth.js",
+      "project": "frontendtwaaos",
+      "line": 19,
+      "hash": "fb75d009626540ede8038b712cc1b91e",
+      "textRange": {
+        "startLine": 19,
+        "endLine": 19,
+        "startOffset": 21,
+        "endOffset": 34
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove the declaration of the unused 'setGoogleAuth' variable.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "unused"
+      ],
+      "creationDate": "2025-05-03T13:33:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "faea067d-aba8-411d-b6c1-d23c3ee279c6",
+      "rule": "javascript:S1481",
+      "severity": "MINOR",
+      "component": "frontendtwaaos:src/components/auth/GoogleAuth.js",
+      "project": "frontendtwaaos",
+      "line": 19,
+      "hash": "fb75d009626540ede8038b712cc1b91e",
+      "textRange": {
+        "startLine": 19,
+        "endLine": 19,
+        "startOffset": 9,
+        "endOffset": 19
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove the declaration of the unused 'googleAuth' variable.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "unused"
+      ],
+      "creationDate": "2025-05-03T13:33:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "5edfc123-1688-46f3-ace2-43bdf85b7b10",
+      "rule": "javascript:S6582",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/auth/GoogleAuth.js",
+      "project": "frontendtwaaos",
+      "line": 78,
+      "hash": "884a16b5e5d643ee3407a2173142ca38",
+      "textRange": {
+        "startLine": 78,
+        "endLine": 78,
+        "startOffset": 8,
+        "endOffset": 41
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Prefer using an optional chain expression instead, as it's more concise and easier to read.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [],
+      "creationDate": "2025-05-03T13:33:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "69a26ada-5c34-411f-bd36-33f97fbf05ec",
+      "rule": "javascript:S6582",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/auth/GoogleAuth.js",
+      "project": "frontendtwaaos",
+      "line": 181,
+      "hash": "bb46101e1628c225840f5e028db1fc7f",
+      "textRange": {
+        "startLine": 181,
+        "endLine": 181,
+        "startOffset": 10,
+        "endOffset": 49
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Prefer using an optional chain expression instead, as it's more concise and easier to read.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [],
+      "creationDate": "2025-05-03T13:33:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "befaee70-d2eb-4f90-be2c-b6caf6922c76",
+      "rule": "javascript:S6774",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/utils/AuthContext.js",
+      "project": "frontendtwaaos",
+      "line": 8,
+      "hash": "1ebc57fd7ba6840af2d4b40b3702d9a4",
+      "textRange": {
+        "startLine": 8,
+        "endLine": 8,
+        "startOffset": 31,
+        "endOffset": 39
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "'children' is missing in props validation",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "react"
+      ],
+      "creationDate": "2025-05-03T13:33:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        },
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "257d46c0-aa8b-4ed6-a126-c7a3a264d1fe",
+      "rule": "javascript:S6481",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/utils/AuthContext.js",
+      "project": "frontendtwaaos",
+      "line": 80,
+      "hash": "3a8eade104ac98e42ec271d974914185",
+      "textRange": {
+        "startLine": 80,
+        "endLine": 87,
+        "startOffset": 16,
+        "endOffset": 3
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "The 'value' object passed as the value prop to the Context provider changes every render. To fix this consider wrapping it in a useMemo hook.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "performance",
+        "react",
+        "jsx"
+      ],
+      "creationDate": "2025-05-03T13:33:28+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "EFFICIENT",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "ce0f109f-b995-45b2-87fd-8c2eccb8f929",
+      "rule": "javascript:S6848",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/App.js",
+      "project": "frontendtwaaos",
+      "line": 75,
+      "hash": "1dc31eecf3f4c856e1c25f8016bb124e",
+      "textRange": {
+        "startLine": 75,
+        "endLine": 75,
+        "startOffset": 14,
+        "endOffset": 87
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Avoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "react"
+      ],
+      "creationDate": "2025-04-09T12:14:00+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        },
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "f83ae42a-1d94-436b-97c8-d9d50785ee0d",
+      "rule": "javascript:S1082",
+      "severity": "MINOR",
+      "component": "frontendtwaaos:src/App.js",
+      "project": "frontendtwaaos",
+      "line": 75,
+      "hash": "1dc31eecf3f4c856e1c25f8016bb124e",
+      "textRange": {
+        "startLine": 75,
+        "endLine": 75,
+        "startOffset": 14,
+        "endOffset": 87
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Visible, non-interactive elements with click handlers must have at least one keyboard listener.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "react"
+      ],
+      "creationDate": "2025-04-09T12:14:00+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "1e25e108-b42f-4b5f-9089-cd48bc6469ba",
+      "rule": "javascript:S6848",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/App.js",
+      "project": "frontendtwaaos",
+      "line": 80,
+      "hash": "a4480054dcf29342900554c841399092",
+      "textRange": {
+        "startLine": 80,
+        "endLine": 80,
+        "startOffset": 14,
+        "endOffset": 87
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Avoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "react"
+      ],
+      "creationDate": "2025-04-09T12:14:00+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        },
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "4ee26867-522d-44eb-b510-caf9f381018c",
+      "rule": "javascript:S1082",
+      "severity": "MINOR",
+      "component": "frontendtwaaos:src/App.js",
+      "project": "frontendtwaaos",
+      "line": 80,
+      "hash": "a4480054dcf29342900554c841399092",
+      "textRange": {
+        "startLine": 80,
+        "endLine": 80,
+        "startOffset": 14,
+        "endOffset": 87
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Visible, non-interactive elements with click handlers must have at least one keyboard listener.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "react"
+      ],
+      "creationDate": "2025-04-09T12:14:00+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "008c271a-1b5a-4d9b-a4da-8e17d69dc89e",
+      "rule": "javascript:S1082",
+      "severity": "MINOR",
+      "component": "frontendtwaaos:src/App.js",
+      "project": "frontendtwaaos",
+      "line": 85,
+      "hash": "2e7dc383edc6c288230d3c694ddafd51",
+      "textRange": {
+        "startLine": 85,
+        "endLine": 85,
+        "startOffset": 14,
+        "endOffset": 83
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Visible, non-interactive elements with click handlers must have at least one keyboard listener.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "react"
+      ],
+      "creationDate": "2025-04-09T12:14:00+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "ddf419df-0d3e-4e35-b9eb-994805f613c8",
+      "rule": "javascript:S6848",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/App.js",
+      "project": "frontendtwaaos",
+      "line": 85,
+      "hash": "2e7dc383edc6c288230d3c694ddafd51",
+      "textRange": {
+        "startLine": 85,
+        "endLine": 85,
+        "startOffset": 14,
+        "endOffset": 83
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Avoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "react"
+      ],
+      "creationDate": "2025-04-09T12:14:00+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        },
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "b515d0ee-e038-4994-a711-a4cd626edae2",
+      "rule": "javascript:S1082",
+      "severity": "MINOR",
+      "component": "frontendtwaaos:src/App.js",
+      "project": "frontendtwaaos",
+      "line": 90,
+      "hash": "9ee60831e824a298e6b35281e05ee588",
+      "textRange": {
+        "startLine": 90,
+        "endLine": 90,
+        "startOffset": 14,
+        "endOffset": 81
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Visible, non-interactive elements with click handlers must have at least one keyboard listener.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "react"
+      ],
+      "creationDate": "2025-04-09T12:14:00+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "d1b6eb84-4af2-4a32-ad7b-9f3979cb78a0",
+      "rule": "javascript:S6848",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/App.js",
+      "project": "frontendtwaaos",
+      "line": 90,
+      "hash": "9ee60831e824a298e6b35281e05ee588",
+      "textRange": {
+        "startLine": 90,
+        "endLine": 90,
+        "startOffset": 14,
+        "endOffset": 81
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Avoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "react"
+      ],
+      "creationDate": "2025-04-09T12:14:00+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        },
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "7694f9b7-5630-4858-97b3-ac1124e0a3fd",
+      "rule": "javascript:S6774",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/auth/AdminLogin.js",
+      "project": "frontendtwaaos",
+      "line": 4,
+      "hash": "d0f936443ee2db02c779b01d3ccabf63",
+      "textRange": {
+        "startLine": 4,
+        "endLine": 4,
+        "startOffset": 22,
+        "endOffset": 36
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "'onLoginSuccess' is missing in props validation",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "react"
+      ],
+      "creationDate": "2025-04-07T17:20:56+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        },
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "3e2f0684-8b23-4b02-b691-2bcd9b48037f",
+      "rule": "javascript:S6853",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/AdminDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 365,
+      "hash": "7133023320ce49eba9b68ed517c5511d",
+      "textRange": {
+        "startLine": 365,
+        "endLine": 365,
+        "startOffset": 19,
+        "endOffset": 24
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "A form label must be associated with a control.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "react"
+      ],
+      "creationDate": "2025-04-07T17:20:56+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "be9c4aaa-135b-4354-8385-c0e231c14413",
+      "rule": "javascript:S6853",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/AdminDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 375,
+      "hash": "2ce900de5fe8c5f79849d8fe0eaac3a6",
+      "textRange": {
+        "startLine": 375,
+        "endLine": 375,
+        "startOffset": 19,
+        "endOffset": 24
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "A form label must be associated with a control.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "react"
+      ],
+      "creationDate": "2025-04-07T17:20:56+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "70c765eb-4f64-483c-baea-c7b91dfd573a",
+      "rule": "javascript:S6853",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/AdminDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 397,
+      "hash": "7133023320ce49eba9b68ed517c5511d",
+      "textRange": {
+        "startLine": 397,
+        "endLine": 397,
+        "startOffset": 25,
+        "endOffset": 30
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "A form label must be associated with a control.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "react"
+      ],
+      "creationDate": "2025-04-07T17:20:56+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "29ec919d-e2cd-4489-8a32-657875751723",
+      "rule": "javascript:S6853",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/AdminDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 406,
+      "hash": "2ce900de5fe8c5f79849d8fe0eaac3a6",
+      "textRange": {
+        "startLine": 406,
+        "endLine": 406,
+        "startOffset": 25,
+        "endOffset": 30
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "A form label must be associated with a control.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "react"
+      ],
+      "creationDate": "2025-04-07T17:20:56+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "21592f2b-d454-4af6-8621-eaba2a6017e2",
+      "rule": "javascript:S6853",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/AdminDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 437,
+      "hash": "e8fe083de037b5c0107a41ed041d8a0f",
+      "textRange": {
+        "startLine": 437,
+        "endLine": 437,
+        "startOffset": 21,
+        "endOffset": 26
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "A form label must be associated with a control.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "react"
+      ],
+      "creationDate": "2025-04-07T17:20:56+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "18125c92-6bde-4f5c-8529-d80f39464c2a",
+      "rule": "javascript:S6853",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/AdminDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 447,
+      "hash": "74c22e5e70bc2593c9b7a66e2f45e31b",
+      "textRange": {
+        "startLine": 447,
+        "endLine": 447,
+        "startOffset": 21,
+        "endOffset": 26
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "A form label must be associated with a control.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "react"
+      ],
+      "creationDate": "2025-04-07T17:20:56+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "104f770f-dd2b-4dd3-8c6e-c9d1d9663ca0",
+      "rule": "javascript:S6853",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/AdminDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 459,
+      "hash": "7c28907d86f70f3334f99f12b23c25ec",
+      "textRange": {
+        "startLine": 459,
+        "endLine": 459,
+        "startOffset": 21,
+        "endOffset": 26
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "A form label must be associated with a control.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "react"
+      ],
+      "creationDate": "2025-04-07T17:20:56+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "8553a1b3-2cfb-4532-ae17-def94e8bcd86",
+      "rule": "javascript:S6853",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/AdminDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 468,
+      "hash": "a4779b6073ee33a37c97aa18aa8cc2b3",
+      "textRange": {
+        "startLine": 468,
+        "endLine": 468,
+        "startOffset": 21,
+        "endOffset": 26
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "A form label must be associated with a control.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "react"
+      ],
+      "creationDate": "2025-04-07T17:20:56+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "4c0e7d29-7f54-4742-af99-3b24e1d72680",
+      "rule": "javascript:S6853",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/AdminDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 479,
+      "hash": "d531d611cef49b01606f9b18d822dace",
+      "textRange": {
+        "startLine": 479,
+        "endLine": 479,
+        "startOffset": 19,
+        "endOffset": 24
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "A form label must be associated with a control.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "react"
+      ],
+      "creationDate": "2025-04-07T17:20:56+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "55adc509-0db5-42b4-951a-6e7c730978dc",
+      "rule": "javascript:S6853",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/AdminDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 544,
+      "hash": "e8fe083de037b5c0107a41ed041d8a0f",
+      "textRange": {
+        "startLine": 544,
+        "endLine": 544,
+        "startOffset": 21,
+        "endOffset": 26
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "A form label must be associated with a control.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "react"
+      ],
+      "creationDate": "2025-04-07T17:20:56+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "b6ec24a6-be41-4f2a-bd62-c498532d6ab1",
+      "rule": "javascript:S6853",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/AdminDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 554,
+      "hash": "74c22e5e70bc2593c9b7a66e2f45e31b",
+      "textRange": {
+        "startLine": 554,
+        "endLine": 554,
+        "startOffset": 21,
+        "endOffset": 26
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "A form label must be associated with a control.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "react"
+      ],
+      "creationDate": "2025-04-07T17:20:56+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "640ba088-a570-4378-a0a7-e0c4ea48141e",
+      "rule": "javascript:S6853",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/AdminDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 566,
+      "hash": "dc8178e6efa3c014217f0fa869058202",
+      "textRange": {
+        "startLine": 566,
+        "endLine": 566,
+        "startOffset": 21,
+        "endOffset": 26
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "A form label must be associated with a control.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "react"
+      ],
+      "creationDate": "2025-04-07T17:20:56+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "33168dab-f721-442c-b22e-54e3497d7ba1",
+      "rule": "javascript:S6853",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/AdminDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 575,
+      "hash": "a4779b6073ee33a37c97aa18aa8cc2b3",
+      "textRange": {
+        "startLine": 575,
+        "endLine": 575,
+        "startOffset": 21,
+        "endOffset": 26
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "A form label must be associated with a control.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "react"
+      ],
+      "creationDate": "2025-04-07T17:20:56+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "66d5a1b3-5b8c-435f-b903-2821981b55ea",
+      "rule": "javascript:S6853",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/AdminDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 586,
+      "hash": "d531d611cef49b01606f9b18d822dace",
+      "textRange": {
+        "startLine": 586,
+        "endLine": 586,
+        "startOffset": 19,
+        "endOffset": 24
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "A form label must be associated with a control.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "react"
+      ],
+      "creationDate": "2025-04-07T17:20:56+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "d0d79805-f4ce-4773-a6d7-79cc958cd8b5",
+      "rule": "javascript:S6853",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/AdminDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 650,
+      "hash": "99ffbcf86de7e04eff03cf242a9574a6",
+      "textRange": {
+        "startLine": 650,
+        "endLine": 650,
+        "startOffset": 19,
+        "endOffset": 24
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "A form label must be associated with a control.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "react"
+      ],
+      "creationDate": "2025-04-07T17:20:56+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "205b5ef2-f268-4c9d-98c0-733402f7e548",
+      "rule": "javascript:S6853",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/AdminDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 660,
+      "hash": "5d04549ca477214bf44274a141ff15fa",
+      "textRange": {
+        "startLine": 660,
+        "endLine": 660,
+        "startOffset": 19,
+        "endOffset": 24
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "A form label must be associated with a control.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "react"
+      ],
+      "creationDate": "2025-04-07T17:20:56+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "294cd563-4c58-4308-9ee8-44bca7546cd7",
+      "rule": "javascript:S6853",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/AdminDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 670,
+      "hash": "22a4bcef83f9c8785386a463b68cadf8",
+      "textRange": {
+        "startLine": 670,
+        "endLine": 670,
+        "startOffset": 19,
+        "endOffset": 24
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "A form label must be associated with a control.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "accessibility",
+        "react"
+      ],
+      "creationDate": "2025-04-07T17:20:56+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "6471efe1-efaa-47c0-b02e-3985c3d06d21",
+      "rule": "javascript:S6774",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/GroupLeaderDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 5,
+      "hash": "96ccc3ae1f9204b489545002614f7eca",
+      "textRange": {
+        "startLine": 5,
+        "endLine": 5,
+        "startOffset": 32,
+        "endOffset": 36
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "'user' is missing in props validation",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "react"
+      ],
+      "creationDate": "2025-04-07T17:20:56+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        },
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "14167996-7ddc-4cde-9a7a-f47d1a6266b5",
+      "rule": "javascript:S6774",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/GroupLeaderDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 121,
+      "hash": "7a0580e8f316754bcf57b7d614a9da3b",
+      "textRange": {
+        "startLine": 121,
+        "endLine": 121,
+        "startOffset": 31,
+        "endOffset": 35
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "'user.name' is missing in props validation",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "react"
+      ],
+      "creationDate": "2025-04-07T17:20:56+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        },
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "14060305-0d85-495c-8f2e-334654b321f3",
+      "rule": "javascript:S6774",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/TeacherDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 4,
+      "hash": "dfc92bcb70770dba4957fe96aeb01cc0",
+      "textRange": {
+        "startLine": 4,
+        "endLine": 4,
+        "startOffset": 28,
+        "endOffset": 32
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "'user' is missing in props validation",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "react"
+      ],
+      "creationDate": "2025-04-07T17:20:56+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        },
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "7c49d91c-6166-4ea0-8461-1b78fafe2ef7",
+      "rule": "javascript:S1854",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/TeacherDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 10,
+      "hash": "15ba41a4b78ce6ad2ae2ce867a025605",
+      "textRange": {
+        "startLine": 10,
+        "endLine": 10,
+        "startOffset": 16,
+        "endOffset": 24
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove this useless assignment to variable \"setError\".",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "cwe",
+        "unused"
+      ],
+      "creationDate": "2025-04-07T17:20:56+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "7d74645f-24ce-4cf0-9236-dbaa0d22b861",
+      "rule": "javascript:S1481",
+      "severity": "MINOR",
+      "component": "frontendtwaaos:src/components/roles/TeacherDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 10,
+      "hash": "15ba41a4b78ce6ad2ae2ce867a025605",
+      "textRange": {
+        "startLine": 10,
+        "endLine": 10,
+        "startOffset": 16,
+        "endOffset": 24
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove the declaration of the unused 'setError' variable.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "unused"
+      ],
+      "creationDate": "2025-04-07T17:20:56+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "076d0e7a-4101-499a-9e70-283acbc26152",
+      "rule": "javascript:S6774",
+      "severity": "MAJOR",
+      "component": "frontendtwaaos:src/components/roles/TeacherDashboard.js",
+      "project": "frontendtwaaos",
+      "line": 167,
+      "hash": "f95f3b700c9f564a11bdbaf0255f70e8",
+      "textRange": {
+        "startLine": 167,
+        "endLine": 167,
+        "startOffset": 32,
+        "endOffset": 36
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "'user.name' is missing in props validation",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "ralexuc@outlook.com",
+      "tags": [
+        "react"
+      ],
+      "creationDate": "2025-04-07T17:20:56+0300",
+      "updateDate": "2025-05-04T10:19:29+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        },
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    }
+  ],
+  "components": [
+    {
+      "key": "frontendtwaaos:src/App.js",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "App.js",
+      "longName": "src/App.js",
+      "path": "src/App.js"
+    },
+    {
+      "key": "frontendtwaaos:tests/selenium/generate_simple_report.py",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "generate_simple_report.py",
+      "longName": "tests/selenium/generate_simple_report.py",
+      "path": "tests/selenium/generate_simple_report.py"
+    },
+    {
+      "key": "frontendtwaaos:tests/selenium/pages/secretariatpage.py",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "secretariatpage.py",
+      "longName": "tests/selenium/pages/secretariatpage.py",
+      "path": "tests/selenium/pages/secretariatpage.py"
+    },
+    {
+      "key": "frontendtwaaos:tests/selenium/run_all_tests.py",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "run_all_tests.py",
+      "longName": "tests/selenium/run_all_tests.py",
+      "path": "tests/selenium/run_all_tests.py"
+    },
+    {
+      "key": "frontendtwaaos:tests/reports/test_report_20250503_190548.html",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "test_report_20250503_190548.html",
+      "longName": "tests/reports/test_report_20250503_190548.html",
+      "path": "tests/reports/test_report_20250503_190548.html"
+    },
+    {
+      "key": "frontendtwaaos:src/utils/AuthContext.js",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "AuthContext.js",
+      "longName": "src/utils/AuthContext.js",
+      "path": "src/utils/AuthContext.js"
+    },
+    {
+      "key": "frontendtwaaos",
+      "enabled": true,
+      "qualifier": "TRK",
+      "name": "Frontend TWAAOS",
+      "longName": "Frontend TWAAOS"
+    },
+    {
+      "key": "frontendtwaaos:tests/selenium/run_marked_tests.py",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "run_marked_tests.py",
+      "longName": "tests/selenium/run_marked_tests.py",
+      "path": "tests/selenium/run_marked_tests.py"
+    },
+    {
+      "key": "frontendtwaaos:tests/generate_report.py",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "generate_report.py",
+      "longName": "tests/generate_report.py",
+      "path": "tests/generate_report.py"
+    },
+    {
+      "key": "frontendtwaaos:tests/selenium/reports/test_report_20250503_211926.html",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "test_report_20250503_211926.html",
+      "longName": "tests/selenium/reports/test_report_20250503_211926.html",
+      "path": "tests/selenium/reports/test_report_20250503_211926.html"
+    },
+    {
+      "key": "frontendtwaaos:tests/selenium/reports/detailed_report_20250503_212729.html",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "detailed_report_20250503_212729.html",
+      "longName": "tests/selenium/reports/detailed_report_20250503_212729.html",
+      "path": "tests/selenium/reports/detailed_report_20250503_212729.html"
+    },
+    {
+      "key": "frontendtwaaos:src/components/roles/AdminDashboard.js",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "AdminDashboard.js",
+      "longName": "src/components/roles/AdminDashboard.js",
+      "path": "src/components/roles/AdminDashboard.js"
+    },
+    {
+      "key": "frontendtwaaos:src/components/auth/AdminLogin.js",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "AdminLogin.js",
+      "longName": "src/components/auth/AdminLogin.js",
+      "path": "src/components/auth/AdminLogin.js"
+    },
+    {
+      "key": "frontendtwaaos:src/components/auth/GoogleAuth.js",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "GoogleAuth.js",
+      "longName": "src/components/auth/GoogleAuth.js",
+      "path": "src/components/auth/GoogleAuth.js"
+    },
+    {
+      "key": "frontendtwaaos:tests/selenium/reports/test_report_authentication_20250503_212453.html",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "test_report_authentication_20250503_212453.html",
+      "longName": "tests/selenium/reports/test_report_authentication_20250503_212453.html",
+      "path": "tests/selenium/reports/test_report_authentication_20250503_212453.html"
+    },
+    {
+      "key": "frontendtwaaos:src/components/roles/GroupLeaderDashboard.js",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "GroupLeaderDashboard.js",
+      "longName": "src/components/roles/GroupLeaderDashboard.js",
+      "path": "src/components/roles/GroupLeaderDashboard.js"
+    },
+    {
+      "key": "frontendtwaaos:tests/run_tests.py",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "run_tests.py",
+      "longName": "tests/run_tests.py",
+      "path": "tests/run_tests.py"
+    },
+    {
+      "key": "frontendtwaaos:tests/selenium/pages/homepage.py",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "homepage.py",
+      "longName": "tests/selenium/pages/homepage.py",
+      "path": "tests/selenium/pages/homepage.py"
+    },
+    {
+      "key": "frontendtwaaos:src/components/roles/SecretariatDashboard.js",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "SecretariatDashboard.js",
+      "longName": "src/components/roles/SecretariatDashboard.js",
+      "path": "src/components/roles/SecretariatDashboard.js"
+    },
+    {
+      "key": "frontendtwaaos:src/components/roles/TeacherDashboard.js",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "TeacherDashboard.js",
+      "longName": "src/components/roles/TeacherDashboard.js",
+      "path": "src/components/roles/TeacherDashboard.js"
+    },
+    {
+      "key": "frontendtwaaos:tests/selenium/conftest.py",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "conftest.py",
+      "longName": "tests/selenium/conftest.py",
+      "path": "tests/selenium/conftest.py"
+    },
+    {
+      "key": "frontendtwaaos:tests/selenium/run_ascii_tests.py",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "run_ascii_tests.py",
+      "longName": "tests/selenium/run_ascii_tests.py",
+      "path": "tests/selenium/run_ascii_tests.py"
+    }
+  ],
+  "facets": []
+}

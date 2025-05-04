@@ -1,0 +1,85 @@
+Raport SonarQube Backend - backendtwaaos
+Data generarii: 04-05-2025 10:42
+================================================================================
+
+Total probleme gasite: 14
+
+
+== Probleme cu severitate BLOCKER: 1 ==
+
+1. Make sure this PostgreSQL database password gets changed and removed from the code.
+   Fisier: backendtwaaos:app/config.py
+   Linia: 48
+   Regula: secrets:S6698
+
+
+== Probleme cu severitate CRITICAL: 11 ==
+
+1. Refactor this function to reduce its Cognitive Complexity from 24 to the 15 allowed.
+   Fisier: backendtwaaos:app/utils/google_auth.py
+   Linia: 74
+   Regula: python:S3776
+
+2. Define a constant instead of duplicating this literal 'Contul este dezactivat. Contactați administratorul.' 3 times.
+   Fisier: backendtwaaos:app/routes/auth.py
+   Linia: 42
+   Regula: python:S1192
+
+3. Don't use `datetime.datetime.utcnow` to create this datetime object.
+   Fisier: backendtwaaos:app/models/reservation.py
+   Linia: 47
+   Regula: python:S6903
+
+4. Don't use `datetime.datetime.utcnow` to create this datetime object.
+   Fisier: backendtwaaos:app/models/reservation.py
+   Linia: 53
+   Regula: python:S6903
+
+5. Define a constant instead of duplicating this literal 'Acces interzis' 10 times.
+   Fisier: backendtwaaos:app/routes/admin.py
+   Linia: 24
+   Regula: python:S1192
+
+6. Define a constant instead of duplicating this literal 'Acces interzis' 7 times.
+   Fisier: backendtwaaos:app/routes/secretary.py
+   Linia: 23
+   Regula: python:S1192
+
+7. Define a constant instead of duplicating this literal 'Rezervare negăsită' 3 times.
+   Fisier: backendtwaaos:app/routes/secretary.py
+   Linia: 73
+   Regula: python:S1192
+
+8. Refactor this function to reduce its Cognitive Complexity from 18 to the 15 allowed.
+   Fisier: backendtwaaos:app/routes/secretary.py
+   Linia: 127
+   Regula: python:S3776
+
+9. Define a constant instead of duplicating this literal 'Utilizator negăsit' 3 times.
+   Fisier: backendtwaaos:app/routes/student.py
+   Linia: 195
+   Regula: python:S1192
+
+10. Refactor this function to reduce its Cognitive Complexity from 31 to the 15 allowed.
+   Fisier: backendtwaaos:app/utils/schedule_importer.py
+   Linia: 38
+   Regula: python:S3776
+
+11. Refactor this function to reduce its Cognitive Complexity from 29 to the 15 allowed.
+   Fisier: backendtwaaos:app/utils/usv_api_client.py
+   Linia: 146
+   Regula: python:S3776
+
+
+== Probleme cu severitate MINOR: 2 ==
+
+1. Remove the unused local variable "state".
+   Fisier: backendtwaaos:app/routes/auth.py
+   Linia: 195
+   Regula: python:S1481
+
+2. Remove the unused local variable "subject_short".
+   Fisier: backendtwaaos:app/utils/usv_api_client.py
+   Linia: 196
+   Regula: python:S1481
+

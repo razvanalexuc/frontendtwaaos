@@ -1,0 +1,1978 @@
+{
+  "total": 14,
+  "p": 1,
+  "ps": 100,
+  "paging": {
+    "pageIndex": 1,
+    "pageSize": 100,
+    "total": 14
+  },
+  "effortTotal": 164,
+  "issues": [
+    {
+      "key": "48f30f54-eb2b-442f-9f53-20bfd90c0bb1",
+      "rule": "python:S3776",
+      "severity": "CRITICAL",
+      "component": "backendtwaaos:app/utils/google_auth.py",
+      "project": "backendtwaaos",
+      "line": 74,
+      "hash": "ad1f818c218528661456326a36b3abcd",
+      "textRange": {
+        "startLine": 74,
+        "endLine": 74,
+        "startOffset": 4,
+        "endOffset": 22
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/google_auth.py",
+              "textRange": {
+                "startLine": 81,
+                "endLine": 81,
+                "startOffset": 4,
+                "endOffset": 6
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/google_auth.py",
+              "textRange": {
+                "startLine": 85,
+                "endLine": 85,
+                "startOffset": 8,
+                "endOffset": 10
+              },
+              "msg": "+2 (incl 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/google_auth.py",
+              "textRange": {
+                "startLine": 88,
+                "endLine": 88,
+                "startOffset": 8,
+                "endOffset": 12
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/google_auth.py",
+              "textRange": {
+                "startLine": 91,
+                "endLine": 91,
+                "startOffset": 8,
+                "endOffset": 12
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/google_auth.py",
+              "textRange": {
+                "startLine": 94,
+                "endLine": 94,
+                "startOffset": 8,
+                "endOffset": 12
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/google_auth.py",
+              "textRange": {
+                "startLine": 97,
+                "endLine": 97,
+                "startOffset": 8,
+                "endOffset": 12
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/google_auth.py",
+              "textRange": {
+                "startLine": 106,
+                "endLine": 106,
+                "startOffset": 4,
+                "endOffset": 6
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/google_auth.py",
+              "textRange": {
+                "startLine": 106,
+                "endLine": 106,
+                "startOffset": 24,
+                "endOffset": 27
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/google_auth.py",
+              "textRange": {
+                "startLine": 113,
+                "endLine": 113,
+                "startOffset": 4,
+                "endOffset": 6
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/google_auth.py",
+              "textRange": {
+                "startLine": 117,
+                "endLine": 117,
+                "startOffset": 4,
+                "endOffset": 6
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/google_auth.py",
+              "textRange": {
+                "startLine": 120,
+                "endLine": 120,
+                "startOffset": 4,
+                "endOffset": 6
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/google_auth.py",
+              "textRange": {
+                "startLine": 122,
+                "endLine": 122,
+                "startOffset": 8,
+                "endOffset": 10
+              },
+              "msg": "+2 (incl 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/google_auth.py",
+              "textRange": {
+                "startLine": 122,
+                "endLine": 122,
+                "startOffset": 30,
+                "endOffset": 33
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/google_auth.py",
+              "textRange": {
+                "startLine": 124,
+                "endLine": 124,
+                "startOffset": 8,
+                "endOffset": 10
+              },
+              "msg": "+2 (incl 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/google_auth.py",
+              "textRange": {
+                "startLine": 124,
+                "endLine": 124,
+                "startOffset": 36,
+                "endOffset": 39
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/google_auth.py",
+              "textRange": {
+                "startLine": 126,
+                "endLine": 126,
+                "startOffset": 8,
+                "endOffset": 10
+              },
+              "msg": "+2 (incl 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/google_auth.py",
+              "textRange": {
+                "startLine": 133,
+                "endLine": 133,
+                "startOffset": 4,
+                "endOffset": 6
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/google_auth.py",
+              "textRange": {
+                "startLine": 135,
+                "endLine": 135,
+                "startOffset": 4,
+                "endOffset": 8
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/google_auth.py",
+              "textRange": {
+                "startLine": 137,
+                "endLine": 137,
+                "startOffset": 4,
+                "endOffset": 8
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/google_auth.py",
+              "textRange": {
+                "startLine": 139,
+                "endLine": 139,
+                "startOffset": 4,
+                "endOffset": 8
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Refactor this function to reduce its Cognitive Complexity from 24 to the 15 allowed.",
+      "effort": "14min",
+      "debt": "14min",
+      "author": "",
+      "tags": [
+        "brain-overload"
+      ],
+      "creationDate": "2025-05-04T10:42:30+0300",
+      "updateDate": "2025-05-04T10:42:30+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "FOCUSED",
+      "cleanCodeAttributeCategory": "ADAPTABLE",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "f93ac829-d11f-4498-9509-e196d961d81e",
+      "rule": "python:S1192",
+      "severity": "CRITICAL",
+      "component": "backendtwaaos:app/routes/auth.py",
+      "project": "backendtwaaos",
+      "line": 42,
+      "hash": "040f85f2c25ec912e78a4a271ee6faf3",
+      "textRange": {
+        "startLine": 42,
+        "endLine": 42,
+        "startOffset": 39,
+        "endOffset": 92
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/auth.py",
+              "textRange": {
+                "startLine": 64,
+                "endLine": 64,
+                "startOffset": 35,
+                "endOffset": 88
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/auth.py",
+              "textRange": {
+                "startLine": 214,
+                "endLine": 214,
+                "startOffset": 35,
+                "endOffset": 88
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Define a constant instead of duplicating this literal 'Contul este dezactivat. Contactați administratorul.' 3 times.",
+      "effort": "6min",
+      "debt": "6min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "design"
+      ],
+      "creationDate": "2025-05-03T13:36:20+0300",
+      "updateDate": "2025-05-04T10:42:30+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "DISTINCT",
+      "cleanCodeAttributeCategory": "ADAPTABLE",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "32dd4695-e8d9-4eb8-acb4-a31d2f62a6f0",
+      "rule": "python:S1481",
+      "severity": "MINOR",
+      "component": "backendtwaaos:app/routes/auth.py",
+      "project": "backendtwaaos",
+      "line": 195,
+      "hash": "4590d59956cc49eadbfc9510e4e2986a",
+      "textRange": {
+        "startLine": 195,
+        "endLine": 195,
+        "startOffset": 4,
+        "endOffset": 9
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove the unused local variable \"state\".",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "unused"
+      ],
+      "creationDate": "2025-05-03T13:36:20+0300",
+      "updateDate": "2025-05-04T10:42:30+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "ebfda8b1-ce46-4052-882f-02669735b18d",
+      "rule": "secrets:S6698",
+      "severity": "BLOCKER",
+      "component": "backendtwaaos:app/config.py",
+      "project": "backendtwaaos",
+      "line": 48,
+      "hash": "66f268b2b9479799712705934c1df237",
+      "textRange": {
+        "startLine": 48,
+        "endLine": 48,
+        "startOffset": 79,
+        "endOffset": 87
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Make sure this PostgreSQL database password gets changed and removed from the code.",
+      "effort": "30min",
+      "debt": "30min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "cwe"
+      ],
+      "creationDate": "2025-04-12T12:17:00+0300",
+      "updateDate": "2025-05-04T10:42:30+0300",
+      "type": "VULNERABILITY",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "TRUSTWORTHY",
+      "cleanCodeAttributeCategory": "RESPONSIBLE",
+      "impacts": [
+        {
+          "softwareQuality": "SECURITY",
+          "severity": "BLOCKER"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "b8fb6fed-e46c-4fd5-8d8b-7d2bf72a0e79",
+      "rule": "python:S6903",
+      "severity": "CRITICAL",
+      "component": "backendtwaaos:app/models/reservation.py",
+      "project": "backendtwaaos",
+      "line": 47,
+      "hash": "c878857c3ef856737128cd366520217e",
+      "textRange": {
+        "startLine": 47,
+        "endLine": 47,
+        "startOffset": 27,
+        "endOffset": 44
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Don't use `datetime.datetime.utcnow` to create this datetime object.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "datetime",
+        "pitfall"
+      ],
+      "creationDate": "2025-04-12T12:17:00+0300",
+      "updateDate": "2025-05-04T10:42:30+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        },
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "a59a0b77-cdab-40b9-85dc-0c87c28bc012",
+      "rule": "python:S6903",
+      "severity": "CRITICAL",
+      "component": "backendtwaaos:app/models/reservation.py",
+      "project": "backendtwaaos",
+      "line": 53,
+      "hash": "c878857c3ef856737128cd366520217e",
+      "textRange": {
+        "startLine": 53,
+        "endLine": 53,
+        "startOffset": 27,
+        "endOffset": 44
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Don't use `datetime.datetime.utcnow` to create this datetime object.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "datetime",
+        "pitfall"
+      ],
+      "creationDate": "2025-04-12T12:17:00+0300",
+      "updateDate": "2025-05-04T10:42:30+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        },
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "b375b049-965a-409c-895a-d0401a7eeefa",
+      "rule": "python:S1192",
+      "severity": "CRITICAL",
+      "component": "backendtwaaos:app/routes/admin.py",
+      "project": "backendtwaaos",
+      "line": 24,
+      "hash": "735564edb614aa86bf485024144516f7",
+      "textRange": {
+        "startLine": 24,
+        "endLine": 24,
+        "startOffset": 35,
+        "endOffset": 51
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/admin.py",
+              "textRange": {
+                "startLine": 40,
+                "endLine": 40,
+                "startOffset": 35,
+                "endOffset": 51
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/admin.py",
+              "textRange": {
+                "startLine": 94,
+                "endLine": 94,
+                "startOffset": 35,
+                "endOffset": 51
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/admin.py",
+              "textRange": {
+                "startLine": 124,
+                "endLine": 124,
+                "startOffset": 35,
+                "endOffset": 51
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/admin.py",
+              "textRange": {
+                "startLine": 174,
+                "endLine": 174,
+                "startOffset": 35,
+                "endOffset": 51
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/admin.py",
+              "textRange": {
+                "startLine": 221,
+                "endLine": 221,
+                "startOffset": 35,
+                "endOffset": 51
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/admin.py",
+              "textRange": {
+                "startLine": 261,
+                "endLine": 261,
+                "startOffset": 35,
+                "endOffset": 51
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/admin.py",
+              "textRange": {
+                "startLine": 311,
+                "endLine": 311,
+                "startOffset": 35,
+                "endOffset": 51
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/admin.py",
+              "textRange": {
+                "startLine": 354,
+                "endLine": 354,
+                "startOffset": 35,
+                "endOffset": 51
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/admin.py",
+              "textRange": {
+                "startLine": 382,
+                "endLine": 382,
+                "startOffset": 35,
+                "endOffset": 51
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Define a constant instead of duplicating this literal 'Acces interzis' 10 times.",
+      "effort": "20min",
+      "debt": "20min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "design"
+      ],
+      "creationDate": "2025-04-12T12:17:00+0300",
+      "updateDate": "2025-05-04T10:42:30+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "DISTINCT",
+      "cleanCodeAttributeCategory": "ADAPTABLE",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "8adc3927-4c69-4607-a2a2-a1034008162c",
+      "rule": "python:S1192",
+      "severity": "CRITICAL",
+      "component": "backendtwaaos:app/routes/secretary.py",
+      "project": "backendtwaaos",
+      "line": 23,
+      "hash": "735564edb614aa86bf485024144516f7",
+      "textRange": {
+        "startLine": 23,
+        "endLine": 23,
+        "startOffset": 35,
+        "endOffset": 51
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/secretary.py",
+              "textRange": {
+                "startLine": 68,
+                "endLine": 68,
+                "startOffset": 35,
+                "endOffset": 51
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/secretary.py",
+              "textRange": {
+                "startLine": 98,
+                "endLine": 98,
+                "startOffset": 35,
+                "endOffset": 51
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/secretary.py",
+              "textRange": {
+                "startLine": 133,
+                "endLine": 133,
+                "startOffset": 35,
+                "endOffset": 51
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/secretary.py",
+              "textRange": {
+                "startLine": 192,
+                "endLine": 192,
+                "startOffset": 35,
+                "endOffset": 51
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/secretary.py",
+              "textRange": {
+                "startLine": 251,
+                "endLine": 251,
+                "startOffset": 35,
+                "endOffset": 51
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/secretary.py",
+              "textRange": {
+                "startLine": 289,
+                "endLine": 289,
+                "startOffset": 35,
+                "endOffset": 51
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Define a constant instead of duplicating this literal 'Acces interzis' 7 times.",
+      "effort": "14min",
+      "debt": "14min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "design"
+      ],
+      "creationDate": "2025-04-12T12:17:00+0300",
+      "updateDate": "2025-05-04T10:42:30+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "DISTINCT",
+      "cleanCodeAttributeCategory": "ADAPTABLE",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "4707919c-aa4d-4846-b4b2-11d99c4ed9db",
+      "rule": "python:S1192",
+      "severity": "CRITICAL",
+      "component": "backendtwaaos:app/routes/secretary.py",
+      "project": "backendtwaaos",
+      "line": 73,
+      "hash": "88d882e828298c2c55178665df00a2ab",
+      "textRange": {
+        "startLine": 73,
+        "endLine": 73,
+        "startOffset": 35,
+        "endOffset": 55
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/secretary.py",
+              "textRange": {
+                "startLine": 103,
+                "endLine": 103,
+                "startOffset": 35,
+                "endOffset": 55
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/secretary.py",
+              "textRange": {
+                "startLine": 138,
+                "endLine": 138,
+                "startOffset": 35,
+                "endOffset": 55
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Define a constant instead of duplicating this literal 'Rezervare negăsită' 3 times.",
+      "effort": "6min",
+      "debt": "6min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "design"
+      ],
+      "creationDate": "2025-04-12T12:17:00+0300",
+      "updateDate": "2025-05-04T10:42:30+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "DISTINCT",
+      "cleanCodeAttributeCategory": "ADAPTABLE",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "3f814a12-93a9-45b5-a027-7b82ad6c2e90",
+      "rule": "python:S3776",
+      "severity": "CRITICAL",
+      "component": "backendtwaaos:app/routes/secretary.py",
+      "project": "backendtwaaos",
+      "line": 127,
+      "hash": "5a40bb1e29d5395f8fed0eaf1551c1a9",
+      "textRange": {
+        "startLine": 127,
+        "endLine": 127,
+        "startOffset": 4,
+        "endOffset": 20
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/secretary.py",
+              "textRange": {
+                "startLine": 132,
+                "endLine": 132,
+                "startOffset": 4,
+                "endOffset": 6
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/secretary.py",
+              "textRange": {
+                "startLine": 132,
+                "endLine": 132,
+                "startOffset": 16,
+                "endOffset": 18
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/secretary.py",
+              "textRange": {
+                "startLine": 137,
+                "endLine": 137,
+                "startOffset": 4,
+                "endOffset": 6
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/secretary.py",
+              "textRange": {
+                "startLine": 143,
+                "endLine": 143,
+                "startOffset": 4,
+                "endOffset": 6
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/secretary.py",
+              "textRange": {
+                "startLine": 145,
+                "endLine": 145,
+                "startOffset": 8,
+                "endOffset": 10
+              },
+              "msg": "+2 (incl 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/secretary.py",
+              "textRange": {
+                "startLine": 145,
+                "endLine": 145,
+                "startOffset": 20,
+                "endOffset": 22
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/secretary.py",
+              "textRange": {
+                "startLine": 149,
+                "endLine": 149,
+                "startOffset": 4,
+                "endOffset": 6
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/secretary.py",
+              "textRange": {
+                "startLine": 152,
+                "endLine": 152,
+                "startOffset": 4,
+                "endOffset": 6
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/secretary.py",
+              "textRange": {
+                "startLine": 156,
+                "endLine": 156,
+                "startOffset": 8,
+                "endOffset": 14
+              },
+              "msg": "+2 (incl 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/secretary.py",
+              "textRange": {
+                "startLine": 159,
+                "endLine": 159,
+                "startOffset": 4,
+                "endOffset": 6
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/secretary.py",
+              "textRange": {
+                "startLine": 163,
+                "endLine": 163,
+                "startOffset": 8,
+                "endOffset": 14
+              },
+              "msg": "+2 (incl 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/secretary.py",
+              "textRange": {
+                "startLine": 166,
+                "endLine": 166,
+                "startOffset": 4,
+                "endOffset": 6
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/secretary.py",
+              "textRange": {
+                "startLine": 170,
+                "endLine": 170,
+                "startOffset": 8,
+                "endOffset": 14
+              },
+              "msg": "+2 (incl 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/secretary.py",
+              "textRange": {
+                "startLine": 174,
+                "endLine": 174,
+                "startOffset": 4,
+                "endOffset": 6
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Refactor this function to reduce its Cognitive Complexity from 18 to the 15 allowed.",
+      "effort": "8min",
+      "debt": "8min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "brain-overload"
+      ],
+      "creationDate": "2025-04-12T12:17:00+0300",
+      "updateDate": "2025-05-04T10:42:30+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "FOCUSED",
+      "cleanCodeAttributeCategory": "ADAPTABLE",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "7f71e8e5-37cb-407a-9442-bc04bf2a07fd",
+      "rule": "python:S1192",
+      "severity": "CRITICAL",
+      "component": "backendtwaaos:app/routes/student.py",
+      "project": "backendtwaaos",
+      "line": 195,
+      "hash": "217b639331e5fd1b59ce00a0c7aea107",
+      "textRange": {
+        "startLine": 195,
+        "endLine": 195,
+        "startOffset": 35,
+        "endOffset": 55
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/student.py",
+              "textRange": {
+                "startLine": 244,
+                "endLine": 244,
+                "startOffset": 35,
+                "endOffset": 55
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/routes/student.py",
+              "textRange": {
+                "startLine": 267,
+                "endLine": 267,
+                "startOffset": 35,
+                "endOffset": 55
+              },
+              "msg": "Duplication",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Define a constant instead of duplicating this literal 'Utilizator negăsit' 3 times.",
+      "effort": "6min",
+      "debt": "6min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "design"
+      ],
+      "creationDate": "2025-04-12T12:17:00+0300",
+      "updateDate": "2025-05-04T10:42:30+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "DISTINCT",
+      "cleanCodeAttributeCategory": "ADAPTABLE",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "c116eb4d-c7a0-4aa9-b07b-bcb4721142d7",
+      "rule": "python:S3776",
+      "severity": "CRITICAL",
+      "component": "backendtwaaos:app/utils/schedule_importer.py",
+      "project": "backendtwaaos",
+      "line": 38,
+      "hash": "a6b524f22ad8b73a24cd3b841c6a8bc7",
+      "textRange": {
+        "startLine": 38,
+        "endLine": 38,
+        "startOffset": 4,
+        "endOffset": 30
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/schedule_importer.py",
+              "textRange": {
+                "startLine": 51,
+                "endLine": 51,
+                "startOffset": 4,
+                "endOffset": 6
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/schedule_importer.py",
+              "textRange": {
+                "startLine": 53,
+                "endLine": 53,
+                "startOffset": 4,
+                "endOffset": 8
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/schedule_importer.py",
+              "textRange": {
+                "startLine": 63,
+                "endLine": 63,
+                "startOffset": 4,
+                "endOffset": 6
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/schedule_importer.py",
+              "textRange": {
+                "startLine": 80,
+                "endLine": 80,
+                "startOffset": 4,
+                "endOffset": 7
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/schedule_importer.py",
+              "textRange": {
+                "startLine": 86,
+                "endLine": 86,
+                "startOffset": 12,
+                "endOffset": 14
+              },
+              "msg": "+2 (incl 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/schedule_importer.py",
+              "textRange": {
+                "startLine": 102,
+                "endLine": 102,
+                "startOffset": 12,
+                "endOffset": 18
+              },
+              "msg": "+2 (incl 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/schedule_importer.py",
+              "textRange": {
+                "startLine": 121,
+                "endLine": 121,
+                "startOffset": 16,
+                "endOffset": 18
+              },
+              "msg": "+3 (incl 2 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/schedule_importer.py",
+              "textRange": {
+                "startLine": 123,
+                "endLine": 123,
+                "startOffset": 16,
+                "endOffset": 20
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/schedule_importer.py",
+              "textRange": {
+                "startLine": 134,
+                "endLine": 134,
+                "startOffset": 12,
+                "endOffset": 18
+              },
+              "msg": "+2 (incl 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/schedule_importer.py",
+              "textRange": {
+                "startLine": 138,
+                "endLine": 138,
+                "startOffset": 16,
+                "endOffset": 22
+              },
+              "msg": "+3 (incl 2 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/schedule_importer.py",
+              "textRange": {
+                "startLine": 144,
+                "endLine": 144,
+                "startOffset": 12,
+                "endOffset": 18
+              },
+              "msg": "+2 (incl 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/schedule_importer.py",
+              "textRange": {
+                "startLine": 148,
+                "endLine": 148,
+                "startOffset": 16,
+                "endOffset": 22
+              },
+              "msg": "+3 (incl 2 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/schedule_importer.py",
+              "textRange": {
+                "startLine": 153,
+                "endLine": 153,
+                "startOffset": 54,
+                "endOffset": 56
+              },
+              "msg": "+2 (incl 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/schedule_importer.py",
+              "textRange": {
+                "startLine": 154,
+                "endLine": 154,
+                "startOffset": 56,
+                "endOffset": 58
+              },
+              "msg": "+2 (incl 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/schedule_importer.py",
+              "textRange": {
+                "startLine": 165,
+                "endLine": 165,
+                "startOffset": 12,
+                "endOffset": 14
+              },
+              "msg": "+2 (incl 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/schedule_importer.py",
+              "textRange": {
+                "startLine": 171,
+                "endLine": 171,
+                "startOffset": 12,
+                "endOffset": 16
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/schedule_importer.py",
+              "textRange": {
+                "startLine": 187,
+                "endLine": 187,
+                "startOffset": 8,
+                "endOffset": 14
+              },
+              "msg": "+2 (incl 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Refactor this function to reduce its Cognitive Complexity from 31 to the 15 allowed.",
+      "effort": "21min",
+      "debt": "21min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "brain-overload"
+      ],
+      "creationDate": "2025-04-12T12:17:00+0300",
+      "updateDate": "2025-05-04T10:42:30+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "FOCUSED",
+      "cleanCodeAttributeCategory": "ADAPTABLE",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "16e498a1-fa84-4e17-be8f-17f22c874352",
+      "rule": "python:S3776",
+      "severity": "CRITICAL",
+      "component": "backendtwaaos:app/utils/usv_api_client.py",
+      "project": "backendtwaaos",
+      "line": 146,
+      "hash": "112827a175f93aafd3b4f3002a2961b9",
+      "textRange": {
+        "startLine": 146,
+        "endLine": 146,
+        "startOffset": 4,
+        "endOffset": 28
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/usv_api_client.py",
+              "textRange": {
+                "startLine": 173,
+                "endLine": 173,
+                "startOffset": 8,
+                "endOffset": 11
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/usv_api_client.py",
+              "textRange": {
+                "startLine": 181,
+                "endLine": 181,
+                "startOffset": 16,
+                "endOffset": 18
+              },
+              "msg": "+2 (incl 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/usv_api_client.py",
+              "textRange": {
+                "startLine": 181,
+                "endLine": 181,
+                "startOffset": 37,
+                "endOffset": 39
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/usv_api_client.py",
+              "textRange": {
+                "startLine": 187,
+                "endLine": 187,
+                "startOffset": 16,
+                "endOffset": 19
+              },
+              "msg": "+2 (incl 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/usv_api_client.py",
+              "textRange": {
+                "startLine": 201,
+                "endLine": 201,
+                "startOffset": 24,
+                "endOffset": 26
+              },
+              "msg": "+3 (incl 2 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/usv_api_client.py",
+              "textRange": {
+                "startLine": 205,
+                "endLine": 205,
+                "startOffset": 24,
+                "endOffset": 26
+              },
+              "msg": "+3 (incl 2 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/usv_api_client.py",
+              "textRange": {
+                "startLine": 220,
+                "endLine": 220,
+                "startOffset": 24,
+                "endOffset": 26
+              },
+              "msg": "+3 (incl 2 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/usv_api_client.py",
+              "textRange": {
+                "startLine": 232,
+                "endLine": 232,
+                "startOffset": 24,
+                "endOffset": 26
+              },
+              "msg": "+3 (incl 2 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/usv_api_client.py",
+              "textRange": {
+                "startLine": 232,
+                "endLine": 232,
+                "startOffset": 50,
+                "endOffset": 53
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/usv_api_client.py",
+              "textRange": {
+                "startLine": 244,
+                "endLine": 244,
+                "startOffset": 24,
+                "endOffset": 26
+              },
+              "msg": "+3 (incl 2 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/usv_api_client.py",
+              "textRange": {
+                "startLine": 250,
+                "endLine": 250,
+                "startOffset": 24,
+                "endOffset": 28
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/usv_api_client.py",
+              "textRange": {
+                "startLine": 266,
+                "endLine": 266,
+                "startOffset": 20,
+                "endOffset": 26
+              },
+              "msg": "+3 (incl 2 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/usv_api_client.py",
+              "textRange": {
+                "startLine": 271,
+                "endLine": 271,
+                "startOffset": 12,
+                "endOffset": 18
+              },
+              "msg": "+2 (incl 1 for nesting)",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "backendtwaaos:app/utils/usv_api_client.py",
+              "textRange": {
+                "startLine": 278,
+                "endLine": 278,
+                "startOffset": 4,
+                "endOffset": 10
+              },
+              "msg": "+1",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Refactor this function to reduce its Cognitive Complexity from 29 to the 15 allowed.",
+      "effort": "19min",
+      "debt": "19min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "brain-overload"
+      ],
+      "creationDate": "2025-04-12T12:17:00+0300",
+      "updateDate": "2025-05-04T10:42:30+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "FOCUSED",
+      "cleanCodeAttributeCategory": "ADAPTABLE",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    },
+    {
+      "key": "83af7ca9-91b2-4add-a0eb-bb9a806e6f09",
+      "rule": "python:S1481",
+      "severity": "MINOR",
+      "component": "backendtwaaos:app/utils/usv_api_client.py",
+      "project": "backendtwaaos",
+      "line": 196,
+      "hash": "29e4637c0ef8512d79a32bf9d42f0770",
+      "textRange": {
+        "startLine": 196,
+        "endLine": 196,
+        "startOffset": 24,
+        "endOffset": 37
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Remove the unused local variable \"subject_short\".",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "samuel.dascalu@assist.ro",
+      "tags": [
+        "unused"
+      ],
+      "creationDate": "2025-04-12T12:17:00+0300",
+      "updateDate": "2025-05-04T10:42:30+0300",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false
+    }
+  ],
+  "components": [
+    {
+      "key": "backendtwaaos:app/models/reservation.py",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "reservation.py",
+      "longName": "app/models/reservation.py",
+      "path": "app/models/reservation.py"
+    },
+    {
+      "key": "backendtwaaos:app/utils/google_auth.py",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "google_auth.py",
+      "longName": "app/utils/google_auth.py",
+      "path": "app/utils/google_auth.py"
+    },
+    {
+      "key": "backendtwaaos:app/utils/schedule_importer.py",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "schedule_importer.py",
+      "longName": "app/utils/schedule_importer.py",
+      "path": "app/utils/schedule_importer.py"
+    },
+    {
+      "key": "backendtwaaos:app/routes/secretary.py",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "secretary.py",
+      "longName": "app/routes/secretary.py",
+      "path": "app/routes/secretary.py"
+    },
+    {
+      "key": "backendtwaaos:app/utils/usv_api_client.py",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "usv_api_client.py",
+      "longName": "app/utils/usv_api_client.py",
+      "path": "app/utils/usv_api_client.py"
+    },
+    {
+      "key": "backendtwaaos",
+      "enabled": true,
+      "qualifier": "TRK",
+      "name": "Backend TWAAOS",
+      "longName": "Backend TWAAOS"
+    },
+    {
+      "key": "backendtwaaos:app/routes/auth.py",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "auth.py",
+      "longName": "app/routes/auth.py",
+      "path": "app/routes/auth.py"
+    },
+    {
+      "key": "backendtwaaos:app/routes/admin.py",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "admin.py",
+      "longName": "app/routes/admin.py",
+      "path": "app/routes/admin.py"
+    },
+    {
+      "key": "backendtwaaos:app/routes/student.py",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "student.py",
+      "longName": "app/routes/student.py",
+      "path": "app/routes/student.py"
+    },
+    {
+      "key": "backendtwaaos:app/config.py",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "config.py",
+      "longName": "app/config.py",
+      "path": "app/config.py"
+    }
+  ],
+  "facets": []
+}

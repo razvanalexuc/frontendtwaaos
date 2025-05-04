@@ -1,0 +1,518 @@
+Raport SonarQube - frontendtwaaos
+Data generării: 04-05-2025 10:31
+================================================================================
+
+Total probleme găsite: 100
+
+
+== Probleme cu severitate BLOCKER: 1 ==
+
+1. Add a "self" or class parameter
+   Fișier: frontendtwaaos:tests/selenium/pages/secretariatpage.py
+   Linia: 34
+   Regula: python:S5719
+
+
+== Probleme cu severitate CRITICAL: 10 ==
+
+1. Define a constant instead of duplicating this literal 'Utilizatorul este autentificat' 9 times.
+   Fișier: frontendtwaaos:tests/generate_report.py
+   Linia: 107
+   Regula: python:S1192
+
+2. Define a constant instead of duplicating this literal 'Utilizatorul este deconectat' 3 times.
+   Fișier: frontendtwaaos:tests/generate_report.py
+   Linia: 110
+   Regula: python:S1192
+
+3. Define a constant instead of duplicating this literal 'Token stocat corect' 3 times.
+   Fișier: frontendtwaaos:tests/generate_report.py
+   Linia: 147
+   Regula: python:S1192
+
+4. Define a constant instead of duplicating this literal 'Token șters corect' 3 times.
+   Fișier: frontendtwaaos:tests/generate_report.py
+   Linia: 148
+   Regula: python:S1192
+
+5. Specify an exception class to catch or reraise the exception
+   Fișier: frontendtwaaos:tests/selenium/generate_simple_report.py
+   Linia: 200
+   Regula: python:S5754
+
+6. Refactor this function to reduce its Cognitive Complexity from 25 to the 15 allowed.
+   Fișier: frontendtwaaos:tests/selenium/run_all_tests.py
+   Linia: 28
+   Regula: python:S3776
+
+7. Specify an exception class to catch or reraise the exception
+   Fișier: frontendtwaaos:tests/selenium/run_ascii_tests.py
+   Linia: 62
+   Regula: python:S5754
+
+8. Specify an exception class to catch or reraise the exception
+   Fișier: frontendtwaaos:tests/selenium/run_ascii_tests.py
+   Linia: 109
+   Regula: python:S5754
+
+9. Refactor this code to not nest functions more than 4 levels deep.
+   Fișier: frontendtwaaos:src/components/roles/GroupLeaderDashboard.js
+   Linia: 30
+   Regula: javascript:S2004
+
+10. Refactor this function to reduce its Cognitive Complexity from 17 to the 15 allowed.
+   Fișier: frontendtwaaos:src/components/roles/SecretariatDashboard.js
+   Linia: 160
+   Regula: javascript:S3776
+
+
+== Probleme cu severitate MAJOR: 68 ==
+
+1. Prefer using an optional chain expression instead, as it's more concise and easier to read.
+   Fișier: frontendtwaaos:src/components/auth/GoogleAuth.js
+   Linia: 100
+   Regula: javascript:S6582
+
+2. Add "lang" and/or "xml:lang" attributes to this "<html>" element
+   Fișier: frontendtwaaos:tests/reports/test_report_20250503_190548.html
+   Linia: 2
+   Regula: Web:S5254
+
+3. Add either an 'id' or a 'scope' attribute to this <th> tag.
+   Fișier: frontendtwaaos:tests/reports/test_report_20250503_190548.html
+   Linia: 450
+   Regula: Web:TableHeaderHasIdOrScopeCheck
+
+4. Add either an 'id' or a 'scope' attribute to this <th> tag.
+   Fișier: frontendtwaaos:tests/reports/test_report_20250503_190548.html
+   Linia: 451
+   Regula: Web:TableHeaderHasIdOrScopeCheck
+
+5. Add either an 'id' or a 'scope' attribute to this <th> tag.
+   Fișier: frontendtwaaos:tests/reports/test_report_20250503_190548.html
+   Linia: 452
+   Regula: Web:TableHeaderHasIdOrScopeCheck
+
+6. Add either an 'id' or a 'scope' attribute to this <th> tag.
+   Fișier: frontendtwaaos:tests/reports/test_report_20250503_190548.html
+   Linia: 453
+   Regula: Web:TableHeaderHasIdOrScopeCheck
+
+7. Add either an 'id' or a 'scope' attribute to this <th> tag.
+   Fișier: frontendtwaaos:tests/reports/test_report_20250503_190548.html
+   Linia: 455
+   Regula: Web:TableHeaderHasIdOrScopeCheck
+
+8. Add replacement fields or use a normal string instead of an f-string.
+   Fișier: frontendtwaaos:tests/run_tests.py
+   Linia: 38
+   Regula: python:S3457
+
+9. Replace this generic exception class with a more specific one.
+   Fișier: frontendtwaaos:tests/selenium/conftest.py
+   Linia: 48
+   Regula: python:S112
+
+10. Replace this generic exception class with a more specific one.
+   Fișier: frontendtwaaos:tests/selenium/conftest.py
+   Linia: 57
+   Regula: python:S112
+
+11. Add replacement fields or use a normal string instead of an f-string.
+   Fișier: frontendtwaaos:tests/selenium/pages/secretariatpage.py
+   Linia: 71
+   Regula: python:S3457
+
+12. Add replacement fields or use a normal string instead of an f-string.
+   Fișier: frontendtwaaos:tests/selenium/pages/secretariatpage.py
+   Linia: 78
+   Regula: python:S3457
+
+13. Add replacement fields or use a normal string instead of an f-string.
+   Fișier: frontendtwaaos:tests/selenium/pages/secretariatpage.py
+   Linia: 85
+   Regula: python:S3457
+
+14. Add replacement fields or use a normal string instead of an f-string.
+   Fișier: frontendtwaaos:tests/selenium/pages/secretariatpage.py
+   Linia: 92
+   Regula: python:S3457
+
+15. Add "lang" and/or "xml:lang" attributes to this "<html>" element
+   Fișier: frontendtwaaos:tests/selenium/reports/detailed_report_20250503_212729.html
+   Linia: 2
+   Regula: Web:S5254
+
+16. 'If' statement should not be the only statement in 'else' block
+   Fișier: frontendtwaaos:tests/selenium/reports/detailed_report_20250503_212729.html
+   Linia: 238
+   Regula: javascript:S6660
+
+17. 'If' statement should not be the only statement in 'else' block
+   Fișier: frontendtwaaos:tests/selenium/reports/detailed_report_20250503_212729.html
+   Linia: 262
+   Regula: javascript:S6660
+
+18. 'If' statement should not be the only statement in 'else' block
+   Fișier: frontendtwaaos:tests/selenium/reports/detailed_report_20250503_212729.html
+   Linia: 286
+   Regula: javascript:S6660
+
+19. Add "lang" and/or "xml:lang" attributes to this "<html>" element
+   Fișier: frontendtwaaos:tests/selenium/reports/test_report_20250503_211926.html
+   Linia: 2
+   Regula: Web:S5254
+
+20. Add "lang" and/or "xml:lang" attributes to this "<html>" element
+   Fișier: frontendtwaaos:tests/selenium/reports/test_report_authentication_20250503_212453.html
+   Linia: 2
+   Regula: Web:S5254
+
+21. Add replacement fields or use a normal string instead of an f-string.
+   Fișier: frontendtwaaos:tests/selenium/run_all_tests.py
+   Linia: 87
+   Regula: python:S3457
+
+22. Add replacement fields or use a normal string instead of an f-string.
+   Fișier: frontendtwaaos:tests/selenium/run_ascii_tests.py
+   Linia: 76
+   Regula: python:S3457
+
+23. Add replacement fields or use a normal string instead of an f-string.
+   Fișier: frontendtwaaos:tests/selenium/run_marked_tests.py
+   Linia: 63
+   Regula: python:S3457
+
+24. Add replacement fields or use a normal string instead of an f-string.
+   Fișier: frontendtwaaos:tests/selenium/run_marked_tests.py
+   Linia: 98
+   Regula: python:S3457
+
+25. Remove this useless assignment to variable "setUserInfo".
+   Fișier: frontendtwaaos:src/components/auth/GoogleAuth.js
+   Linia: 16
+   Regula: javascript:S1854
+
+26. Remove this useless assignment to variable "userInfo".
+   Fișier: frontendtwaaos:src/components/auth/GoogleAuth.js
+   Linia: 16
+   Regula: javascript:S1854
+
+27. Remove this useless assignment to variable "response".
+   Fișier: frontendtwaaos:src/components/roles/AdminDashboard.js
+   Linia: 192
+   Regula: javascript:S1854
+
+28. Remove this useless assignment to variable "response".
+   Fișier: frontendtwaaos:src/components/roles/AdminDashboard.js
+   Linia: 243
+   Regula: javascript:S1854
+
+29. 'user.group' is missing in props validation
+   Fișier: frontendtwaaos:src/components/roles/GroupLeaderDashboard.js
+   Linia: 32
+   Regula: javascript:S6774
+
+30. 'user.group' is missing in props validation
+   Fișier: frontendtwaaos:src/components/roles/GroupLeaderDashboard.js
+   Linia: 68
+   Regula: javascript:S6774
+
+31. Prefer using an optional chain expression instead, as it's more concise and easier to read.
+   Fișier: frontendtwaaos:src/components/roles/GroupLeaderDashboard.js
+   Linia: 79
+   Regula: javascript:S6582
+
+32. Remove this useless assignment to variable "loading".
+   Fișier: frontendtwaaos:src/components/roles/SecretariatDashboard.js
+   Linia: 14
+   Regula: javascript:S1854
+
+33. Remove this useless assignment to variable "error".
+   Fișier: frontendtwaaos:src/components/roles/SecretariatDashboard.js
+   Linia: 15
+   Regula: javascript:S1854
+
+34. Remove this useless assignment to variable "pendingReservations".
+   Fișier: frontendtwaaos:src/components/roles/SecretariatDashboard.js
+   Linia: 16
+   Regula: javascript:S1854
+
+35. Remove this useless assignment to variable "reservationHistory".
+   Fișier: frontendtwaaos:src/components/roles/SecretariatDashboard.js
+   Linia: 17
+   Regula: javascript:S1854
+
+36. Remove this useless assignment to variable "setGoogleAuth".
+   Fișier: frontendtwaaos:src/components/auth/GoogleAuth.js
+   Linia: 19
+   Regula: javascript:S1854
+
+37. Remove this useless assignment to variable "googleAuth".
+   Fișier: frontendtwaaos:src/components/auth/GoogleAuth.js
+   Linia: 19
+   Regula: javascript:S1854
+
+38. Prefer using an optional chain expression instead, as it's more concise and easier to read.
+   Fișier: frontendtwaaos:src/components/auth/GoogleAuth.js
+   Linia: 78
+   Regula: javascript:S6582
+
+39. Prefer using an optional chain expression instead, as it's more concise and easier to read.
+   Fișier: frontendtwaaos:src/components/auth/GoogleAuth.js
+   Linia: 181
+   Regula: javascript:S6582
+
+40. 'children' is missing in props validation
+   Fișier: frontendtwaaos:src/utils/AuthContext.js
+   Linia: 8
+   Regula: javascript:S6774
+
+41. The 'value' object passed as the value prop to the Context provider changes every render. To fix this consider wrapping it in a useMemo hook.
+   Fișier: frontendtwaaos:src/utils/AuthContext.js
+   Linia: 80
+   Regula: javascript:S6481
+
+42. Avoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.
+   Fișier: frontendtwaaos:src/App.js
+   Linia: 75
+   Regula: javascript:S6848
+
+43. Avoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.
+   Fișier: frontendtwaaos:src/App.js
+   Linia: 80
+   Regula: javascript:S6848
+
+44. Avoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.
+   Fișier: frontendtwaaos:src/App.js
+   Linia: 85
+   Regula: javascript:S6848
+
+45. Avoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.
+   Fișier: frontendtwaaos:src/App.js
+   Linia: 90
+   Regula: javascript:S6848
+
+46. 'onLoginSuccess' is missing in props validation
+   Fișier: frontendtwaaos:src/components/auth/AdminLogin.js
+   Linia: 4
+   Regula: javascript:S6774
+
+47. A form label must be associated with a control.
+   Fișier: frontendtwaaos:src/components/roles/AdminDashboard.js
+   Linia: 365
+   Regula: javascript:S6853
+
+48. A form label must be associated with a control.
+   Fișier: frontendtwaaos:src/components/roles/AdminDashboard.js
+   Linia: 375
+   Regula: javascript:S6853
+
+49. A form label must be associated with a control.
+   Fișier: frontendtwaaos:src/components/roles/AdminDashboard.js
+   Linia: 397
+   Regula: javascript:S6853
+
+50. A form label must be associated with a control.
+   Fișier: frontendtwaaos:src/components/roles/AdminDashboard.js
+   Linia: 406
+   Regula: javascript:S6853
+
+51. A form label must be associated with a control.
+   Fișier: frontendtwaaos:src/components/roles/AdminDashboard.js
+   Linia: 437
+   Regula: javascript:S6853
+
+52. A form label must be associated with a control.
+   Fișier: frontendtwaaos:src/components/roles/AdminDashboard.js
+   Linia: 447
+   Regula: javascript:S6853
+
+53. A form label must be associated with a control.
+   Fișier: frontendtwaaos:src/components/roles/AdminDashboard.js
+   Linia: 459
+   Regula: javascript:S6853
+
+54. A form label must be associated with a control.
+   Fișier: frontendtwaaos:src/components/roles/AdminDashboard.js
+   Linia: 468
+   Regula: javascript:S6853
+
+55. A form label must be associated with a control.
+   Fișier: frontendtwaaos:src/components/roles/AdminDashboard.js
+   Linia: 479
+   Regula: javascript:S6853
+
+56. A form label must be associated with a control.
+   Fișier: frontendtwaaos:src/components/roles/AdminDashboard.js
+   Linia: 544
+   Regula: javascript:S6853
+
+57. A form label must be associated with a control.
+   Fișier: frontendtwaaos:src/components/roles/AdminDashboard.js
+   Linia: 554
+   Regula: javascript:S6853
+
+58. A form label must be associated with a control.
+   Fișier: frontendtwaaos:src/components/roles/AdminDashboard.js
+   Linia: 566
+   Regula: javascript:S6853
+
+59. A form label must be associated with a control.
+   Fișier: frontendtwaaos:src/components/roles/AdminDashboard.js
+   Linia: 575
+   Regula: javascript:S6853
+
+60. A form label must be associated with a control.
+   Fișier: frontendtwaaos:src/components/roles/AdminDashboard.js
+   Linia: 586
+   Regula: javascript:S6853
+
+61. A form label must be associated with a control.
+   Fișier: frontendtwaaos:src/components/roles/AdminDashboard.js
+   Linia: 650
+   Regula: javascript:S6853
+
+62. A form label must be associated with a control.
+   Fișier: frontendtwaaos:src/components/roles/AdminDashboard.js
+   Linia: 660
+   Regula: javascript:S6853
+
+63. A form label must be associated with a control.
+   Fișier: frontendtwaaos:src/components/roles/AdminDashboard.js
+   Linia: 670
+   Regula: javascript:S6853
+
+64. 'user' is missing in props validation
+   Fișier: frontendtwaaos:src/components/roles/GroupLeaderDashboard.js
+   Linia: 5
+   Regula: javascript:S6774
+
+65. 'user.name' is missing in props validation
+   Fișier: frontendtwaaos:src/components/roles/GroupLeaderDashboard.js
+   Linia: 121
+   Regula: javascript:S6774
+
+66. 'user' is missing in props validation
+   Fișier: frontendtwaaos:src/components/roles/TeacherDashboard.js
+   Linia: 4
+   Regula: javascript:S6774
+
+67. Remove this useless assignment to variable "setError".
+   Fișier: frontendtwaaos:src/components/roles/TeacherDashboard.js
+   Linia: 10
+   Regula: javascript:S1854
+
+68. 'user.name' is missing in props validation
+   Fișier: frontendtwaaos:src/components/roles/TeacherDashboard.js
+   Linia: 167
+   Regula: javascript:S6774
+
+
+== Probleme cu severitate MINOR: 21 ==
+
+1. Expected a `for-of` loop instead of a `for` loop with this simple iteration.
+   Fișier: frontendtwaaos:tests/reports/test_report_20250503_190548.html
+   Linia: 264
+   Regula: javascript:S4138
+
+2. Refactor the code to avoid using this boolean literal.
+   Fișier: frontendtwaaos:tests/reports/test_report_20250503_190548.html
+   Linia: 422
+   Regula: javascript:S1125
+
+3. Expected a `for-of` loop instead of a `for` loop with this simple iteration.
+   Fișier: frontendtwaaos:tests/reports/test_report_20250503_190548.html
+   Linia: 431
+   Regula: javascript:S4138
+
+4. Unnecessary use of boolean literals in conditional expression.
+   Fișier: frontendtwaaos:tests/reports/test_report_20250503_190548.html
+   Linia: 436
+   Regula: javascript:S6644
+
+5. Remove the unused local variable "e".
+   Fișier: frontendtwaaos:tests/selenium/pages/homepage.py
+   Linia: 39
+   Regula: python:S1481
+
+6. Remove this unused import of 'useGoogleLogin'.
+   Fișier: frontendtwaaos:src/components/auth/GoogleAuth.js
+   Linia: 2
+   Regula: javascript:S1128
+
+7. Remove the declaration of the unused 'setUserInfo' variable.
+   Fișier: frontendtwaaos:src/components/auth/GoogleAuth.js
+   Linia: 16
+   Regula: javascript:S1481
+
+8. Remove the declaration of the unused 'userInfo' variable.
+   Fișier: frontendtwaaos:src/components/auth/GoogleAuth.js
+   Linia: 16
+   Regula: javascript:S1481
+
+9. Remove the declaration of the unused 'response' variable.
+   Fișier: frontendtwaaos:src/components/roles/AdminDashboard.js
+   Linia: 192
+   Regula: javascript:S1481
+
+10. Remove the declaration of the unused 'response' variable.
+   Fișier: frontendtwaaos:src/components/roles/AdminDashboard.js
+   Linia: 243
+   Regula: javascript:S1481
+
+11. Remove the declaration of the unused 'loading' variable.
+   Fișier: frontendtwaaos:src/components/roles/SecretariatDashboard.js
+   Linia: 14
+   Regula: javascript:S1481
+
+12. Remove the declaration of the unused 'error' variable.
+   Fișier: frontendtwaaos:src/components/roles/SecretariatDashboard.js
+   Linia: 15
+   Regula: javascript:S1481
+
+13. Remove the declaration of the unused 'pendingReservations' variable.
+   Fișier: frontendtwaaos:src/components/roles/SecretariatDashboard.js
+   Linia: 16
+   Regula: javascript:S1481
+
+14. Remove the declaration of the unused 'reservationHistory' variable.
+   Fișier: frontendtwaaos:src/components/roles/SecretariatDashboard.js
+   Linia: 17
+   Regula: javascript:S1481
+
+15. Remove the declaration of the unused 'setGoogleAuth' variable.
+   Fișier: frontendtwaaos:src/components/auth/GoogleAuth.js
+   Linia: 19
+   Regula: javascript:S1481
+
+16. Remove the declaration of the unused 'googleAuth' variable.
+   Fișier: frontendtwaaos:src/components/auth/GoogleAuth.js
+   Linia: 19
+   Regula: javascript:S1481
+
+17. Visible, non-interactive elements with click handlers must have at least one keyboard listener.
+   Fișier: frontendtwaaos:src/App.js
+   Linia: 75
+   Regula: javascript:S1082
+
+18. Visible, non-interactive elements with click handlers must have at least one keyboard listener.
+   Fișier: frontendtwaaos:src/App.js
+   Linia: 80
+   Regula: javascript:S1082
+
+19. Visible, non-interactive elements with click handlers must have at least one keyboard listener.
+   Fișier: frontendtwaaos:src/App.js
+   Linia: 85
+   Regula: javascript:S1082
+
+20. Visible, non-interactive elements with click handlers must have at least one keyboard listener.
+   Fișier: frontendtwaaos:src/App.js
+   Linia: 90
+   Regula: javascript:S1082
+
+21. Remove the declaration of the unused 'setError' variable.
+   Fișier: frontendtwaaos:src/components/roles/TeacherDashboard.js
+   Linia: 10
+   Regula: javascript:S1481
+
