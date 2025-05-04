@@ -1,0 +1,284 @@
+The version of chrome cannot be detected. Trying with latest driver version
+Error initializing ChromeDriver with ChromeDriverManager: Message: unknown error: cannot find Chrome binary
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x00EEA813+48355]
+	(No symbol) [0x00E7C4B1]
+	(No symbol) [0x00D85358]
+	(No symbol) [0x00DA1A9E]
+	(No symbol) [0x00DA0579]
+	(No symbol) [0x00DD0C55]
+	(No symbol) [0x00DD093C]
+	(No symbol) [0x00DCA536]
+	(No symbol) [0x00DA82DC]
+	(No symbol) [0x00DA93DD]
+	GetHandleVerifier [0x0114AABD+2539405]
+	GetHandleVerifier [0x0118A78F+2800735]
+	GetHandleVerifier [0x0118456C+2775612]
+	GetHandleVerifier [0x00F751E0+616112]
+	(No symbol) [0x00E85F8C]
+	(No symbol) [0x00E82328]
+	(No symbol) [0x00E8240B]
+	(No symbol) [0x00E74FF7]
+	BaseThreadInitThunk [0x76F05D49+25]
+	RtlInitializeExceptionChain [0x77D6CF0B+107]
+	RtlGetAppContainerNamedObjectPath [0x77D6CE91+561]
+
+Error initializing local ChromeDriver: Message: unknown error: cannot find Chrome binary
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x00D1A813+48355]
+	(No symbol) [0x00CAC4B1]
+	(No symbol) [0x00BB5358]
+	(No symbol) [0x00BD1A9E]
+	(No symbol) [0x00BD0579]
+	(No symbol) [0x00C00C55]
+	(No symbol) [0x00C0093C]
+	(No symbol) [0x00BFA536]
+	(No symbol) [0x00BD82DC]
+	(No symbol) [0x00BD93DD]
+	GetHandleVerifier [0x00F7AABD+2539405]
+	GetHandleVerifier [0x00FBA78F+2800735]
+	GetHandleVerifier [0x00FB456C+2775612]
+	GetHandleVerifier [0x00DA51E0+616112]
+	(No symbol) [0x00CB5F8C]
+	(No symbol) [0x00CB2328]
+	(No symbol) [0x00CB240B]
+	(No symbol) [0x00CA4FF7]
+	BaseThreadInitThunk [0x76F05D49+25]
+	RtlInitializeExceptionChain [0x77D6CF0B+107]
+	RtlGetAppContainerNamedObjectPath [0x77D6CE91+561]
+
+[WDM] - Downloading:   0%|          | 0.00/10.3M [00:00<?, ?B/s][WDM] - Downloading:   3%|2         | 272k/10.3M [00:00<00:03, 2.74MB/s][WDM] - Downloading:   7%|6         | 704k/10.3M [00:00<00:02, 3.64MB/s][WDM] - Downloading:  11%|#         | 1.09M/10.3M [00:00<00:02, 3.92MB/s][WDM] - Downloading:  15%|#5        | 1.55M/10.3M [00:00<00:02, 4.21MB/s][WDM] - Downloading:  20%|#9        | 2.03M/10.3M [00:00<00:01, 4.48MB/s][WDM] - Downloading:  24%|##4       | 2.50M/10.3M [00:00<00:01, 4.61MB/s][WDM] - Downloading:  29%|##9       | 2.98M/10.3M [00:00<00:01, 4.71MB/s][WDM] - Downloading:  34%|###3      | 3.48M/10.3M [00:00<00:01, 4.85MB/s][WDM] - Downloading:  38%|###8      | 3.95M/10.3M [00:00<00:01, 4.83MB/s][WDM] - Downloading:  43%|####3     | 4.45M/10.3M [00:01<00:01, 4.91MB/s][WDM] - Downloading:  48%|####8     | 4.97M/10.3M [00:01<00:01, 5.05MB/s][WDM] - Downloading:  54%|#####3    | 5.50M/10.3M [00:01<00:00, 5.20MB/s][WDM] - Downloading:  59%|#####8    | 6.05M/10.3M [00:01<00:00, 5.35MB/s][WDM] - Downloading:  64%|######4   | 6.59M/10.3M [00:01<00:00, 5.45MB/s][WDM] - Downloading:  69%|######9   | 7.12M/10.3M [00:01<00:00, 5.46MB/s][WDM] - Downloading:  75%|#######4  | 7.70M/10.3M [00:01<00:00, 5.62MB/s][WDM] - Downloading:  80%|########  | 8.27M/10.3M [00:01<00:00, 5.65MB/s][WDM] - Downloading:  86%|########6 | 8.88M/10.3M [00:01<00:00, 5.79MB/s][WDM] - Downloading:  92%|#########2| 9.50M/10.3M [00:01<00:00, 6.01MB/s][WDM] - Downloading:  98%|#########8| 10.1M/10.3M [00:02<00:00, 6.09MB/s][WDM] - Downloading: 100%|##########| 10.3M/10.3M [00:02<00:00, 5.22MB/s]
+FThe version of chrome cannot be detected. Trying with latest driver version
+FThe version of chrome cannot be detected. Trying with latest driver version
+EThe version of chrome cannot be detected. Trying with latest driver version
+F
+======================================================================
+ERROR: test_sign_out_functionality (test_authentication.TWAAOSAuthenticationTests.test_sign_out_functionality)
+Testeaza functionalitatea de Sign Out.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ralex\Documents\Proiect TWAAOS frontend\tests\selenium\test_authentication.py", line 194, in test_sign_out_functionality
+    bypass_button = self.driver.find_element(By.CSS_SELECTOR, self.bypass_button_selector)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\webdriver.py", line 740, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\webdriver.py", line 346, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\errorhandler.py", line 245, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"button.test-button"}
+  (Session info: MicrosoftEdge=135.0.3179.98); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF6447B7A55+24981]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF64470AC60+444240]
+	Microsoft::Applications::Events::EventProperty::to_string [0x00007FF644A3E0EA+2011274]
+	(No symbol) [0x00007FF644527D8B]
+	(No symbol) [0x00007FF64452804B]
+	(No symbol) [0x00007FF644568E07]
+	(No symbol) [0x00007FF6445490DF]
+	(No symbol) [0x00007FF64451E13D]
+	(No symbol) [0x00007FF6445667E8]
+	(No symbol) [0x00007FF644548E03]
+	(No symbol) [0x00007FF64451D686]
+	(No symbol) [0x00007FF64451CB92]
+	(No symbol) [0x00007FF64451D4B3]
+	(No symbol) [0x00007FF64461900D]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF644626943+41539]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF64461FC79+13689]
+	Microsoft::Applications::Events::EventProperty::to_string [0x00007FF64489A04A+290794]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF644717D31+497697]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF644710BB4+468644]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF644710D03+468979]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF644702E16+411910]
+	BaseThreadInitThunk [0x00007FFA61B4E8D7+23]
+	RtlUserThreadStart [0x00007FFA633114FC+44]
+
+
+======================================================================
+FAIL: test_group_leader_bypass_auth (test_authentication.TWAAOSAuthenticationTests.test_group_leader_bypass_auth)
+Testeaza bypass-ul autentificarii pentru rolul Group Leader.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ralex\Documents\Proiect TWAAOS frontend\tests\selenium\test_authentication.py", line 163, in test_group_leader_bypass_auth
+    self.assertIn("Group Leader", self.driver.title)
+AssertionError: 'Group Leader' not found in 'React App'
+
+======================================================================
+FAIL: test_secretariat_bypass_auth (test_authentication.TWAAOSAuthenticationTests.test_secretariat_bypass_auth)
+Testeaza bypass-ul autentificarii pentru rolul Secretariat.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ralex\Documents\Proiect TWAAOS frontend\tests\selenium\test_authentication.py", line 132, in test_secretariat_bypass_auth
+    self.assertIn("Secretariat", self.driver.title)
+AssertionError: 'Secretariat' not found in 'React App'
+
+======================================================================
+FAIL: test_teacher_bypass_auth (test_authentication.TWAAOSAuthenticationTests.test_teacher_bypass_auth)
+Testeaza bypass-ul autentificarii pentru rolul Teacher.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ralex\Documents\Proiect TWAAOS frontend\tests\selenium\test_authentication.py", line 101, in test_teacher_bypass_auth
+    self.assertIn("Teacher", self.driver.title)
+AssertionError: 'Teacher' not found in 'React App'
+
+----------------------------------------------------------------------
+Ran 4 tests in 92.797s
+
+FAILED (failures=3, errors=1)
+Using Microsoft Edge as browser
+Error initializing ChromeDriver with ChromeDriverManager: Message: unknown error: cannot find Chrome binary
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x00EEA813+48355]
+	(No symbol) [0x00E7C4B1]
+	(No symbol) [0x00D85358]
+	(No symbol) [0x00DA1A9E]
+	(No symbol) [0x00DA0579]
+	(No symbol) [0x00DD0C55]
+	(No symbol) [0x00DD093C]
+	(No symbol) [0x00DCA536]
+	(No symbol) [0x00DA82DC]
+	(No symbol) [0x00DA93DD]
+	GetHandleVerifier [0x0114AABD+2539405]
+	GetHandleVerifier [0x0118A78F+2800735]
+	GetHandleVerifier [0x0118456C+2775612]
+	GetHandleVerifier [0x00F751E0+616112]
+	(No symbol) [0x00E85F8C]
+	(No symbol) [0x00E82328]
+	(No symbol) [0x00E8240B]
+	(No symbol) [0x00E74FF7]
+	BaseThreadInitThunk [0x76F05D49+25]
+	RtlInitializeExceptionChain [0x77D6CF0B+107]
+	RtlGetAppContainerNamedObjectPath [0x77D6CE91+561]
+
+Error initializing local ChromeDriver: Message: unknown error: cannot find Chrome binary
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x00D1A813+48355]
+	(No symbol) [0x00CAC4B1]
+	(No symbol) [0x00BB5358]
+	(No symbol) [0x00BD1A9E]
+	(No symbol) [0x00BD0579]
+	(No symbol) [0x00C00C55]
+	(No symbol) [0x00C0093C]
+	(No symbol) [0x00BFA536]
+	(No symbol) [0x00BD82DC]
+	(No symbol) [0x00BD93DD]
+	GetHandleVerifier [0x00F7AABD+2539405]
+	GetHandleVerifier [0x00FBA78F+2800735]
+	GetHandleVerifier [0x00FB456C+2775612]
+	GetHandleVerifier [0x00DA51E0+616112]
+	(No symbol) [0x00CB5F8C]
+	(No symbol) [0x00CB2328]
+	(No symbol) [0x00CB240B]
+	(No symbol) [0x00CA4FF7]
+	BaseThreadInitThunk [0x76F05D49+25]
+	RtlInitializeExceptionChain [0x77D6CF0B+107]
+	RtlGetAppContainerNamedObjectPath [0x77D6CE91+561]
+
+Using Microsoft Edge as browser
+Error initializing ChromeDriver with ChromeDriverManager: Message: unknown error: cannot find Chrome binary
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x00EEA813+48355]
+	(No symbol) [0x00E7C4B1]
+	(No symbol) [0x00D85358]
+	(No symbol) [0x00DA1A9E]
+	(No symbol) [0x00DA0579]
+	(No symbol) [0x00DD0C55]
+	(No symbol) [0x00DD093C]
+	(No symbol) [0x00DCA536]
+	(No symbol) [0x00DA82DC]
+	(No symbol) [0x00DA93DD]
+	GetHandleVerifier [0x0114AABD+2539405]
+	GetHandleVerifier [0x0118A78F+2800735]
+	GetHandleVerifier [0x0118456C+2775612]
+	GetHandleVerifier [0x00F751E0+616112]
+	(No symbol) [0x00E85F8C]
+	(No symbol) [0x00E82328]
+	(No symbol) [0x00E8240B]
+	(No symbol) [0x00E74FF7]
+	BaseThreadInitThunk [0x76F05D49+25]
+	RtlInitializeExceptionChain [0x77D6CF0B+107]
+	RtlGetAppContainerNamedObjectPath [0x77D6CE91+561]
+
+Error initializing local ChromeDriver: Message: unknown error: cannot find Chrome binary
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x00D1A813+48355]
+	(No symbol) [0x00CAC4B1]
+	(No symbol) [0x00BB5358]
+	(No symbol) [0x00BD1A9E]
+	(No symbol) [0x00BD0579]
+	(No symbol) [0x00C00C55]
+	(No symbol) [0x00C0093C]
+	(No symbol) [0x00BFA536]
+	(No symbol) [0x00BD82DC]
+	(No symbol) [0x00BD93DD]
+	GetHandleVerifier [0x00F7AABD+2539405]
+	GetHandleVerifier [0x00FBA78F+2800735]
+	GetHandleVerifier [0x00FB456C+2775612]
+	GetHandleVerifier [0x00DA51E0+616112]
+	(No symbol) [0x00CB5F8C]
+	(No symbol) [0x00CB2328]
+	(No symbol) [0x00CB240B]
+	(No symbol) [0x00CA4FF7]
+	BaseThreadInitThunk [0x76F05D49+25]
+	RtlInitializeExceptionChain [0x77D6CF0B+107]
+	RtlGetAppContainerNamedObjectPath [0x77D6CE91+561]
+
+Using Microsoft Edge as browser
+Error initializing ChromeDriver with ChromeDriverManager: Message: unknown error: cannot find Chrome binary
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x00EEA813+48355]
+	(No symbol) [0x00E7C4B1]
+	(No symbol) [0x00D85358]
+	(No symbol) [0x00DA1A9E]
+	(No symbol) [0x00DA0579]
+	(No symbol) [0x00DD0C55]
+	(No symbol) [0x00DD093C]
+	(No symbol) [0x00DCA536]
+	(No symbol) [0x00DA82DC]
+	(No symbol) [0x00DA93DD]
+	GetHandleVerifier [0x0114AABD+2539405]
+	GetHandleVerifier [0x0118A78F+2800735]
+	GetHandleVerifier [0x0118456C+2775612]
+	GetHandleVerifier [0x00F751E0+616112]
+	(No symbol) [0x00E85F8C]
+	(No symbol) [0x00E82328]
+	(No symbol) [0x00E8240B]
+	(No symbol) [0x00E74FF7]
+	BaseThreadInitThunk [0x76F05D49+25]
+	RtlInitializeExceptionChain [0x77D6CF0B+107]
+	RtlGetAppContainerNamedObjectPath [0x77D6CE91+561]
+
+Error initializing local ChromeDriver: Message: unknown error: cannot find Chrome binary
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x00D1A813+48355]
+	(No symbol) [0x00CAC4B1]
+	(No symbol) [0x00BB5358]
+	(No symbol) [0x00BD1A9E]
+	(No symbol) [0x00BD0579]
+	(No symbol) [0x00C00C55]
+	(No symbol) [0x00C0093C]
+	(No symbol) [0x00BFA536]
+	(No symbol) [0x00BD82DC]
+	(No symbol) [0x00BD93DD]
+	GetHandleVerifier [0x00F7AABD+2539405]
+	GetHandleVerifier [0x00FBA78F+2800735]
+	GetHandleVerifier [0x00FB456C+2775612]
+	GetHandleVerifier [0x00DA51E0+616112]
+	(No symbol) [0x00CB5F8C]
+	(No symbol) [0x00CB2328]
+	(No symbol) [0x00CB240B]
+	(No symbol) [0x00CA4FF7]
+	BaseThreadInitThunk [0x76F05D49+25]
+	RtlInitializeExceptionChain [0x77D6CF0B+107]
+	RtlGetAppContainerNamedObjectPath [0x77D6CE91+561]
+
+Using Microsoft Edge as browser

@@ -1,0 +1,190 @@
+EEEE
+======================================================================
+ERROR: test_group_leader_bypass_auth (test_authentication.TWAAOSAuthenticationTests.test_group_leader_bypass_auth)
+Testeaza bypass-ul autentificarii pentru rolul Group Leader.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ralex\Documents\Proiect TWAAOS frontend\tests\selenium\test_authentication.py", line 204, in test_group_leader_bypass_auth
+    WebDriverWait(self.driver, 10).until(
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\support\wait.py", line 86, in until
+    value = method(self._driver)
+            ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\support\expected_conditions.py", line 82, in _predicate
+    return driver.find_element(*locator)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\webdriver.py", line 740, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\webdriver.py", line 346, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\errorhandler.py", line 245, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.InvalidSelectorException: Message: invalid selector: An invalid or illegal selector was specified
+  (Session info: MicrosoftEdge=135.0.3179.98); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalid-selector-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF6447B7A55+24981]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF64470AC60+444240]
+	Microsoft::Applications::Events::EventProperty::to_string [0x00007FF644A3E0EA+2011274]
+	(No symbol) [0x00007FF6444E2430]
+	(No symbol) [0x00007FF6444E4CCC]
+	(No symbol) [0x00007FF6444E4D9F]
+	(No symbol) [0x00007FF64452790B]
+	(No symbol) [0x00007FF64452804B]
+	(No symbol) [0x00007FF644568E07]
+	(No symbol) [0x00007FF6445490DF]
+	(No symbol) [0x00007FF64451E13D]
+	(No symbol) [0x00007FF6445667E8]
+	(No symbol) [0x00007FF644548E03]
+	(No symbol) [0x00007FF64451D686]
+	(No symbol) [0x00007FF64451CB92]
+	(No symbol) [0x00007FF64451D4B3]
+	(No symbol) [0x00007FF64461900D]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF644626943+41539]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF64461FC79+13689]
+	Microsoft::Applications::Events::EventProperty::to_string [0x00007FF64489A04A+290794]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF644717D31+497697]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF644710BB4+468644]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF644710D03+468979]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF644702E16+411910]
+	BaseThreadInitThunk [0x00007FFA61B4E8D7+23]
+	RtlUserThreadStart [0x00007FFA633114FC+44]
+
+
+======================================================================
+ERROR: test_secretariat_bypass_auth (test_authentication.TWAAOSAuthenticationTests.test_secretariat_bypass_auth)
+Testeaza bypass-ul autentificarii pentru rolul Secretariat.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ralex\Documents\Proiect TWAAOS frontend\tests\selenium\test_authentication.py", line 157, in test_secretariat_bypass_auth
+    WebDriverWait(self.driver, 10).until(
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\support\wait.py", line 86, in until
+    value = method(self._driver)
+            ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\support\expected_conditions.py", line 82, in _predicate
+    return driver.find_element(*locator)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\webdriver.py", line 740, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\webdriver.py", line 346, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\errorhandler.py", line 245, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.InvalidSelectorException: Message: invalid selector: An invalid or illegal selector was specified
+  (Session info: MicrosoftEdge=135.0.3179.98); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalid-selector-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF6447B7A55+24981]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF64470AC60+444240]
+	Microsoft::Applications::Events::EventProperty::to_string [0x00007FF644A3E0EA+2011274]
+	(No symbol) [0x00007FF6444E2430]
+	(No symbol) [0x00007FF6444E4CCC]
+	(No symbol) [0x00007FF6444E4D9F]
+	(No symbol) [0x00007FF64452790B]
+	(No symbol) [0x00007FF64452804B]
+	(No symbol) [0x00007FF644568E07]
+	(No symbol) [0x00007FF6445490DF]
+	(No symbol) [0x00007FF64451E13D]
+	(No symbol) [0x00007FF6445667E8]
+	(No symbol) [0x00007FF644548E03]
+	(No symbol) [0x00007FF64451D686]
+	(No symbol) [0x00007FF64451CB92]
+	(No symbol) [0x00007FF64451D4B3]
+	(No symbol) [0x00007FF64461900D]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF644626943+41539]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF64461FC79+13689]
+	Microsoft::Applications::Events::EventProperty::to_string [0x00007FF64489A04A+290794]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF644717D31+497697]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF644710BB4+468644]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF644710D03+468979]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF644702E16+411910]
+	BaseThreadInitThunk [0x00007FFA61B4E8D7+23]
+	RtlUserThreadStart [0x00007FFA633114FC+44]
+
+
+======================================================================
+ERROR: test_sign_out_functionality (test_authentication.TWAAOSAuthenticationTests.test_sign_out_functionality)
+Testeaza functionalitatea de Sign Out.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ralex\Documents\Proiect TWAAOS frontend\tests\selenium\test_authentication.py", line 295, in test_sign_out_functionality
+    print("\u2705 Test Sign Out: PASS")
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2705' in position 0: character maps to <undefined>
+
+======================================================================
+ERROR: test_teacher_bypass_auth (test_authentication.TWAAOSAuthenticationTests.test_teacher_bypass_auth)
+Testeaza bypass-ul autentificarii pentru rolul Teacher.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ralex\Documents\Proiect TWAAOS frontend\tests\selenium\test_authentication.py", line 110, in test_teacher_bypass_auth
+    WebDriverWait(self.driver, 10).until(
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\support\wait.py", line 86, in until
+    value = method(self._driver)
+            ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\support\expected_conditions.py", line 82, in _predicate
+    return driver.find_element(*locator)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\webdriver.py", line 740, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\webdriver.py", line 346, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\errorhandler.py", line 245, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.InvalidSelectorException: Message: invalid selector: An invalid or illegal selector was specified
+  (Session info: MicrosoftEdge=135.0.3179.98); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalid-selector-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF6447B7A55+24981]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF64470AC60+444240]
+	Microsoft::Applications::Events::EventProperty::to_string [0x00007FF644A3E0EA+2011274]
+	(No symbol) [0x00007FF6444E2430]
+	(No symbol) [0x00007FF6444E4CCC]
+	(No symbol) [0x00007FF6444E4D9F]
+	(No symbol) [0x00007FF64452790B]
+	(No symbol) [0x00007FF64452804B]
+	(No symbol) [0x00007FF644568E07]
+	(No symbol) [0x00007FF6445490DF]
+	(No symbol) [0x00007FF64451E13D]
+	(No symbol) [0x00007FF6445667E8]
+	(No symbol) [0x00007FF644548E03]
+	(No symbol) [0x00007FF64451D686]
+	(No symbol) [0x00007FF64451CB92]
+	(No symbol) [0x00007FF64451D4B3]
+	(No symbol) [0x00007FF64461900D]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF644626943+41539]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF64461FC79+13689]
+	Microsoft::Applications::Events::EventProperty::to_string [0x00007FF64489A04A+290794]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF644717D31+497697]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF644710BB4+468644]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF644710D03+468979]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF644702E16+411910]
+	BaseThreadInitThunk [0x00007FFA61B4E8D7+23]
+	RtlUserThreadStart [0x00007FFA633114FC+44]
+
+
+----------------------------------------------------------------------
+Ran 4 tests in 120.085s
+
+FAILED (errors=4)
+Folosim Microsoft Edge pentru teste...
+Aplicatia este disponibila la http://localhost:3000
+Titlul paginii: React App
+Pagina Group Leader incarcata: React App
+ATENTIE: Butonul de bypass nu a putut fi gasit. Testul va continua, dar poate esua.
+Folosim Microsoft Edge pentru teste...
+Aplicatia este disponibila la http://localhost:3000
+Titlul paginii: React App
+Pagina Secretariat incarcata: React App
+ATENTIE: Butonul de bypass nu a putut fi gasit. Testul va continua, dar poate esua.
+Folosim Microsoft Edge pentru teste...
+Aplicatia este disponibila la http://localhost:3000
+Titlul paginii: React App
+ATENTIE: Butonul de bypass nu a putut fi gasit. Testul va continua, dar poate esua.
+ATENTIE: Butonul de sign out nu a putut fi gasit. Testul va esua.
+Folosim Microsoft Edge pentru teste...
+Aplicatia este disponibila la http://localhost:3000
+Titlul paginii: React App
+Pagina Teacher incarcata: React App
+ATENTIE: Butonul de bypass nu a putut fi gasit. Testul va continua, dar poate esua.

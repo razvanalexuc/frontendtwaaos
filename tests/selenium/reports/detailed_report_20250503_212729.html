@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Raport Detaliat Teste TWAAOS</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1, h2 { color: #333; }
+        .summary { background-color: #f5f5f5; padding: 15px; margin-bottom: 20px; border-radius: 5px; }
+        .filters { margin-bottom: 20px; }
+        .filter-group { margin-bottom: 10px; }
+        .filter-label { font-weight: bold; margin-right: 10px; }
+        .filter-button { background-color: #4CAF50; color: white; border: none; padding: 5px 10px; 
+                         margin-right: 5px; cursor: pointer; border-radius: 3px; }
+        .filter-button:hover { background-color: #45a049; }
+        .filter-button.active { background-color: #333; }
+        .test-list { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+        .test-list th { background-color: #4CAF50; color: white; text-align: left; padding: 10px; }
+        .test-list tr:nth-child(even) { background-color: #f2f2f2; }
+        .test-list td { padding: 10px; border-bottom: 1px solid #ddd; }
+        .passed { color: green; font-weight: bold; }
+        .failed { color: red; font-weight: bold; }
+        .skipped { color: orange; font-weight: bold; }
+        .details { font-family: monospace; white-space: pre-wrap; background-color: #f8f8f8; 
+                   padding: 10px; border-left: 3px solid #ccc; margin-top: 5px; }
+        .metadata { background-color: #f0f8ff; padding: 10px; margin-top: 5px; border-radius: 3px; }
+        .tag { background-color: #e0e0e0; padding: 3px 6px; border-radius: 3px; margin-right: 5px; }
+        .high { background-color: #ffcccc; }
+        .medium { background-color: #ffffcc; }
+        .low { background-color: #ccffcc; }
+    </style>
+</head>
+<body>
+    <h1>Raport Detaliat Teste Automate TWAAOS</h1>
+    
+    <div class="summary">
+        <p><strong>Data si ora:</strong> 03-05-2025 21:29:33</p>
+        <p><strong>Categorie:</strong> Toate testele</p>
+        <p><strong>Total teste:</strong> 10</p>
+        <p><strong>Teste trecute:</strong> <span class="passed">7</span></p>
+        <p><strong>Teste esuate:</strong> <span class="failed">3</span></p>
+        <p><strong>Teste sarite:</strong> <span class="skipped">0</span></p>
+    </div>
+    
+    <div class="filters">
+        <h2>Filtre</h2>
+        
+        <div class="filter-group">
+            <span class="filter-label">Rezultat:</span>
+            <button class="filter-button active" onclick="filterTests('all')">Toate</button>
+            <button class="filter-button" onclick="filterTests('passed')">Trecute</button>
+            <button class="filter-button" onclick="filterTests('failed')">Esuate</button>
+            <button class="filter-button" onclick="filterTests('skipped')">Sarite</button>
+        </div>
+        
+        <div class="filter-group">
+            <span class="filter-label">Categorie:</span>
+            <button class="filter-button active" onclick="filterByCategory('all')">Toate</button>
+            <button class="filter-button" onclick="filterByCategory('authentication')">authentication</button>
+            <button class="filter-button" onclick="filterByCategory('functionality')">functionality</button>
+
+        </div>
+        
+        <div class="filter-group">
+            <span class="filter-label">Prioritate:</span>
+            <button class="filter-button active" onclick="filterByPriority('all')">Toate</button>
+            <button class="filter-button" onclick="filterByPriority('High')">High</button>
+            <button class="filter-button" onclick="filterByPriority('Medium')">Medium</button>
+
+        </div>
+    </div>
+    
+    <h2>Rezultate Detaliate</h2>
+    <table class="test-list" id="test-table">
+        <thead>
+            <tr>
+                <th>Fisier</th>
+                <th>Test</th>
+                <th>ID</th>
+                <th>Rezultat</th>
+                <th>Categorie</th>
+                <th>Prioritate</th>
+                <th>Autor</th>
+                <th>Tags</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        <tr class="test-row passed-row" data-category="authentication" data-priority="High">
+            <td>test_admin_login.py</td>
+            <td>test_admin_bypass_auth</td>
+            <td>test_admin_login</td>
+            <td class="passed">PASSED</td>
+            <td>authentication</td>
+            <td class="High">High</td>
+            <td>TWAAOS Team</td>
+            <td><span class="tag">auth</span><span class="tag">admin</span><span class="tag">login</span></td>
+        </tr>
+        <tr class="test-row failed-row" data-category="functionality" data-priority="Medium">
+            <td>test_download_exam_schedule.py</td>
+            <td>test_download_exam_schedule</td>
+            <td>test_download_exam_schedule</td>
+            <td class="failed">FAILED</td>
+            <td>functionality</td>
+            <td class="Medium">Medium</td>
+            <td>TWAAOS Team</td>
+            <td><span class="tag">secretariat</span><span class="tag">download</span><span class="tag">schedule</span></td>
+        </tr>
+        <tr class="details-row failed-row" data-category="functionality" data-priority="Medium">
+            <td colspan="8">
+                <div class="details">functional_tests/test_download_template.py::test_download_template[test_download_template] PASSED [ 30%]
+functional_tests/test_generate_disciplines.py::test_generate_disciplines[test_generate_disciplines] PASSED [ 40%]
+functional_tests/test_generate_rooms_list.py::test_generate_rooms_list[test_generate_rooms_list] FAILED [ 50%]
+functional_tests/test_group_leader_auth.py::test_group_leader_bypass_auth[test_group_leader_auth] FAILED [ 60%]
+functional_tests/test_notify_group_leaders.py::test_notify_group_leaders[test_notify_group_leaders] PASSED [ 70%]
+functional_tests/test_secretariat_auth.py::test_secretariat_bypass_auth[test_secretariat_auth] PASSED [ 80%]
+functional_tests/test_sign_out.py::test_sign_out_functionality[test_sign_out] PASSED [ 90%]
+functional_tests/test_teacher_auth.py::test_teacher_bypass_auth[test_teacher_auth] PASSED [100%]</div>
+            </td>
+        </tr>
+        <tr class="test-row passed-row" data-category="functionality" data-priority="Medium">
+            <td>test_download_template.py</td>
+            <td>test_download_template</td>
+            <td>test_download_template</td>
+            <td class="passed">PASSED</td>
+            <td>functionality</td>
+            <td class="Medium">Medium</td>
+            <td>TWAAOS Team</td>
+            <td><span class="tag">secretariat</span><span class="tag">download</span><span class="tag">template</span></td>
+        </tr>
+        <tr class="test-row passed-row" data-category="functionality" data-priority="Medium">
+            <td>test_generate_disciplines.py</td>
+            <td>test_generate_disciplines</td>
+            <td>test_generate_disciplines</td>
+            <td class="passed">PASSED</td>
+            <td>functionality</td>
+            <td class="Medium">Medium</td>
+            <td>TWAAOS Team</td>
+            <td><span class="tag">secretariat</span><span class="tag">disciplines</span><span class="tag">generate</span></td>
+        </tr>
+        <tr class="test-row failed-row" data-category="functionality" data-priority="Medium">
+            <td>test_generate_rooms_list.py</td>
+            <td>test_generate_rooms_list</td>
+            <td>test_generate_rooms_list</td>
+            <td class="failed">FAILED</td>
+            <td>functionality</td>
+            <td class="Medium">Medium</td>
+            <td>TWAAOS Team</td>
+            <td><span class="tag">secretariat</span><span class="tag">rooms</span><span class="tag">generate</span></td>
+        </tr>
+        <tr class="details-row failed-row" data-category="functionality" data-priority="Medium">
+            <td colspan="8">
+                <div class="details">functional_tests/test_group_leader_auth.py::test_group_leader_bypass_auth[test_group_leader_auth] FAILED [ 60%]
+functional_tests/test_notify_group_leaders.py::test_notify_group_leaders[test_notify_group_leaders] PASSED [ 70%]
+functional_tests/test_secretariat_auth.py::test_secretariat_bypass_auth[test_secretariat_auth] PASSED [ 80%]
+functional_tests/test_sign_out.py::test_sign_out_functionality[test_sign_out] PASSED [ 90%]
+functional_tests/test_teacher_auth.py::test_teacher_bypass_auth[test_teacher_auth] PASSED [100%]</div>
+            </td>
+        </tr>
+        <tr class="test-row failed-row" data-category="authentication" data-priority="High">
+            <td>test_group_leader_auth.py</td>
+            <td>test_group_leader_bypass_auth</td>
+            <td>test_group_leader_auth</td>
+            <td class="failed">FAILED</td>
+            <td>authentication</td>
+            <td class="High">High</td>
+            <td>TWAAOS Team</td>
+            <td><span class="tag">auth</span><span class="tag">group-leader</span><span class="tag">bypass</span></td>
+        </tr>
+        <tr class="details-row failed-row" data-category="authentication" data-priority="High">
+            <td colspan="8">
+                <div class="details">functional_tests/test_notify_group_leaders.py::test_notify_group_leaders[test_notify_group_leaders] PASSED [ 70%]
+functional_tests/test_secretariat_auth.py::test_secretariat_bypass_auth[test_secretariat_auth] PASSED [ 80%]
+functional_tests/test_sign_out.py::test_sign_out_functionality[test_sign_out] PASSED [ 90%]
+functional_tests/test_teacher_auth.py::test_teacher_bypass_auth[test_teacher_auth] PASSED [100%]</div>
+            </td>
+        </tr>
+        <tr class="test-row passed-row" data-category="functionality" data-priority="Medium">
+            <td>test_notify_group_leaders.py</td>
+            <td>test_notify_group_leaders</td>
+            <td>test_notify_group_leaders</td>
+            <td class="passed">PASSED</td>
+            <td>functionality</td>
+            <td class="Medium">Medium</td>
+            <td>TWAAOS Team</td>
+            <td><span class="tag">secretariat</span><span class="tag">notification</span><span class="tag">group-leaders</span></td>
+        </tr>
+        <tr class="test-row passed-row" data-category="authentication" data-priority="High">
+            <td>test_secretariat_auth.py</td>
+            <td>test_secretariat_bypass_auth</td>
+            <td>test_secretariat_auth</td>
+            <td class="passed">PASSED</td>
+            <td>authentication</td>
+            <td class="High">High</td>
+            <td>TWAAOS Team</td>
+            <td><span class="tag">auth</span><span class="tag">secretariat</span><span class="tag">bypass</span></td>
+        </tr>
+        <tr class="test-row passed-row" data-category="authentication" data-priority="High">
+            <td>test_sign_out.py</td>
+            <td>test_sign_out_functionality</td>
+            <td>test_sign_out</td>
+            <td class="passed">PASSED</td>
+            <td>authentication</td>
+            <td class="High">High</td>
+            <td>TWAAOS Team</td>
+            <td><span class="tag">auth</span><span class="tag">sign-out</span></td>
+        </tr>
+        <tr class="test-row passed-row" data-category="authentication" data-priority="High">
+            <td>test_teacher_auth.py</td>
+            <td>test_teacher_bypass_auth</td>
+            <td>test_teacher_auth</td>
+            <td class="passed">PASSED</td>
+            <td>authentication</td>
+            <td class="High">High</td>
+            <td>TWAAOS Team</td>
+            <td><span class="tag">auth</span><span class="tag">teacher</span><span class="tag">bypass</span></td>
+        </tr>
+        </tbody>
+    </table>
+    
+    <script>
+        // Functii pentru filtrare
+        function filterTests(result) {
+            const rows = document.querySelectorAll('.test-row, .details-row');
+            const buttons = document.querySelectorAll('.filter-group:nth-child(1) .filter-button');
+            
+            // Actualizeaza butoanele active
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            document.querySelector(`.filter-group:nth-child(1) .filter-button[onclick*="${result}"]`).classList.add('active');
+            
+            // Filtreaza randurile
+            rows.forEach(row => {
+                if (result === 'all') {
+                    row.style.display = '';
+                } else {
+                    if (row.classList.contains(`${result}-row`)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                }
+            });
+        }
+        
+        function filterByCategory(category) {
+            const rows = document.querySelectorAll('.test-row, .details-row');
+            const buttons = document.querySelectorAll('.filter-group:nth-child(2) .filter-button');
+            
+            // Actualizeaza butoanele active
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            document.querySelector(`.filter-group:nth-child(2) .filter-button[onclick*="${category}"]`).classList.add('active');
+            
+            // Filtreaza randurile
+            rows.forEach(row => {
+                if (category === 'all') {
+                    row.style.display = '';
+                } else {
+                    if (row.dataset.category === category) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                }
+            });
+        }
+        
+        function filterByPriority(priority) {
+            const rows = document.querySelectorAll('.test-row, .details-row');
+            const buttons = document.querySelectorAll('.filter-group:nth-child(3) .filter-button');
+            
+            // Actualizeaza butoanele active
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            document.querySelector(`.filter-group:nth-child(3) .filter-button[onclick*="${priority}"]`).classList.add('active');
+            
+            // Filtreaza randurile
+            rows.forEach(row => {
+                if (priority === 'all') {
+                    row.style.display = '';
+                } else {
+                    if (row.dataset.priority === priority) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

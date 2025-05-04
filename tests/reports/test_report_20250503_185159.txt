@@ -1,0 +1,233 @@
+EEEE
+======================================================================
+ERROR: test_group_leader_bypass_auth (test_authentication.TWAAOSAuthenticationTests.test_group_leader_bypass_auth)
+Testeaz\u0103 bypass-ul autentific\u0103rii pentru rolul Group Leader.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ralex\Documents\Proiect TWAAOS frontend\tests\selenium\test_authentication.py", line 36, in setUp
+    self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\chrome\webdriver.py", line 49, in __init__
+    super().__init__(
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\chromium\webdriver.py", line 54, in __init__
+    super().__init__(
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\webdriver.py", line 206, in __init__
+    self.start_session(capabilities)
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\webdriver.py", line 291, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\webdriver.py", line 346, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\errorhandler.py", line 245, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: cannot find Chrome binary
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x00EEA813+48355]
+	(No symbol) [0x00E7C4B1]
+	(No symbol) [0x00D85358]
+	(No symbol) [0x00DA1A9E]
+	(No symbol) [0x00DA0579]
+	(No symbol) [0x00DD0C55]
+	(No symbol) [0x00DD093C]
+	(No symbol) [0x00DCA536]
+	(No symbol) [0x00DA82DC]
+	(No symbol) [0x00DA93DD]
+	GetHandleVerifier [0x0114AABD+2539405]
+	GetHandleVerifier [0x0118A78F+2800735]
+	GetHandleVerifier [0x0118456C+2775612]
+	GetHandleVerifier [0x00F751E0+616112]
+	(No symbol) [0x00E85F8C]
+	(No symbol) [0x00E82328]
+	(No symbol) [0x00E8240B]
+	(No symbol) [0x00E74FF7]
+	BaseThreadInitThunk [0x76F05D49+25]
+	RtlInitializeExceptionChain [0x77D6CF0B+107]
+	RtlGetAppContainerNamedObjectPath [0x77D6CE91+561]
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ralex\Documents\Proiect TWAAOS frontend\tests\selenium\test_authentication.py", line 38, in setUp
+    print(f"Eroare la ini\u021bializarea ChromeDriver cu ChromeDriverManager: {e}")
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u021b' in position 13: character maps to <undefined>
+
+======================================================================
+ERROR: test_secretariat_bypass_auth (test_authentication.TWAAOSAuthenticationTests.test_secretariat_bypass_auth)
+Testeaz\u0103 bypass-ul autentific\u0103rii pentru rolul Secretariat.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ralex\Documents\Proiect TWAAOS frontend\tests\selenium\test_authentication.py", line 36, in setUp
+    self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\chrome\webdriver.py", line 49, in __init__
+    super().__init__(
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\chromium\webdriver.py", line 54, in __init__
+    super().__init__(
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\webdriver.py", line 206, in __init__
+    self.start_session(capabilities)
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\webdriver.py", line 291, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\webdriver.py", line 346, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\errorhandler.py", line 245, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: cannot find Chrome binary
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x00EEA813+48355]
+	(No symbol) [0x00E7C4B1]
+	(No symbol) [0x00D85358]
+	(No symbol) [0x00DA1A9E]
+	(No symbol) [0x00DA0579]
+	(No symbol) [0x00DD0C55]
+	(No symbol) [0x00DD093C]
+	(No symbol) [0x00DCA536]
+	(No symbol) [0x00DA82DC]
+	(No symbol) [0x00DA93DD]
+	GetHandleVerifier [0x0114AABD+2539405]
+	GetHandleVerifier [0x0118A78F+2800735]
+	GetHandleVerifier [0x0118456C+2775612]
+	GetHandleVerifier [0x00F751E0+616112]
+	(No symbol) [0x00E85F8C]
+	(No symbol) [0x00E82328]
+	(No symbol) [0x00E8240B]
+	(No symbol) [0x00E74FF7]
+	BaseThreadInitThunk [0x76F05D49+25]
+	RtlInitializeExceptionChain [0x77D6CF0B+107]
+	RtlGetAppContainerNamedObjectPath [0x77D6CE91+561]
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ralex\Documents\Proiect TWAAOS frontend\tests\selenium\test_authentication.py", line 38, in setUp
+    print(f"Eroare la ini\u021bializarea ChromeDriver cu ChromeDriverManager: {e}")
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u021b' in position 13: character maps to <undefined>
+
+======================================================================
+ERROR: test_sign_out_functionality (test_authentication.TWAAOSAuthenticationTests.test_sign_out_functionality)
+Testeaz\u0103 func\u021bionalitatea de Sign Out.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ralex\Documents\Proiect TWAAOS frontend\tests\selenium\test_authentication.py", line 36, in setUp
+    self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\chrome\webdriver.py", line 49, in __init__
+    super().__init__(
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\chromium\webdriver.py", line 54, in __init__
+    super().__init__(
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\webdriver.py", line 206, in __init__
+    self.start_session(capabilities)
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\webdriver.py", line 291, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\webdriver.py", line 346, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\errorhandler.py", line 245, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: cannot find Chrome binary
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x00EEA813+48355]
+	(No symbol) [0x00E7C4B1]
+	(No symbol) [0x00D85358]
+	(No symbol) [0x00DA1A9E]
+	(No symbol) [0x00DA0579]
+	(No symbol) [0x00DD0C55]
+	(No symbol) [0x00DD093C]
+	(No symbol) [0x00DCA536]
+	(No symbol) [0x00DA82DC]
+	(No symbol) [0x00DA93DD]
+	GetHandleVerifier [0x0114AABD+2539405]
+	GetHandleVerifier [0x0118A78F+2800735]
+	GetHandleVerifier [0x0118456C+2775612]
+	GetHandleVerifier [0x00F751E0+616112]
+	(No symbol) [0x00E85F8C]
+	(No symbol) [0x00E82328]
+	(No symbol) [0x00E8240B]
+	(No symbol) [0x00E74FF7]
+	BaseThreadInitThunk [0x76F05D49+25]
+	RtlInitializeExceptionChain [0x77D6CF0B+107]
+	RtlGetAppContainerNamedObjectPath [0x77D6CE91+561]
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ralex\Documents\Proiect TWAAOS frontend\tests\selenium\test_authentication.py", line 38, in setUp
+    print(f"Eroare la ini\u021bializarea ChromeDriver cu ChromeDriverManager: {e}")
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u021b' in position 13: character maps to <undefined>
+
+======================================================================
+ERROR: test_teacher_bypass_auth (test_authentication.TWAAOSAuthenticationTests.test_teacher_bypass_auth)
+Testeaz\u0103 bypass-ul autentific\u0103rii pentru rolul Teacher.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ralex\Documents\Proiect TWAAOS frontend\tests\selenium\test_authentication.py", line 36, in setUp
+    self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\chrome\webdriver.py", line 49, in __init__
+    super().__init__(
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\chromium\webdriver.py", line 54, in __init__
+    super().__init__(
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\webdriver.py", line 206, in __init__
+    self.start_session(capabilities)
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\webdriver.py", line 291, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\webdriver.py", line 346, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\errorhandler.py", line 245, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: cannot find Chrome binary
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x00EEA813+48355]
+	(No symbol) [0x00E7C4B1]
+	(No symbol) [0x00D85358]
+	(No symbol) [0x00DA1A9E]
+	(No symbol) [0x00DA0579]
+	(No symbol) [0x00DD0C55]
+	(No symbol) [0x00DD093C]
+	(No symbol) [0x00DCA536]
+	(No symbol) [0x00DA82DC]
+	(No symbol) [0x00DA93DD]
+	GetHandleVerifier [0x0114AABD+2539405]
+	GetHandleVerifier [0x0118A78F+2800735]
+	GetHandleVerifier [0x0118456C+2775612]
+	GetHandleVerifier [0x00F751E0+616112]
+	(No symbol) [0x00E85F8C]
+	(No symbol) [0x00E82328]
+	(No symbol) [0x00E8240B]
+	(No symbol) [0x00E74FF7]
+	BaseThreadInitThunk [0x76F05D49+25]
+	RtlInitializeExceptionChain [0x77D6CF0B+107]
+	RtlGetAppContainerNamedObjectPath [0x77D6CE91+561]
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ralex\Documents\Proiect TWAAOS frontend\tests\selenium\test_authentication.py", line 38, in setUp
+    print(f"Eroare la ini\u021bializarea ChromeDriver cu ChromeDriverManager: {e}")
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u021b' in position 13: character maps to <undefined>
+
+----------------------------------------------------------------------
+Ran 4 tests in 30.772s
+
+FAILED (errors=4)
