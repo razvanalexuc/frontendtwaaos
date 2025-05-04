@@ -1,0 +1,230 @@
+.admin-dashboard {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.admin-dashboard h2 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.admin-dashboard p {
+  color: #7f8c8d;
+  margin-bottom: 20px;
+}
+
+.tabs {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  flex-wrap: wrap;
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #7f8c8d;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.tab-button.active {
+  color: #3498db;
+  font-weight: 600;
+}
+
+.tab-button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #3498db;
+}
+
+.tab-content {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.faculties-container h3,
+.teachers-container h3,
+.secretaries-container h3,
+.account-container h3 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ecf0f1;
+  padding-bottom: 10px;
+}
+
+.add-faculty-form,
+.add-teacher-form,
+.add-secretary-form,
+.change-password-form {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.add-faculty-form h4,
+.add-teacher-form h4,
+.add-secretary-form h4,
+.change-password-form h4,
+.faculties-list h4,
+.teachers-list h4,
+.secretaries-list h4 {
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #34495e;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.add-button,
+.save-button,
+.delete-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: 500;
+}
+
+.add-button {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.add-button:hover {
+  background-color: #27ae60;
+}
+
+.save-button {
+  background-color: #3498db;
+  color: white;
+  width: 100%;
+}
+
+.save-button:hover {
+  background-color: #2980b9;
+}
+
+.delete-button {
+  background-color: #e74c3c;
+  color: white;
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+.delete-button:hover {
+  background-color: #c0392b;
+}
+
+.no-data {
+  color: #95a5a6;
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+}
+
+.faculty-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.faculty-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  border: 1px solid #ecf0f1;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.data-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.data-table tr:hover {
+  background-color: #f8f9fa;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 40px;
+  color: #7f8c8d;
+}
+
+.error {
+  color: #e74c3c;
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .tabs {
+    flex-direction: column;
+  }
+  
+  .tab-button {
+    width: 100%;
+    text-align: left;
+  }
+  
+  .faculty-cards {
+    grid-template-columns: 1fr;
+  }
+}
