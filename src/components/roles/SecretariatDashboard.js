@@ -1,46 +1,149 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import api from '../../utils/api';
 import './SecretariatDashboard.css';
-
-// Mock data - would be replaced with actual API calls
-const mockDisciplines = [
-  { id: 1, name: 'Programare Web', program: 'Informatică', year: 2, group: 'A', professor: 'Prof. Ionescu', email: 'ionescu@usm.ro', examType: 'Examen' },
-  { id: 2, name: 'Baze de Date', program: 'Informatică', year: 2, group: 'A', professor: 'Prof. Popescu', email: 'popescu@usm.ro', examType: 'Colocviu' },
-];
-
-const mockRooms = [
-  { id: 1, name: 'C401', capacity: 30, building: 'Corp C' },
-  { id: 2, name: 'C402', capacity: 25, building: 'Corp C' },
-];
-
-const mockGroupLeaders = [
-  { id: 1, name: 'Ion Popescu', email: 'ion.popescu@student.usv.ro', group: 'Informatică 2A' },
-  { id: 2, name: 'Maria Ionescu', email: 'maria.ionescu@student.usv.ro', group: 'Informatică 2B' },
-];
 
 const SecretariatDashboard = () => {
   const [activeTab, setActiveTab] = useState('disciplines');
-  const [disciplines, setDisciplines] = useState(mockDisciplines);
-  const [rooms, setRooms] = useState(mockRooms);
-  const [groupLeaders, setGroupLeaders] = useState(mockGroupLeaders);
+  const [disciplines, setDisciplines] = useState([]);
+  const [rooms, setRooms] = useState([]);
+  const [groupLeaders, setGroupLeaders] = useState([]);
   const [examPeriod, setExamPeriod] = useState({ start: '', end: '' });
   const [colloquiumPeriod, setColloquiumPeriod] = useState({ start: '', end: '' });
   const [fileUpload, setFileUpload] = useState(null);
   const [notification, setNotification] = useState({ show: false, message: '', type: '' });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [pendingReservations, setPendingReservations] = useState([]);
+  const [reservationHistory, setReservationHistory] = useState([]);
+  
+  // Fetch data from API when component mounts
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        
+        // Fetch rooms
+        const roomsResponse = await api.student.getRooms();
+        if (roomsResponse.rooms) {
+          setRooms(roomsResponse.rooms);
+        }
+        
+        // Fetch pending reservations
+        const pendingResponse = await api.secretary.getPendingReservations();
+        if (pendingResponse.reservations) {
+          setPendingReservations(pendingResponse.reservations);
+        }
+        
+        // Fetch reservation history
+        const historyResponse = await api.secretary.getReservationHistory();
+        if (historyResponse.reservations) {
+          setReservationHistory(historyResponse.reservations);
+        }
+        
+        // Fetch settings to get exam periods
+        const settingsResponse = await api.admin.getSettings();
+        if (settingsResponse.exam_period) {
+          setExamPeriod({
+            start: settingsResponse.exam_period.start,
+            end: settingsResponse.exam_period.end
+          });
+        }
+        
+        if (settingsResponse.colloquium_period) {
+          setColloquiumPeriod({
+            start: settingsResponse.colloquium_period.start,
+            end: settingsResponse.colloquium_period.end
+          });
+        }
+        
+        // Fetch users to get group leaders (students)
+        const usersResponse = await api.admin.getUsers();
+        if (usersResponse.users) {
+          const studentUsers = usersResponse.users.filter(user => user.role === 'student');
+          setGroupLeaders(studentUsers);
+        }
+        
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching secretary data:', error);
+        setError('Failed to load data. Please try again later.');
+        setLoading(false);
+      }
+    };
+    
+    fetchData();
+  }, []);
 
   // Function to download Excel template
-  const downloadTemplate = (templateType) => {
-    // In a real application, this would generate or fetch an Excel file
-    console.log(`Downloading ${templateType} template`);
-    setNotification({
-      show: true,
-      message: `Template for ${templateType} downloaded successfully`,
-      type: 'success'
-    });
-    
-    // Hide notification after 3 seconds
-    setTimeout(() => {
-      setNotification({ show: false, message: '', type: '' });
-    }, 3000);
+  const downloadTemplate = async (templateType) => {
+    try {
+      // Create a temporary anchor element to trigger download
+      const a = document.createElement('a');
+      let url;
+      
+      if (templateType === 'disciplines') {
+        // Request the template from the backend
+        const response = await fetch(`${api.API_URL}/secretary/templates/disciplines`, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+          }
+        });
+        
+        if (!response.ok) throw new Error('Failed to download template');
+        
+        // Create a blob from the response
+        const blob = await response.blob();
+        url = window.URL.createObjectURL(blob);
+        a.href = url;
+        a.download = 'disciplines_template.xlsx';
+      } else if (templateType === 'rooms') {
+        // Request the template from the backend
+        const response = await fetch(`${api.API_URL}/secretary/templates/rooms`, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+          }
+        });
+        
+        if (!response.ok) throw new Error('Failed to download template');
+        
+        // Create a blob from the response
+        const blob = await response.blob();
+        url = window.URL.createObjectURL(blob);
+        a.href = url;
+        a.download = 'rooms_template.xlsx';
+      }
+      
+      // Trigger download
+      document.body.appendChild(a);
+      a.click();
+      
+      // Cleanup
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+      
+      setNotification({
+        show: true,
+        message: `Template for ${templateType} downloaded successfully`,
+        type: 'success'
+      });
+      
+      // Hide notification after 3 seconds
+      setTimeout(() => {
+        setNotification({ show: false, message: '', type: '' });
+      }, 3000);
+    } catch (error) {
+      console.error('Error downloading template:', error);
+      setNotification({
+        show: true,
+        message: `Error downloading template: ${error.message}`,
+        type: 'error'
+      });
+      
+      // Hide notification after 3 seconds
+      setTimeout(() => {
+        setNotification({ show: false, message: '', type: '' });
+      }, 3000);
+    }
   };
 
   // Function to handle file upload
@@ -54,16 +157,116 @@ const SecretariatDashboard = () => {
   };
 
   // Function to submit uploaded file
-  const submitFile = () => {
+  const submitFile = async () => {
     if (fileUpload) {
-      // Process file upload logic would go here
-      console.log(`Processing file: ${fileUpload.name}`);
+      try {
+        // Determine which endpoint to use based on file type or active tab
+        let endpoint;
+        if (activeTab === 'disciplines') {
+          endpoint = '/admin/schedule/import';
+        } else if (activeTab === 'rooms') {
+          endpoint = '/admin/rooms/import';
+        }
+        
+        if (!endpoint) {
+          throw new Error('Invalid file type or tab');
+        }
+        
+        // Upload file to the backend
+        await api.uploadFile(endpoint, fileUpload);
+        
+        setNotification({
+          show: true,
+          message: `File ${fileUpload.name} uploaded successfully`,
+          type: 'success'
+        });
+        
+        // Refresh data after upload
+        if (activeTab === 'disciplines') {
+          // Refresh disciplines
+          const usersResponse = await api.admin.getUsers();
+          if (usersResponse.users) {
+            const teacherUsers = usersResponse.users.filter(user => user.role === 'teacher');
+            setDisciplines(teacherUsers.map(teacher => ({
+              id: teacher.id,
+              name: teacher.course_name || 'Unknown Course',
+              program: teacher.program || 'Unknown Program',
+              year: teacher.year || 1,
+              group: teacher.group || 'A',
+              professor: `${teacher.title || ''} ${teacher.first_name} ${teacher.last_name}`,
+              email: teacher.email,
+              examType: teacher.exam_type || 'Examen'
+            })));
+          }
+        } else if (activeTab === 'rooms') {
+          // Refresh rooms
+          const roomsResponse = await api.student.getRooms();
+          if (roomsResponse.rooms) {
+            setRooms(roomsResponse.rooms);
+          }
+        }
+        
+        setFileUpload(null);
+        
+        // Hide notification after 3 seconds
+        setTimeout(() => {
+          setNotification({ show: false, message: '', type: '' });
+        }, 3000);
+      } catch (error) {
+        console.error('Error uploading file:', error);
+        setNotification({
+          show: true,
+          message: `Error uploading file: ${error.message}`,
+          type: 'error'
+        });
+        
+        // Hide notification after 3 seconds
+        setTimeout(() => {
+          setNotification({ show: false, message: '', type: '' });
+        }, 3000);
+      }
+    }
+  };
+
+  // Function to generate disciplines list
+  const generateDisciplinesList = async () => {
+    try {
+      // Call the API to import schedule from USV
+      await api.admin.importUsvSchedule();
+      
+      // Refresh disciplines data
+      const usersResponse = await api.admin.getUsers();
+      if (usersResponse.users) {
+        const teacherUsers = usersResponse.users.filter(user => user.role === 'teacher');
+        setDisciplines(teacherUsers.map(teacher => ({
+          id: teacher.id,
+          name: teacher.course_name || 'Unknown Course',
+          program: teacher.program || 'Unknown Program',
+          year: teacher.year || 1,
+          group: teacher.group || 'A',
+          professor: `${teacher.title || ''} ${teacher.first_name} ${teacher.last_name}`,
+          email: teacher.email,
+          examType: teacher.exam_type || 'Examen'
+        })));
+      }
+      
       setNotification({
         show: true,
-        message: `File ${fileUpload.name} uploaded successfully`,
+        message: 'Disciplines list generated successfully',
         type: 'success'
       });
-      setFileUpload(null);
+      
+      // Hide notification after 3 seconds
+      setTimeout(() => {
+        setNotification({ show: false, message: '', type: '' });
+      }, 3000);
+    } catch (error) {
+      console.error('Error generating disciplines list:', error);
+      setNotification({
+        show: true,
+        message: `Error generating disciplines list: ${error.message}`,
+        type: 'error'
+      });
       
       // Hide notification after 3 seconds
       setTimeout(() => {
@@ -72,114 +275,270 @@ const SecretariatDashboard = () => {
     }
   };
 
-  // Function to generate disciplines list
-  const generateDisciplinesList = () => {
-    // In a real application, this would call an API to fetch data from Orar
-    console.log('Generating disciplines list');
-    setNotification({
-      show: true,
-      message: 'Disciplines list generated successfully',
-      type: 'success'
-    });
-    
-    // Hide notification after 3 seconds
-    setTimeout(() => {
-      setNotification({ show: false, message: '', type: '' });
-    }, 3000);
-  };
-
   // Function to generate available rooms
-  const generateRoomsList = () => {
-    // In a real application, this would call an API to fetch data from Orar
-    console.log('Generating rooms list');
-    setNotification({
-      show: true,
-      message: 'Rooms list generated successfully',
-      type: 'success'
-    });
-    
-    // Hide notification after 3 seconds
-    setTimeout(() => {
-      setNotification({ show: false, message: '', type: '' });
-    }, 3000);
+  const generateRoomsList = async () => {
+    try {
+      // Call the API to import rooms from USV
+      await api.admin.importUsvSchedule({ rooms_only: true });
+      
+      // Refresh rooms data
+      const roomsResponse = await api.student.getRooms();
+      if (roomsResponse.rooms) {
+        setRooms(roomsResponse.rooms);
+      }
+      
+      setNotification({
+        show: true,
+        message: 'Rooms list generated successfully',
+        type: 'success'
+      });
+      
+      // Hide notification after 3 seconds
+      setTimeout(() => {
+        setNotification({ show: false, message: '', type: '' });
+      }, 3000);
+    } catch (error) {
+      console.error('Error generating rooms list:', error);
+      setNotification({
+        show: true,
+        message: `Error generating rooms list: ${error.message}`,
+        type: 'error'
+      });
+      
+      // Hide notification after 3 seconds
+      setTimeout(() => {
+        setNotification({ show: false, message: '', type: '' });
+      }, 3000);
+    }
   };
 
   // Function to notify group leaders
-  const notifyGroupLeaders = () => {
-    // In a real application, this would send emails to group leaders
-    console.log('Notifying group leaders');
-    setNotification({
-      show: true,
-      message: 'Group leaders notified successfully',
-      type: 'success'
-    });
-    
-    // Hide notification after 3 seconds
-    setTimeout(() => {
-      setNotification({ show: false, message: '', type: '' });
-    }, 3000);
+  const notifyGroupLeaders = async () => {
+    try {
+      // Call the API to notify group leaders
+      await api.secretary.notifyGroupLeaders();
+      
+      setNotification({
+        show: true,
+        message: 'Group leaders notified successfully',
+        type: 'success'
+      });
+      
+      // Hide notification after 3 seconds
+      setTimeout(() => {
+        setNotification({ show: false, message: '', type: '' });
+      }, 3000);
+    } catch (error) {
+      console.error('Error notifying group leaders:', error);
+      setNotification({
+        show: true,
+        message: `Error notifying group leaders: ${error.message}`,
+        type: 'error'
+      });
+      
+      // Hide notification after 3 seconds
+      setTimeout(() => {
+        setNotification({ show: false, message: '', type: '' });
+      }, 3000);
+    }
   };
 
   // Function to save exam period
-  const saveExamPeriod = () => {
-    console.log('Exam period saved:', examPeriod);
-    setNotification({
-      show: true,
-      message: 'Exam period saved successfully',
-      type: 'success'
-    });
-    
-    // Hide notification after 3 seconds
-    setTimeout(() => {
-      setNotification({ show: false, message: '', type: '' });
-    }, 3000);
+  const saveExamPeriod = async () => {
+    try {
+      // Validate dates
+      if (!examPeriod.start || !examPeriod.end) {
+        throw new Error('Please select both start and end dates');
+      }
+      
+      // Get current settings
+      const currentSettings = await api.admin.getSettings();
+      
+      // Update settings with new exam period
+      await api.admin.updateSettings({
+        ...currentSettings,
+        exam_period: {
+          start: examPeriod.start,
+          end: examPeriod.end
+        }
+      });
+      
+      setNotification({
+        show: true,
+        message: 'Exam period saved successfully',
+        type: 'success'
+      });
+      
+      // Hide notification after 3 seconds
+      setTimeout(() => {
+        setNotification({ show: false, message: '', type: '' });
+      }, 3000);
+    } catch (error) {
+      console.error('Error saving exam period:', error);
+      setNotification({
+        show: true,
+        message: `Error saving exam period: ${error.message}`,
+        type: 'error'
+      });
+      
+      // Hide notification after 3 seconds
+      setTimeout(() => {
+        setNotification({ show: false, message: '', type: '' });
+      }, 3000);
+    }
   };
 
   // Function to save colloquium period
-  const saveColloquiumPeriod = () => {
-    console.log('Colloquium period saved:', colloquiumPeriod);
-    setNotification({
-      show: true,
-      message: 'Colloquium period saved successfully',
-      type: 'success'
-    });
-    
-    // Hide notification after 3 seconds
-    setTimeout(() => {
-      setNotification({ show: false, message: '', type: '' });
-    }, 3000);
+  const saveColloquiumPeriod = async () => {
+    try {
+      // Validate dates
+      if (!colloquiumPeriod.start || !colloquiumPeriod.end) {
+        throw new Error('Please select both start and end dates');
+      }
+      
+      // Get current settings
+      const currentSettings = await api.admin.getSettings();
+      
+      // Update settings with new colloquium period
+      await api.admin.updateSettings({
+        ...currentSettings,
+        colloquium_period: {
+          start: colloquiumPeriod.start,
+          end: colloquiumPeriod.end
+        }
+      });
+      
+      setNotification({
+        show: true,
+        message: 'Colloquium period saved successfully',
+        type: 'success'
+      });
+      
+      // Hide notification after 3 seconds
+      setTimeout(() => {
+        setNotification({ show: false, message: '', type: '' });
+      }, 3000);
+    } catch (error) {
+      console.error('Error saving colloquium period:', error);
+      setNotification({
+        show: true,
+        message: `Error saving colloquium period: ${error.message}`,
+        type: 'error'
+      });
+      
+      // Hide notification after 3 seconds
+      setTimeout(() => {
+        setNotification({ show: false, message: '', type: '' });
+      }, 3000);
+    }
   };
 
   // Function to download exam schedule as Excel
-  const downloadExcelSchedule = () => {
-    // In a real application, this would generate an Excel file
-    console.log('Downloading exam schedule as Excel');
-    setNotification({
-      show: true,
-      message: 'Exam schedule downloaded as Excel',
-      type: 'success'
-    });
-    
-    // Hide notification after 3 seconds
-    setTimeout(() => {
-      setNotification({ show: false, message: '', type: '' });
-    }, 3000);
+  const downloadExcelSchedule = async () => {
+    try {
+      // Create a temporary anchor element to trigger download
+      const a = document.createElement('a');
+      
+      // Request the Excel report from the backend
+      const response = await fetch(`${api.API_URL}/secretary/reports/period?format=excel`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        }
+      });
+      
+      if (!response.ok) throw new Error('Failed to download report');
+      
+      // Create a blob from the response
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      a.href = url;
+      a.download = 'exam_schedule.xlsx';
+      
+      // Trigger download
+      document.body.appendChild(a);
+      a.click();
+      
+      // Cleanup
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+      
+      setNotification({
+        show: true,
+        message: 'Exam schedule downloaded as Excel successfully',
+        type: 'success'
+      });
+      
+      // Hide notification after 3 seconds
+      setTimeout(() => {
+        setNotification({ show: false, message: '', type: '' });
+      }, 3000);
+    } catch (error) {
+      console.error('Error downloading Excel schedule:', error);
+      setNotification({
+        show: true,
+        message: `Error downloading Excel schedule: ${error.message}`,
+        type: 'error'
+      });
+      
+      // Hide notification after 3 seconds
+      setTimeout(() => {
+        setNotification({ show: false, message: '', type: '' });
+      }, 3000);
+    }
   };
 
   // Function to download exam schedule as PDF
-  const downloadPdfSchedule = () => {
-    // In a real application, this would generate a PDF file
-    console.log('Downloading exam schedule as PDF');
-    setNotification({
-      show: true,
-      message: 'Exam schedule downloaded as PDF',
-      type: 'success'
-    });
-    
-    // Hide notification after 3 seconds
-    setTimeout(() => {
-      setNotification({ show: false, message: '', type: '' });
-    }, 3000);
+  const downloadPdfSchedule = async () => {
+    try {
+      // Create a temporary anchor element to trigger download
+      const a = document.createElement('a');
+      
+      // Request the PDF report from the backend
+      const response = await fetch(`${api.API_URL}/secretary/reports/period?format=pdf`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        }
+      });
+      
+      if (!response.ok) throw new Error('Failed to download report');
+      
+      // Create a blob from the response
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      a.href = url;
+      a.download = 'exam_schedule.pdf';
+      
+      // Trigger download
+      document.body.appendChild(a);
+      a.click();
+      
+      // Cleanup
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+      
+      setNotification({
+        show: true,
+        message: 'Exam schedule downloaded as PDF successfully',
+        type: 'success'
+      });
+      
+      // Hide notification after 3 seconds
+      setTimeout(() => {
+        setNotification({ show: false, message: '', type: '' });
+      }, 3000);
+    } catch (error) {
+      console.error('Error downloading PDF schedule:', error);
+      setNotification({
+        show: true,
+        message: `Error downloading PDF schedule: ${error.message}`,
+        type: 'error'
+      });
+      
+      // Hide notification after 3 seconds
+      setTimeout(() => {
+        setNotification({ show: false, message: '', type: '' });
+      }, 3000);
+    }
   };
 
   return (

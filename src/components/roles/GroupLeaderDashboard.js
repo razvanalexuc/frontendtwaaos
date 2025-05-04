@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import api from '../../utils/api';
 import './GroupLeaderDashboard.css';
 
 const GroupLeaderDashboard = ({ user }) => {
@@ -6,56 +7,65 @@ const GroupLeaderDashboard = ({ user }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Mock data - in a real application, this would come from an API
+  // Fetch data from API
   useEffect(() => {
-    // Simulate API call
-    setTimeout(() => {
-      const mockDisciplines = [
-        {
-          id: 1,
-          name: 'Programare Web',
-          teacher: 'Prof. Dr. Popescu Ion',
-          teacherEmail: 'popescu.ion@usm.ro',
-          examType: 'examen',
-          group: 'A3',
-          year: 2,
-          semester: 2,
-          proposedDate: '',
-          status: 'pending', // pending, rejected, approved
-          rejectionReason: '',
-        },
-        {
-          id: 2,
-          name: 'Baze de Date',
-          teacher: 'Conf. Dr. Ionescu Maria',
-          teacherEmail: 'ionescu.maria@usm.ro',
-          examType: 'colocviu',
-          group: 'A3',
-          year: 2,
-          semester: 2,
-          proposedDate: '',
-          status: 'pending',
-          rejectionReason: '',
-        },
-        {
-          id: 3,
-          name: 'Inteligență Artificială',
-          teacher: 'Prof. Dr. Georgescu Andrei',
-          teacherEmail: 'georgescu.andrei@usm.ro',
-          examType: 'examen',
-          group: 'A3',
-          year: 2,
-          semester: 2,
-          proposedDate: '',
-          status: 'pending',
-          rejectionReason: '',
+    const fetchDisciplines = async () => {
+      try {
+        setLoading(true);
+        
+        // Get user reservations
+        const userReservationsResponse = await api.student.getUserReservations();
+        
+        // Get available rooms (which includes disciplines taught by professors)
+        const roomsResponse = await api.student.getRooms();
+        
+        // Transform the data into the format we need
+        if (roomsResponse.rooms && userReservationsResponse.reservations) {
+          // Extract disciplines from rooms data
+          const availableDisciplines = [];
+          
+          // Process rooms data to extract disciplines
+          roomsResponse.rooms.forEach(room => {
+            if (room.disciplines) {
+              room.disciplines.forEach(discipline => {
+                // Check if this discipline is for the current user's group
+                if (discipline.group === user.group) {
+                  // Find if there's a reservation for this discipline
+                  const reservation = userReservationsResponse.reservations.find(
+                    r => r.discipline_id === discipline.id
+                  );
+                  
+                  availableDisciplines.push({
+                    id: discipline.id,
+                    name: discipline.name,
+                    teacher: `${discipline.teacher_title || ''} ${discipline.teacher_first_name} ${discipline.teacher_last_name}`,
+                    teacherEmail: discipline.teacher_email,
+                    examType: discipline.exam_type || 'examen',
+                    group: discipline.group,
+                    year: discipline.year,
+                    semester: discipline.semester,
+                    proposedDate: reservation ? new Date(reservation.start_time).toISOString().split('T')[0] : '',
+                    status: reservation ? reservation.status : 'pending',
+                    rejectionReason: reservation ? reservation.rejection_reason : '',
+                  });
+                }
+              });
+            }
+          });
+          
+          setDisciplines(availableDisciplines);
         }
-      ];
-      
-      setDisciplines(mockDisciplines);
-      setLoading(false);
-    }, 1000);
-  }, []);
+        
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching disciplines:', error);
+        setError('Failed to load disciplines. Please try again later.');
+        setLoading(false);
+      }
+    };
+    
+    fetchDisciplines();
+  }, [user.group]);
 
   const handleDateChange = (id, date) => {
     setDisciplines(disciplines.map(discipline => 
@@ -63,20 +73,38 @@ const GroupLeaderDashboard = ({ user }) => {
     ));
   };
 
-  const handleSubmitProposal = (id) => {
-    // In a real application, this would send the proposal to the backend
-    // and notify the teacher via email
-    
-    // For now, we'll just update the local state
-    setDisciplines(disciplines.map(discipline => 
-      discipline.id === id ? { 
-        ...discipline, 
-        status: 'pending_approval',
-        statusMessage: 'Propunere trimisă. Așteptare aprobare...'
-      } : discipline
-    ));
-    
-    alert(`Propunerea pentru examenul/colocviul de ${disciplines.find(d => d.id === id).name} a fost trimisă profesorului ${disciplines.find(d => d.id === id).teacher} pentru aprobare.`);
+  const handleSubmitProposal = async (id) => {
+    try {
+      const discipline = disciplines.find(d => d.id === id);
+      if (!discipline || !discipline.proposedDate) {
+        alert('Vă rugăm să selectați o dată pentru examen.');
+        return;
+      }
+      
+      // Create a new reservation
+      const reservationData = {
+        discipline_id: discipline.id,
+        start_time: `${discipline.proposedDate}T09:00:00`, // Default to 9 AM
+        end_time: `${discipline.proposedDate}T11:00:00`,   // Default to 11 AM (2 hour exam)
+        notes: `Propunere pentru ${discipline.examType === 'examen' ? 'examenul' : 'colocviul'} de ${discipline.name}`
+      };
+      
+      await api.student.createReservation(reservationData);
+      
+      // Update local state
+      setDisciplines(disciplines.map(d => 
+        d.id === id ? { 
+          ...d, 
+          status: 'pending_approval',
+          statusMessage: 'Propunere trimisă. Așteptare aprobare...'
+        } : d
+      ));
+      
+      alert(`Propunerea pentru ${discipline.examType === 'examen' ? 'examenul' : 'colocviul'} de ${discipline.name} a fost trimisă profesorului ${discipline.teacher} pentru aprobare.`);
+    } catch (error) {
+      console.error('Error submitting proposal:', error);
+      alert(`Eroare la trimiterea propunerii: ${error.message}`);
+    }
   };
 
   if (loading) {

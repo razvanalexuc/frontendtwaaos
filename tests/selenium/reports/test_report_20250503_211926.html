@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Raport Teste TWAAOS</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        .summary { background-color: #f5f5f5; padding: 10px; margin-bottom: 20px; border-radius: 5px; }
+        .test-list { width: 100%; border-collapse: collapse; }
+        .test-list th { background-color: #4CAF50; color: white; text-align: left; padding: 8px; }
+        .test-list tr:nth-child(even) { background-color: #f2f2f2; }
+        .test-list td { padding: 8px; border-bottom: 1px solid #ddd; }
+        .passed { color: green; }
+        .failed { color: red; }
+        .skipped { color: orange; }
+        .details { font-family: monospace; white-space: pre-wrap; background-color: #f8f8f8; padding: 10px; border-left: 3px solid #ccc; margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Raport Teste Automate TWAAOS</h1>
+    <div class="summary">
+        <p><strong>Data si ora:</strong> 03-05-2025 21:21:33</p>
+        <p><strong>Categorie:</strong> Toate testele</p>
+        <p><strong>Total teste:</strong> 10</p>
+        <p><strong>Teste trecute:</strong> <span class="passed">8</span></p>
+        <p><strong>Teste esuate:</strong> <span class="failed">2</span></p>
+        <p><strong>Teste sarite:</strong> <span class="skipped">0</span></p>
+    </div>
+    
+    <h2>Rezultate Detaliate</h2>
+    <table class="test-list">
+        <tr>
+            <th>Fisier</th>
+            <th>Test</th>
+            <th>Parametru</th>
+            <th>Rezultat</th>
+        </tr>
+
+        <tr>
+            <td>test_admin_login.py</td>
+            <td>test_admin_bypass_auth</td>
+            <td>test_admin_login</td>
+            <td class="passed">PASSED</td>
+        </tr>
+        <tr>
+            <td>test_download_exam_schedule.py</td>
+            <td>test_download_exam_schedule</td>
+            <td>test_download_exam_schedule</td>
+            <td class="failed">FAILED</td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <div class="details">functional_tests/test_download_template.py::test_download_template[test_download_template] PASSED [ 30%]
+functional_tests/test_generate_disciplines.py::test_generate_disciplines[test_generate_disciplines] PASSED [ 40%]
+functional_tests/test_generate_rooms_list.py::test_generate_rooms_list[test_generate_rooms_list] PASSED [ 50%]
+functional_tests/test_group_leader_auth.py::test_group_leader_bypass_auth[test_group_leader_auth] FAILED [ 60%]
+functional_tests/test_notify_group_leaders.py::test_notify_group_leaders[test_notify_group_leaders] PASSED [ 70%]
+functional_tests/test_secretariat_auth.py::test_secretariat_bypass_auth[test_secretariat_auth] PASSED [ 80%]
+functional_tests/test_sign_out.py::test_sign_out_functionality[test_sign_out] PASSED [ 90%]
+functional_tests/test_teacher_auth.py::test_teacher_bypass_auth[test_teacher_auth] PASSED [100%]</div>
+            </td>
+        </tr>
+        <tr>
+            <td>test_download_template.py</td>
+            <td>test_download_template</td>
+            <td>test_download_template</td>
+            <td class="passed">PASSED</td>
+        </tr>
+        <tr>
+            <td>test_generate_disciplines.py</td>
+            <td>test_generate_disciplines</td>
+            <td>test_generate_disciplines</td>
+            <td class="passed">PASSED</td>
+        </tr>
+        <tr>
+            <td>test_generate_rooms_list.py</td>
+            <td>test_generate_rooms_list</td>
+            <td>test_generate_rooms_list</td>
+            <td class="passed">PASSED</td>
+        </tr>
+        <tr>
+            <td>test_group_leader_auth.py</td>
+            <td>test_group_leader_bypass_auth</td>
+            <td>test_group_leader_auth</td>
+            <td class="failed">FAILED</td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <div class="details">functional_tests/test_notify_group_leaders.py::test_notify_group_leaders[test_notify_group_leaders] PASSED [ 70%]
+functional_tests/test_secretariat_auth.py::test_secretariat_bypass_auth[test_secretariat_auth] PASSED [ 80%]
+functional_tests/test_sign_out.py::test_sign_out_functionality[test_sign_out] PASSED [ 90%]
+functional_tests/test_teacher_auth.py::test_teacher_bypass_auth[test_teacher_auth] PASSED [100%]</div>
+            </td>
+        </tr>
+        <tr>
+            <td>test_notify_group_leaders.py</td>
+            <td>test_notify_group_leaders</td>
+            <td>test_notify_group_leaders</td>
+            <td class="passed">PASSED</td>
+        </tr>
+        <tr>
+            <td>test_secretariat_auth.py</td>
+            <td>test_secretariat_bypass_auth</td>
+            <td>test_secretariat_auth</td>
+            <td class="passed">PASSED</td>
+        </tr>
+        <tr>
+            <td>test_sign_out.py</td>
+            <td>test_sign_out_functionality</td>
+            <td>test_sign_out</td>
+            <td class="passed">PASSED</td>
+        </tr>
+        <tr>
+            <td>test_teacher_auth.py</td>
+            <td>test_teacher_bypass_auth</td>
+            <td>test_teacher_auth</td>
+            <td class="passed">PASSED</td>
+        </tr>
+    </table>
+</body>
+</html>
