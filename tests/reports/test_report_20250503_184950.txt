@@ -1,0 +1,16 @@
+E
+======================================================================
+ERROR: test_authentication (unittest.loader._FailedTest.test_authentication)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_authentication
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\unittest\loader.py", line 162, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'selenium.test_authentication'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

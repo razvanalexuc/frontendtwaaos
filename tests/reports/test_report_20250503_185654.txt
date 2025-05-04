@@ -1,0 +1,79 @@
+FFEF
+======================================================================
+ERROR: test_sign_out_functionality (test_authentication.TWAAOSAuthenticationTests.test_sign_out_functionality)
+Testeaza functionalitatea de Sign Out.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ralex\Documents\Proiect TWAAOS frontend\tests\selenium\test_authentication.py", line 171, in test_sign_out_functionality
+    bypass_button = self.driver.find_element(By.CSS_SELECTOR, self.bypass_button_selector)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\webdriver.py", line 740, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\webdriver.py", line 346, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\ralex\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\selenium\webdriver\remote\errorhandler.py", line 245, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"button.test-button"}
+  (Session info: MicrosoftEdge=135.0.3179.98); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF6447B7A55+24981]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF64470AC60+444240]
+	Microsoft::Applications::Events::EventProperty::to_string [0x00007FF644A3E0EA+2011274]
+	(No symbol) [0x00007FF644527D8B]
+	(No symbol) [0x00007FF64452804B]
+	(No symbol) [0x00007FF644568E07]
+	(No symbol) [0x00007FF6445490DF]
+	(No symbol) [0x00007FF64451E13D]
+	(No symbol) [0x00007FF6445667E8]
+	(No symbol) [0x00007FF644548E03]
+	(No symbol) [0x00007FF64451D686]
+	(No symbol) [0x00007FF64451CB92]
+	(No symbol) [0x00007FF64451D4B3]
+	(No symbol) [0x00007FF64461900D]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF644626943+41539]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF64461FC79+13689]
+	Microsoft::Applications::Events::EventProperty::to_string [0x00007FF64489A04A+290794]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF644717D31+497697]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF644710BB4+468644]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF644710D03+468979]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF644702E16+411910]
+	BaseThreadInitThunk [0x00007FFA61B4E8D7+23]
+	RtlUserThreadStart [0x00007FFA633114FC+44]
+
+
+======================================================================
+FAIL: test_group_leader_bypass_auth (test_authentication.TWAAOSAuthenticationTests.test_group_leader_bypass_auth)
+Testeaza bypass-ul autentificarii pentru rolul Group Leader.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ralex\Documents\Proiect TWAAOS frontend\tests\selenium\test_authentication.py", line 140, in test_group_leader_bypass_auth
+    self.assertIn("Group Leader", self.driver.title)
+AssertionError: 'Group Leader' not found in 'React App'
+
+======================================================================
+FAIL: test_secretariat_bypass_auth (test_authentication.TWAAOSAuthenticationTests.test_secretariat_bypass_auth)
+Testeaza bypass-ul autentificarii pentru rolul Secretariat.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ralex\Documents\Proiect TWAAOS frontend\tests\selenium\test_authentication.py", line 109, in test_secretariat_bypass_auth
+    self.assertIn("Secretariat", self.driver.title)
+AssertionError: 'Secretariat' not found in 'React App'
+
+======================================================================
+FAIL: test_teacher_bypass_auth (test_authentication.TWAAOSAuthenticationTests.test_teacher_bypass_auth)
+Testeaza bypass-ul autentificarii pentru rolul Teacher.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ralex\Documents\Proiect TWAAOS frontend\tests\selenium\test_authentication.py", line 78, in test_teacher_bypass_auth
+    self.assertIn("Teacher", self.driver.title)
+AssertionError: 'Teacher' not found in 'React App'
+
+----------------------------------------------------------------------
+Ran 4 tests in 27.815s
+
+FAILED (failures=3, errors=1)
+Folosim Microsoft Edge pentru teste...
+Folosim Microsoft Edge pentru teste...
+Folosim Microsoft Edge pentru teste...
+Folosim Microsoft Edge pentru teste...
