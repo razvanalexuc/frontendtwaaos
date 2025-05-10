@@ -21,22 +21,32 @@ function AppContent() {
   
   // Handle successful login
   const handleLoginSuccess = (userData) => {
-    // Determine role based on user data
-    if (userData.role === 'admin') {
-      setCurrentRole('admin');
-    } else if (userData.role === 'secretary') {
-      setCurrentRole('secretariat');
-    } else if (userData.role === 'student') {
-      setCurrentRole('groupLeader');
-    } else {
-      setCurrentRole('teacher');
-    }
+    console.log('Login successful, user data:', userData);
+    
+    // Inițial, afișăm pagina principală după autentificare
+    setCurrentRole('home');
+    
+    // După o scurtă întârziere, redirecționăm către pagina corespunzătoare rolului
+    setTimeout(() => {
+      // Determine role based on user data
+      if (userData.role === 'admin') {
+        setCurrentRole('admin');
+      } else if (userData.role === 'secretary') {
+        setCurrentRole('secretariat');
+      } else if (userData.role === 'student') {
+        setCurrentRole('groupLeader');
+      } else {
+        setCurrentRole('teacher');
+      }
+    }, 500); // Întârziere de 500ms pentru a permite afișarea paginii principale înainte de redirecționare
   };
   
   // Handle logout
   const handleLogout = () => {
     logout();
+    // Setăm rolul curent la 'home' pentru a afișa pagina principală
     setCurrentRole('home');
+    console.log('User logged out, redirecting to home page');
   };
   
   // Function to render the appropriate view based on the selected role

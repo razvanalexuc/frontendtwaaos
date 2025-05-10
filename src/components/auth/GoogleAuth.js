@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useGoogleLogin } from '@react-oauth/google';
+import { useAuth } from '../../utils/AuthContext';
 import './GoogleAuth.css';
 import { Alert } from 'react-bootstrap';
 
@@ -17,6 +18,9 @@ const GoogleAuth = ({ onLoginSuccess, onLogout }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isGoogleScriptLoaded, setIsGoogleScriptLoaded] = useState(false);
   const [googleAuth, setGoogleAuth] = useState(null);
+  
+  // Folosim hook-ul useAuth pentru a accesa contextul de autentificare
+  const { login, logout, currentUser, isAuthenticated } = useAuth();
 
   // Load Google API script
   useEffect(() => {
@@ -61,6 +65,8 @@ const GoogleAuth = ({ onLoginSuccess, onLogout }) => {
         callback: handleGoogleCallback,
         auto_select: false,
         cancel_on_tap_outside: true,
+        // Folosim modul popup pentru a evita problemele cu redirect
+        ux_mode: 'popup',
       });
 
       // Render the button
@@ -82,48 +88,54 @@ const GoogleAuth = ({ onLoginSuccess, onLogout }) => {
 
     try {
       setIsLoading(true);
-      // Send the ID token to your backend
-      const backendResponse = await fetch(`${API_URL}/api/auth/google`, {
+      
+      // Trimitem tokenul Google către backend pentru autentificare
+      const googleToken = response.credential;
+      
+      // Salvăm tokenul Google în localStorage pentru referință
+      localStorage.setItem('googleToken', googleToken);
+      
+      // Facem cerere către backend pentru a obține token JWT
+      const authResponse = await fetch(`${API_URL}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          token: response.credential,
-        }),
+        body: JSON.stringify({ googleToken }),
       });
-
-      if (!backendResponse.ok) {
-        let errorMessage = `Backend error: ${backendResponse.status}`;
-        try {
-          const errorData = await backendResponse.json();
-          if (errorData && errorData.message) {
-            errorMessage = errorData.message;
-          }
-        } catch (e) {
-          // If response is not valid JSON
-        }
-        
-        throw new Error(errorMessage);
+      
+      if (!authResponse.ok) {
+        const errorData = await authResponse.json();
+        throw new Error(errorData.message || 'Autentificare eșuată');
       }
-
-      const data = await backendResponse.json();
+      
+      const authData = await authResponse.json();
+      
+      // Extragem tokenul JWT și datele utilizatorului din răspunsul backend-ului
+      const { access_token, refresh_token, user } = authData;
+      
+      if (!access_token || !user) {
+        throw new Error('Răspuns invalid de la server');
+      }
       
       // Clear any previous errors
       setError(null);
       
-      // Store tokens in localStorage
-      localStorage.setItem('accessToken', data.access_token);
-      localStorage.setItem('refreshToken', data.refresh_token);
-      localStorage.setItem('userData', JSON.stringify(data.user));
+      // Folosim funcția login din contextul de autentificare cu tokenul JWT primit de la backend
+      await login(user, access_token);
       
-      // Update state
-      setUser(data.user);
+      // Salvăm și refresh token-ul dacă există
+      if (refresh_token) {
+        localStorage.setItem('refreshToken', refresh_token);
+      }
+      
+      // Update local state
+      setUser(user);
       setIsSignedIn(true);
       
       // Call the success callback
       if (onLoginSuccess) {
-        onLoginSuccess(data.user);
+        onLoginSuccess(user);
       }
     } catch (error) {
       console.error('Google authentication error:', error);
@@ -133,117 +145,155 @@ const GoogleAuth = ({ onLoginSuccess, onLogout }) => {
     }
   }, [onLoginSuccess]);
 
-  // Verifică dacă utilizatorul este deja autentificat
+  // Verifică dacă există un utilizator autentificat în context
   useEffect(() => {
-    const checkExistingAuth = () => {
-      const token = localStorage.getItem('accessToken');
-      const userData = localStorage.getItem('userData');
+    if (currentUser && isAuthenticated) {
+      // Actualizăm starea locală a componentei
+      setUser(currentUser);
+      setIsSignedIn(true);
       
-      if (token && userData) {
-        try {
-          const parsedUserData = JSON.parse(userData);
-          setUser(parsedUserData);
-          setIsSignedIn(true);
-          
-          if (onLoginSuccess) {
-            onLoginSuccess(parsedUserData);
-          }
-        } catch (e) {
-          console.error('Error parsing stored user data:', e);
-          localStorage.removeItem('accessToken');
-          localStorage.removeItem('refreshToken');
-          localStorage.removeItem('userData');
-        }
+      // Apelează callback-ul de succes
+      if (onLoginSuccess) {
+        onLoginSuccess(currentUser);
       }
-    };
-    
-    checkExistingAuth();
-  }, [onLoginSuccess]);
+    }
+  }, [currentUser, isAuthenticated, onLoginSuccess]);
 
   // Handle sign out
-  const handleSignOut = useCallback(async () => {
-    try {
-      // Clear tokens from localStorage
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
-      localStorage.removeItem('userData');
-      
-      // Reset state
-      setUser(null);
-      setIsSignedIn(false);
-      
-      // Call the logout callback
-      if (onLogout) {
-        onLogout();
-      }
-      
-      // Sign out from Google
-      if (window.google && window.google.accounts) {
-        window.google.accounts.id.disableAutoSelect();
-      }
-    } catch (error) {
-      console.error('Error signing out:', error);
+  const handleSignOut = () => {
+    // Folosim funcția logout din contextul de autentificare
+    logout();
+    
+    // Update local state
+    setUser(null);
+    setIsSignedIn(false);
+    setError(null);
+    
+    // Call the logout callback pentru a asigura redirecționarea către pagina principală
+    if (onLogout) {
+      onLogout();
     }
-  }, [onLogout]);
+    
+    // Forțăm redirecționarea către pagina principală
+    window.location.href = '/';
+  };
 
   // Funcția pentru testarea cu diferite adrese de email și bypass Google Auth
   const testWithEmail = async () => {
     try {
       setIsLoading(true);
-      setError(null);
       
-      // Trimite cerere către backend pentru autentificare cu token-ul de test
-      const response = await Promise.race([
-        fetch(`${API_URL}/api/auth/test-login`, {
+      // Simulăm un email de test
+      const email = prompt('Introduceți adresa de email pentru testare:', 'test@student.usv.ro');
+      
+      if (!email) {
+        setIsLoading(false);
+        return; // Utilizatorul a anulat
+      }
+      
+      // Determinăm rolul în funcție de domeniul de email
+      let role = 'student';
+      
+      // Verificăm explicit adresa de email pentru a determina rolul
+      if (email.includes('@student.')) {
+        role = 'student';
+      } else if (email.includes('@secretary.')) {
+        role = 'secretary';
+      } else if (email.includes('@usv.ro') || email.includes('@usm.ro')) {
+        // Verificăm atât @usv.ro cât și @usm.ro pentru compatibilitate
+        if (email.includes('admin')) {
+          role = 'admin';
+        } else if (email.includes('secretary')) {
+          role = 'secretary';
+        } else {
+          role = 'teacher';
+        }
+      }
+      
+      console.log('Email introdus:', email, 'Rol determinat:', role);
+      
+      // Folosim token-ul special de test recunoscut de backend
+      const testToken = 'test_token_for_automated_testing';
+      
+      try {
+        console.log('Attempting to authenticate with backend using test token');
+        const authResponse = await fetch(`${API_URL}/api/auth/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            token: TEST_TOKEN,
-            email: 'test@example.com',
-            role: 'teacher' // Poate fi 'teacher', 'secretariat', sau 'group_leader'
+          body: JSON.stringify({ 
+            googleToken: testToken,
+            testEmail: email,  // Trimitem și adresa de email pentru a fi folosită de backend
+            testRole: role     // Trimitem și rolul determinat din email
           }),
-        }),
-        new Promise((_, reject) => 
-          setTimeout(() => reject(new Error('Backend request timed out')), 5000)
-        )
-      ]);
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        let errorMessage = `Backend error: ${response.status}`;
+        });
         
-        try {
-          const errorData = JSON.parse(errorText);
-          errorMessage = errorData.message || errorMessage;
-        } catch (e) {
-          // Dacă răspunsul nu este JSON valid, folosim textul brut
-          errorMessage = errorText || errorMessage;
+        if (!authResponse.ok) {
+          const errorData = await authResponse.json();
+          throw new Error(errorData.message || 'Autentificare eșuată');
         }
         
-        throw new Error(errorMessage);
+        const authData = await authResponse.json();
+        console.log('Backend authentication successful:', authData);
+        
+        // Extragem tokenul JWT și datele utilizatorului din răspunsul backend-ului
+        const { access_token, refresh_token, user } = authData;
+        
+        if (!access_token || !user) {
+          throw new Error('Răspuns invalid de la server');
+        }
+        
+        // Salvăm tokenurile și datele utilizatorului în localStorage
+        localStorage.setItem('accessToken', access_token);
+        localStorage.setItem('refreshToken', refresh_token || '');
+        localStorage.setItem('userData', JSON.stringify(user));
+        localStorage.setItem('googleToken', testToken);
+        
+        // Folosim funcția login din contextul de autentificare
+        await login(user, access_token);
+        
+        // Actualizăm starea locală a componentei
+        setUser(user);
+        setIsSignedIn(true);
+        setError(null);
+        
+        // Apelăm callback-ul de succes
+        if (onLoginSuccess) {
+          onLoginSuccess(user);
+        }
+        
+        return; // Ieșim din funcție dacă autentificarea cu backend a reușit
+      } catch (backendError) {
+        console.error('Backend authentication failed:', backendError);
+        console.log('Using local authentication as fallback');
+        
+        // Continuăm cu autentificarea locală ca fallback
       }
-
-      // Dacă backend-ul nu răspunde sau avem o eroare, folosim autentificarea locală
+      
+      // Creăm datele utilizatorului de test pentru autentificare locală
       const userData = {
-        id: 'test-user-id',
-        name: 'Test User',
-        email: 'test@example.com',
-        role: 'teacher', // Poate fi 'teacher', 'secretariat', sau 'group_leader'
+        id: `test-${role}-${Date.now()}`,
+        name: `Test ${role.charAt(0).toUpperCase() + role.slice(1)}`,
+        email: email,
+        role: role,
         imageUrl: 'https://via.placeholder.com/50'
       };
 
-      // Salvează token-ul și datele utilizatorului în localStorage
+      // Salvăm datele în localStorage pentru autentificare locală
       localStorage.setItem('accessToken', TEST_TOKEN);
       localStorage.setItem('userData', JSON.stringify(userData));
+      localStorage.setItem('googleToken', TEST_TOKEN);
 
-      // Actualizează starea componentei
+      // Folosim funcția login din contextul de autentificare
+      await login(userData, TEST_TOKEN);
+
+      // Actualizăm starea locală a componentei
       setUser(userData);
       setIsSignedIn(true);
       setError(null);
 
-      // Apelează callback-ul de succes
+      // Apelăm callback-ul de succes
       if (onLoginSuccess) {
         onLoginSuccess(userData);
       }
@@ -251,16 +301,16 @@ const GoogleAuth = ({ onLoginSuccess, onLogout }) => {
       console.error('Error in test authentication:', error);
       setError(error.message || 'Failed to authenticate with test credentials');
       
-      // Dacă avem o eroare la comunicarea cu backend-ul, folosim autentificarea locală
+      // Fallback de urgență în caz de eroare completă
       const userData = {
         id: 'test-user-id',
-        name: 'Test User (Local Fallback)',
-        email: 'test@example.com',
-        role: 'teacher',
+        name: 'Test User (Emergency Fallback)',
+        email: 'test@student.usv.ro',
+        role: 'student',
         imageUrl: 'https://via.placeholder.com/50'
       };
 
-      // Salvează token-ul și datele utilizatorului în localStorage
+      // Salvăm datele în localStorage pentru autentificare locală
       localStorage.setItem('accessToken', TEST_TOKEN);
       localStorage.setItem('userData', JSON.stringify(userData));
 
@@ -277,8 +327,8 @@ const GoogleAuth = ({ onLoginSuccess, onLogout }) => {
     }
   };
   
-  // Verifică dacă există un token în localStorage
-  const hasToken = localStorage.getItem('accessToken') !== null;
+  // Folosim starea de autentificare din context
+  const hasToken = isAuthenticated || localStorage.getItem('accessToken') !== null;
   
   return (
     <div className="google-auth-container">

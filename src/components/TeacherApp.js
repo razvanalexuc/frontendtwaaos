@@ -8,10 +8,13 @@ const TeacherApp = () => {
   const [user, setUser] = useState(null);
 
   const handleLoginSuccess = (userData) => {
-    // Verifică dacă este un utilizator de test sau dacă are domeniul corect
-    const isTestUser = userData.email.includes('test.') && userData.role === 'TEACHER';
+    // Verifică dacă este un utilizator de test sau dacă are rolul de profesor
+    const isTeacher = userData.role === 'teacher' || userData.role === 'TEACHER';
+    const isTestUser = userData.email.includes('test.') && isTeacher;
     
-    if (isTestUser || userData.email.endsWith('@usm.ro')) {
+    console.log('Verificare autentificare:', userData, 'isTeacher:', isTeacher);
+    
+    if (isTestUser || isTeacher || userData.email.endsWith('@usm.ro') || userData.email.endsWith('@usv.ro')) {
       console.log('Autentificare reușită:', userData);
       setIsAuthenticated(true);
       setUser(userData);
