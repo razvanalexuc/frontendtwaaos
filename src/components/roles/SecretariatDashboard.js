@@ -15,6 +15,7 @@ const SecretariatDashboard = () => {
   const [error, setError] = useState(null);
   const [pendingReservations, setPendingReservations] = useState([]);
   const [reservationHistory, setReservationHistory] = useState([]);
+  const [examStats, setExamStats] = useState({ total: 0, completed: 0, incomplete: [] });
   
   // Fetch data from API when component mounts
   useEffect(() => {
@@ -38,6 +39,22 @@ const SecretariatDashboard = () => {
         const historyResponse = await api.secretary.getReservationHistory();
         if (historyResponse.reservations) {
           setReservationHistory(historyResponse.reservations);
+        }
+        
+        // Fetch exam statistics
+        try {
+          const statsResponse = await api.secretary.getExamStats();
+          if (statsResponse) {
+            setExamStats({
+              total: statsResponse.total || 0,
+              completed: statsResponse.completed || 0,
+              incomplete: statsResponse.incomplete || []
+            });
+          }
+        } catch (statsError) {
+          console.warn('Could not fetch exam statistics:', statsError);
+          // Inițializăm cu valori implicite dacă nu putem obține statisticile
+          setExamStats({ total: 0, completed: 0, incomplete: [] });
         }
         
         // Fetch settings to get exam periods
@@ -774,17 +791,29 @@ const SecretariatDashboard = () => {
             
             <div className="completion-status">
               <h3>Exam Schedule Completion Status</h3>
-              <p>Completed: 8/10 exams scheduled</p>
-              <div className="progress-bar">
-                <div className="progress" style={{ width: '80%' }}></div>
-              </div>
-              <div className="incomplete-exams">
-                <h4>Incomplete Exams:</h4>
-                <ul>
-                  <li>Programare Avansată - Informatică Anul 3</li>
-                  <li>Inteligență Artificială - Informatică Anul 3</li>
-                </ul>
-              </div>
+              {examStats.total > 0 ? (
+                <>
+                  <p>Completed: {examStats.completed}/{examStats.total} exams scheduled</p>
+                  <div className="progress-bar">
+                    <div 
+                      className="progress" 
+                      style={{ width: `${(examStats.completed / examStats.total) * 100}%` }}
+                    ></div>
+                  </div>
+                  {examStats.incomplete && examStats.incomplete.length > 0 && (
+                    <div className="incomplete-exams">
+                      <h4>Incomplete Exams:</h4>
+                      <ul>
+                        {examStats.incomplete.map((exam, index) => (
+                          <li key={index}>{exam.name} - {exam.group}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <p>No exam data available. Please check the connection to the server.</p>
+              )}
             </div>
           </div>
         )}

@@ -1,5 +1,6 @@
 // API utility functions for making requests to the backend
 
+// Folosim URL-ul din variabila de mediu sau default la localhost:5000
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 // Helper function to get the auth token from localStorage
@@ -44,7 +45,8 @@ const refreshToken = async () => {
   if (!refreshToken) return false;
   
   try {
-    const response = await fetch(`${API_URL}/auth/refresh`, {
+    // Folosim endpoint-ul corect pentru refresh token
+    const response = await fetch(`${API_URL}/api/auth/refresh`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -56,6 +58,7 @@ const refreshToken = async () => {
       // If refresh fails, clear tokens and return false
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
+      localStorage.removeItem('userData');
       return false;
     }
     
@@ -66,6 +69,7 @@ const refreshToken = async () => {
     console.error('Error refreshing token:', error);
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
+    localStorage.removeItem('userData');
     return false;
   }
 };
@@ -145,49 +149,59 @@ const api = {
   
   // Authentication endpoints
   auth: {
-    login: (credentials) => api.post('/auth/login', credentials),
-    register: (userData) => api.post('/auth/register', userData),
-    refreshToken: (refreshToken) => api.post('/auth/refresh', { refresh_token: refreshToken }),
-    getProfile: () => api.get('/auth/me'),
-    changePassword: (passwordData) => api.put('/auth/change-password', passwordData),
-    loginWithGoogle: (googleToken) => api.post('/auth/login', { googleToken }),
+    login: (credentials) => api.post('/api/auth/login', credentials),
+    register: (userData) => api.post('/api/auth/register', userData),
+    refreshToken: (refreshToken) => api.post('/api/auth/refresh', { refresh_token: refreshToken }),
+    getProfile: () => api.get('/api/auth/me'),
+    changePassword: (passwordData) => api.put('/api/auth/change-password', passwordData),
+    loginWithGoogle: (googleToken) => api.post('/api/auth/login', { googleToken }),
   },
   
   // Admin endpoints
   admin: {
-    getSettings: () => api.get('/admin/settings'),
-    updateSettings: (settings) => api.put('/admin/settings', settings),
-    getUsers: () => api.get('/admin/users'),
-    createUser: (userData) => api.post('/admin/users', userData),
-    updateUser: (userId, userData) => api.put(`/admin/users/${userId}`, userData),
-    createRoom: (roomData) => api.post('/admin/rooms', roomData),
-    updateRoom: (roomId, roomData) => api.put(`/admin/rooms/${roomId}`, roomData),
-    importSchedule: (file, options) => api.uploadFile('/admin/schedule/import', file, options),
-    importUsvSchedule: (data) => api.post('/admin/schedule/import-usv', data),
-    resetSemester: (data) => api.post('/admin/reset-semester', data),
+    getSettings: () => api.get('/api/admin/settings'),
+    updateSettings: (settings) => api.put('/api/admin/settings', settings),
+    getUsers: () => api.get('/api/admin/users'),
+    createUser: (userData) => api.post('/api/admin/users', userData),
+    updateUser: (userId, userData) => api.put(`/api/admin/users/${userId}`, userData),
+    createRoom: (roomData) => api.post('/api/admin/rooms', roomData),
+    updateRoom: (roomId, roomData) => api.put(`/api/admin/rooms/${roomId}`, roomData),
+    importSchedule: (file, options) => api.uploadFile('/api/admin/schedule/import', file, options),
+    importUsvSchedule: (data) => api.post('/api/admin/schedule/import-usv', data),
+    resetSemester: (data) => api.post('/api/admin/reset-semester', data),
   },
   
   // Secretary endpoints
   secretary: {
-    getPendingReservations: () => api.get('/secretary/reservations/pending'),
-    approveReservation: (id) => api.put(`/secretary/reservations/${id}/approve`),
-    rejectReservation: (id) => api.put(`/secretary/reservations/${id}/reject`),
-    editReservation: (id, data) => api.put(`/secretary/reservations/${id}`, data),
-    getReservationHistory: () => api.get('/secretary/reservation-history'),
-    getDailyReport: (date) => api.get('/secretary/reports/daily', { params: { date } }),
-    getPeriodReport: (startDate, endDate) => api.get('/secretary/reports/period', { 
-      params: { start_date: startDate, end_date: endDate } 
-    }),
+    getPendingReservations: () => api.get('/api/secretary/reservations/pending'),
+    approveReservation: (id) => api.put(`/api/secretary/reservations/${id}/approve`),
+    rejectReservation: (id, data) => api.put(`/api/secretary/reservations/${id}/reject`, data),
+    editReservation: (id, data) => api.put(`/api/secretary/reservations/${id}`, data),
+    getReservationHistory: (params) => api.get('/api/secretary/reservation-history', { params }),
+    getDailyReport: (date) => api.get(`/api/secretary/reports/daily?date=${date}`),
+    getPeriodReport: (startDate, endDate) => api.get(`/api/secretary/reports/period?date_from=${startDate}&date_to=${endDate}`),
+    getExamStats: () => api.get('/api/secretary/exam-stats'),
   },
   
   // Student endpoints
   student: {
-    getRooms: () => api.get('/student/rooms'),
-    getRoomAvailability: (roomId) => api.get(`/student/room/${roomId}/availability`),
-    createReservation: (reservationData) => api.post('/student/reservations', reservationData),
-    getUserReservations: () => api.get('/student/reservations'),
-    getReservationDetails: (id) => api.get(`/student/reservations/${id}`),
-    cancelReservation: (id) => api.delete(`/student/reservations/${id}`),
+    getRooms: () => api.get('/api/student/rooms'),
+    getRoomAvailability: (roomId, date) => api.get(`/api/student/room/${roomId}/availability?date=${date}`),
+    createReservation: (reservationData) => api.post('/api/student/reservations', reservationData),
+    getUserReservations: (params) => api.get('/api/student/reservations', { params }),
+    getReservationDetails: (id) => api.get(`/api/student/reservations/${id}`),
+    cancelReservation: (id) => api.delete(`/api/student/reservations/${id}`),
+  },
+  
+  // Teacher endpoints
+  teacher: {
+    getExamProposals: () => api.get('/api/teacher/exam-proposals'),
+    getApprovedExams: () => api.get('/api/teacher/approved-exams'),
+    getAvailableRooms: () => api.get('/api/teacher/available-rooms'),
+    getAvailableAssistants: () => api.get('/api/teacher/available-assistants'),
+    approveExamProposal: (id) => api.put(`/api/teacher/exam-proposals/${id}/approve`),
+    rejectExamProposal: (id, data) => api.put(`/api/teacher/exam-proposals/${id}/reject`, data),
+    updateExamDetails: (id, data) => api.put(`/api/teacher/exams/${id}`, data),
   },
 };
 

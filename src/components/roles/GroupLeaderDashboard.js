@@ -7,30 +7,31 @@ const GroupLeaderDashboard = ({ user }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch data from API
+  // Încarcă discipline din backend
   useEffect(() => {
     const fetchDisciplines = async () => {
       try {
         setLoading(true);
+        setError(null);
         
-        // Get user reservations
+        // Obținem rezervările utilizatorului
         const userReservationsResponse = await api.student.getUserReservations();
         
-        // Get available rooms (which includes disciplines taught by professors)
+        // Obținem sălile disponibile (care includ discipline predate de profesori)
         const roomsResponse = await api.student.getRooms();
         
-        // Transform the data into the format we need
+        // Transformăm datele în formatul de care avem nevoie
         if (roomsResponse.rooms && userReservationsResponse.reservations) {
-          // Extract disciplines from rooms data
+          // Extragem disciplinele din datele despre săli
           const availableDisciplines = [];
           
-          // Process rooms data to extract disciplines
+          // Procesăm datele despre săli pentru a extrage disciplinele
           roomsResponse.rooms.forEach(room => {
             if (room.disciplines) {
               room.disciplines.forEach(discipline => {
-                // Check if this discipline is for the current user's group
+                // Verificăm dacă această disciplină este pentru grupa utilizatorului curent
                 if (discipline.group === user.group) {
-                  // Find if there's a reservation for this discipline
+                  // Căutăm dacă există o rezervare pentru această disciplină
                   const reservation = userReservationsResponse.reservations.find(
                     r => r.discipline_id === discipline.id
                   );
@@ -54,18 +55,21 @@ const GroupLeaderDashboard = ({ user }) => {
           });
           
           setDisciplines(availableDisciplines);
+        } else {
+          // Dacă nu avem date, afișăm un mesaj de eroare
+          setError('Nu s-au putut încărca disciplinele. Vă rugăm să încercați din nou mai târziu.');
         }
         
         setLoading(false);
       } catch (error) {
         console.error('Error fetching disciplines:', error);
-        setError('Failed to load disciplines. Please try again later.');
+        setError('A apărut o eroare la încărcarea disciplinelor. Vă rugăm să verificați conexiunea la server.');
         setLoading(false);
       }
     };
     
     fetchDisciplines();
-  }, [user.group]);
+  }, [user.group]); // Depinde de user.group
 
   const handleDateChange = (id, date) => {
     setDisciplines(disciplines.map(discipline => 
@@ -81,26 +85,31 @@ const GroupLeaderDashboard = ({ user }) => {
         return;
       }
       
-      // Create a new reservation
+      // Creăm datele pentru rezervare
       const reservationData = {
         discipline_id: discipline.id,
-        start_time: `${discipline.proposedDate}T09:00:00`, // Default to 9 AM
-        end_time: `${discipline.proposedDate}T11:00:00`,   // Default to 11 AM (2 hour exam)
+        start_time: `${discipline.proposedDate}T09:00:00`, // Implicit la 9 AM
+        end_time: `${discipline.proposedDate}T11:00:00`,   // Implicit la 11 AM (examen de 2 ore)
         notes: `Propunere pentru ${discipline.examType === 'examen' ? 'examenul' : 'colocviul'} de ${discipline.name}`
       };
       
-      await api.student.createReservation(reservationData);
+      // Trimitem propunerea la backend
+      const response = await api.student.createReservation(reservationData);
       
-      // Update local state
-      setDisciplines(disciplines.map(d => 
-        d.id === id ? { 
-          ...d, 
-          status: 'pending_approval',
-          statusMessage: 'Propunere trimisă. Așteptare aprobare...'
-        } : d
-      ));
-      
-      alert(`Propunerea pentru ${discipline.examType === 'examen' ? 'examenul' : 'colocviul'} de ${discipline.name} a fost trimisă profesorului ${discipline.teacher} pentru aprobare.`);
+      // Actualizăm starea locală cu răspunsul de la server
+      if (response && response.reservation) {
+        setDisciplines(disciplines.map(d => 
+          d.id === id ? { 
+            ...d, 
+            status: 'pending_approval',
+            statusMessage: 'Propunere trimisă. Așteptare aprobare...'
+          } : d
+        ));
+        
+        alert(`Propunerea pentru ${discipline.examType === 'examen' ? 'examenul' : 'colocviul'} de ${discipline.name} a fost trimisă cu succes!`);
+      } else {
+        throw new Error('Nu s-a primit confirmare de la server.');
+      }
     } catch (error) {
       console.error('Error submitting proposal:', error);
       alert(`Eroare la trimiterea propunerii: ${error.message}`);

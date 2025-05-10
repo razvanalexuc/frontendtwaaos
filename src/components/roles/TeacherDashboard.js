@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import api from '../../utils/api';
 import './TeacherDashboard.css';
 
 const TeacherDashboard = ({ user }) => {
@@ -10,108 +11,105 @@ const TeacherDashboard = ({ user }) => {
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState('proposals');
 
-  // Mock data - in a real application, this would come from an API
+  // Încărcăm datele de la backend
   useEffect(() => {
-    // Simulate API call
-    setTimeout(() => {
-      const mockProposals = [
-        {
-          id: 1,
-          disciplineName: 'Programare Web',
-          group: 'A3',
-          year: 2,
-          groupLeader: 'Popescu Alexandru',
-          groupLeaderEmail: 'popescu.alexandru@student.usv.ro',
-          examType: 'examen',
-          proposedDate: '2025-06-10',
-          status: 'pending', // pending, rejected, approved
-        },
-        {
-          id: 2,
-          disciplineName: 'Baze de Date',
-          group: 'B2',
-          year: 2,
-          groupLeader: 'Ionescu Maria',
-          groupLeaderEmail: 'ionescu.maria@student.usv.ro',
-          examType: 'colocviu',
-          proposedDate: '2025-05-25',
-          status: 'pending',
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        
+        // Obținem propunerile de examen pentru profesor
+        const proposalsResponse = await api.teacher.getExamProposals();
+        if (proposalsResponse && proposalsResponse.proposals) {
+          setExamProposals(proposalsResponse.proposals);
         }
-      ];
-
-      const mockApproved = [
-        {
-          id: 3,
-          disciplineName: 'Algoritmi și Structuri de Date',
-          group: 'A2',
-          year: 1,
-          groupLeader: 'Dumitrescu Ion',
-          groupLeaderEmail: 'dumitrescu.ion@student.usv.ro',
-          examType: 'examen',
-          proposedDate: '2025-06-05',
-          status: 'approved',
-          room: 'C210',
-          startTime: '10:00',
-          endTime: '12:00',
-          assistants: ['Asist. Dr. Vasilescu Elena']
+        
+        // Obținem examenele aprobate
+        const approvedResponse = await api.teacher.getApprovedExams();
+        if (approvedResponse && approvedResponse.exams) {
+          setApprovedExams(approvedResponse.exams);
         }
-      ];
-
-      const mockRooms = [
-        { id: 1, name: 'C210', capacity: 30, available: true },
-        { id: 2, name: 'C310', capacity: 50, available: true },
-        { id: 3, name: 'C410', capacity: 25, available: true },
-        { id: 4, name: 'B110', capacity: 40, available: true },
-      ];
-
-      const mockAssistants = [
-        { id: 1, name: 'Asist. Dr. Vasilescu Elena', email: 'vasilescu.elena@usm.ro', available: true },
-        { id: 2, name: 'Asist. Dr. Georgescu Andrei', email: 'georgescu.andrei@usm.ro', available: true },
-        { id: 3, name: 'Asist. Dr. Popa Mihai', email: 'popa.mihai@usm.ro', available: true },
-      ];
-      
-      setExamProposals(mockProposals);
-      setApprovedExams(mockApproved);
-      setAvailableRooms(mockRooms);
-      setAssistants(mockAssistants);
-      setLoading(false);
-    }, 1000);
+        
+        // Obținem sălile disponibile
+        const roomsResponse = await api.teacher.getAvailableRooms();
+        if (roomsResponse && roomsResponse.rooms) {
+          setAvailableRooms(roomsResponse.rooms);
+        }
+        
+        // Obținem lista de asistenți disponibili
+        const assistantsResponse = await api.teacher.getAvailableAssistants();
+        if (assistantsResponse && assistantsResponse.assistants) {
+          setAssistants(assistantsResponse.assistants);
+        }
+        
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching teacher data:', error);
+        setError('A apărut o eroare la încărcarea datelor. Vă rugăm să încercați din nou mai târziu.');
+        setLoading(false);
+      }
+    };
+    
+    fetchData();
   }, []);
 
-  const handleApproveProposal = (id) => {
-    // Move the proposal to the approved list with empty room and assistants
-    const proposal = examProposals.find(p => p.id === id);
-    if (proposal) {
-      const approvedProposal = {
-        ...proposal,
-        status: 'approved',
-        room: '',
-        startTime: '',
-        endTime: '',
-        assistants: []
-      };
+  const handleApproveProposal = async (id) => {
+    try {
+      // Trimitem cererea de aprobare la backend
+      const response = await api.teacher.approveExamProposal(id);
       
-      setApprovedExams([...approvedExams, approvedProposal]);
-      setExamProposals(examProposals.filter(p => p.id !== id));
-      
-      // Switch to the approved tab
-      setActiveTab('approved');
-      
-      alert(`Propunerea pentru ${proposal.examType === 'examen' ? 'examenul' : 'colocviul'} de ${proposal.disciplineName} a fost aprobată. Acum puteți configura sala și asistenții.`);
+      if (response && response.success) {
+        // Actualizăm starea locală
+        const proposal = examProposals.find(p => p.id === id);
+        if (proposal) {
+          const approvedProposal = {
+            ...proposal,
+            status: 'approved',
+            room: '',
+            startTime: '',
+            endTime: '',
+            assistants: []
+          };
+          
+          setApprovedExams([...approvedExams, approvedProposal]);
+          setExamProposals(examProposals.filter(p => p.id !== id));
+          
+          // Comutăm la tab-ul de examene aprobate
+          setActiveTab('approved');
+          
+          alert(`Propunerea pentru ${proposal.examType === 'examen' ? 'examenul' : 'colocviul'} de ${proposal.disciplineName} a fost aprobată. Acum puteți configura sala și asistenții.`);
+        }
+      } else {
+        throw new Error('Nu s-a putut aproba propunerea de examen.');
+      }
+    } catch (error) {
+      console.error('Error approving proposal:', error);
+      alert(`Eroare la aprobarea propunerii: ${error.message}`);
     }
   };
 
-  const handleRejectProposal = (id) => {
+  const handleRejectProposal = async (id) => {
     const reason = prompt('Introduceți motivul respingerii:');
-    if (reason !== null) {
-      // In a real application, this would send the rejection to the backend
-      // and notify the group leader via email
-      
-      setExamProposals(examProposals.map(proposal => 
-        proposal.id === id ? { ...proposal, status: 'rejected', rejectionReason: reason } : proposal
-      ));
-      
-      alert(`Propunerea a fost respinsă. Un email va fi trimis șefului de grupă cu motivul respingerii.`);
+    if (reason !== null && reason.trim() !== '') {
+      try {
+        // Trimitem cererea de respingere la backend
+        const response = await api.teacher.rejectExamProposal(id, { reason });
+        
+        if (response && response.success) {
+          // Actualizăm starea locală
+          setExamProposals(examProposals.map(proposal => 
+            proposal.id === id ? { ...proposal, status: 'rejected', rejectionReason: reason } : proposal
+          ));
+          
+          alert('Propunerea a fost respinsă și șeful de grupă a fost notificat.');
+        } else {
+          throw new Error('Nu s-a putut respinge propunerea de examen.');
+        }
+      } catch (error) {
+        console.error('Error rejecting proposal:', error);
+        alert(`Eroare la respingerea propunerii: ${error.message}`);
+      }
+    } else if (reason !== null) {
+      alert('Vă rugăm să introduceți un motiv pentru respingere.');
     }
   };
 
@@ -141,16 +139,34 @@ const TeacherDashboard = ({ user }) => {
     }));
   };
 
-  const handleSaveExamDetails = (id) => {
-    const exam = approvedExams.find(e => e.id === id);
-    if (!exam.room || !exam.startTime || !exam.endTime || exam.assistants.length === 0) {
-      alert('Vă rugăm să completați toate câmpurile: sala, ora de început, ora de sfârșit și cel puțin un asistent.');
-      return;
+  const handleSaveExamDetails = async (id) => {
+    try {
+      const exam = approvedExams.find(e => e.id === id);
+      
+      if (!exam.room || !exam.startTime || !exam.endTime) {
+        alert('Vă rugăm să completați toate detaliile examenului.');
+        return;
+      }
+      
+      // Trimitem detaliile actualizate la backend
+      const examDetails = {
+        room_id: availableRooms.find(r => r.name === exam.room)?.id,
+        start_time: exam.startTime,
+        end_time: exam.endTime,
+        assistants: exam.assistants
+      };
+      
+      const response = await api.teacher.updateExamDetails(id, examDetails);
+      
+      if (response && response.success) {
+        alert(`Detaliile pentru examenul de ${exam.disciplineName} au fost salvate.`);
+      } else {
+        throw new Error('Nu s-au putut salva detaliile examenului.');
+      }
+    } catch (error) {
+      console.error('Error saving exam details:', error);
+      alert(`Eroare la salvarea detaliilor examenului: ${error.message}`);
     }
-    
-    // In a real application, this would save the exam details to the backend
-    
-    alert(`Detaliile pentru ${exam.examType === 'examen' ? 'examenul' : 'colocviul'} de ${exam.disciplineName} au fost salvate cu succes.`);
   };
 
   if (loading) {

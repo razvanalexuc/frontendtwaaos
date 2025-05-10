@@ -1,5 +1,4 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import api from './api';
 
 // Create the authentication context
 const AuthContext = createContext(null);
@@ -12,68 +11,92 @@ export const AuthProvider = ({ children }) => {
 
   // Check if user is already logged in on component mount
   useEffect(() => {
-    const checkAuth = async () => {
-      const token = localStorage.getItem('accessToken');
-      if (!token) {
-        setLoading(false);
-        return;
-      }
-
+    const checkAuth = () => {
+      setLoading(true);
       try {
-        const response = await api.get('/auth/me');
-        const userData = {
-          ...response.user,
-          imageUrl: response.user.profile_picture || 'https://via.placeholder.com/50',
-          name: `${response.user.first_name} ${response.user.last_name}`,
-        };
-        setCurrentUser(userData);
+        // Verifică dacă există date de utilizator în localStorage
+        const userDataStr = localStorage.getItem('userData');
+        const token = localStorage.getItem('accessToken');
+        
+        if (userDataStr && token) {
+          // Parsează datele utilizatorului din localStorage
+          const userData = JSON.parse(userDataStr);
+          
+          // Setează datele utilizatorului în context
+          setCurrentUser(userData);
+          console.log('User authenticated from localStorage:', userData);
+        } else {
+          // Nu există date de autentificare valide
+          setCurrentUser(null);
+          // Curăță localStorage dacă există doar token dar nu și date utilizator
+          if (token && !userDataStr) {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
+          }
+        }
       } catch (error) {
         console.error('Error checking authentication:', error);
-        // Clear invalid tokens
+        // Curăță localStorage în caz de eroare
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
+        localStorage.removeItem('userData');
+        setCurrentUser(null);
       } finally {
         setLoading(false);
       }
     };
 
+    // Verifică autentificarea la încărcarea componentei
     checkAuth();
+    
+    // Adaugă un event listener pentru schimbări în localStorage
+    const handleStorageChange = (e) => {
+      if (e.key === 'userData' || e.key === 'accessToken') {
+        checkAuth();
+      }
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    
+    // Curăță event listener-ul la demontarea componentei
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
   }, []);
 
-  // Login with Google token
-  const loginWithGoogle = async (googleToken) => {
+  // Funcție pentru autentificare directă cu date de utilizator
+  const login = (userData, token) => {
     setLoading(true);
     setError(null);
     
     try {
-      const response = await api.post('/auth/login', { googleToken });
+      // Salvează token-ul și datele utilizatorului în localStorage
+      localStorage.setItem('accessToken', token);
+      localStorage.setItem('refreshToken', token); // Folosim același token pentru simplitate
+      localStorage.setItem('userData', JSON.stringify(userData));
       
-      // Store tokens
-      localStorage.setItem('accessToken', response.access_token);
-      localStorage.setItem('refreshToken', response.refresh_token);
-      
-      // Set user data
-      const userData = {
-        ...response.user,
-        imageUrl: response.user.profile_picture || 'https://via.placeholder.com/50',
-        name: `${response.user.first_name} ${response.user.last_name}`,
-      };
-      
+      // Actualizează starea în context
       setCurrentUser(userData);
       return userData;
     } catch (error) {
-      setError(error.message || 'Failed to login with Google');
+      setError('Failed to login');
+      console.error('Login error:', error);
       throw error;
     } finally {
       setLoading(false);
     }
   };
 
-  // Logout function
+  // Funcție pentru deconectare
   const logout = () => {
+    // Șterge datele din localStorage
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
+    localStorage.removeItem('userData');
+    
+    // Resetează starea utilizatorului în context
     setCurrentUser(null);
+    console.log('User logged out');
   };
 
   // Context value
@@ -81,7 +104,7 @@ export const AuthProvider = ({ children }) => {
     currentUser,
     loading,
     error,
-    loginWithGoogle,
+    login,
     logout,
     isAuthenticated: !!currentUser,
   };
