@@ -35,6 +35,8 @@ const GoogleAuth = ({ onLoginSuccess, onLogout }) => {
     checkExistingAuth();
   }, [onLoginSuccess]);
 
+  // Placeholder pentru prima declarație a funcției testWithEmail - folosim implementarea completă de mai jos
+      
   // Funcția de procesare a răspunsului de la Google
   const processGoogleResponse = async (tokenResponse) => {
     try {
