@@ -177,10 +177,16 @@ const api = {
     approveReservation: (id) => api.put(`/api/secretary/reservations/${id}/approve`),
     rejectReservation: (id, data) => api.put(`/api/secretary/reservations/${id}/reject`, data),
     editReservation: (id, data) => api.put(`/api/secretary/reservations/${id}`, data),
-    getReservationHistory: (params) => api.get('/api/secretary/reservation-history', { params }),
+    getReservationHistory: (params) => api.get('/api/secretary/reservations/history', { params }),
     getDailyReport: (date) => api.get(`/api/secretary/reports/daily?date=${date}`),
     getPeriodReport: (startDate, endDate) => api.get(`/api/secretary/reports/period?date_from=${startDate}&date_to=${endDate}`),
     getExamStats: () => api.get('/api/secretary/exam-stats'),
+    // New endpoints for group leaders management
+    getGroupLeaders: (params) => api.get('/api/group-leaders', { params }),
+    getGroupLeaderTemplate: () => api.get('/api/group-leaders/template'),
+    downloadGroupLeaderTemplate: () => `${API_URL}/api/group-leaders/download-template`,
+    uploadGroupLeaders: (file, data) => api.uploadFile('/api/group-leaders/upload', file, data),
+    deleteGroupLeader: (id) => api.delete(`/api/group-leaders/${id}`),
   },
   
   // Student endpoints
@@ -202,6 +208,31 @@ const api = {
     approveExamProposal: (id) => api.put(`/api/teacher/exam-proposals/${id}/approve`),
     rejectExamProposal: (id, data) => api.put(`/api/teacher/exam-proposals/${id}/reject`, data),
     updateExamDetails: (id, data) => api.put(`/api/teacher/exams/${id}`, data),
+  },
+  
+  // Course management endpoints
+  courses: {
+    getCourses: (params) => api.get('/api/courses', { params }),
+    syncCourses: () => api.post('/api/courses/sync'),
+  },
+  
+  // Exam management endpoints
+  exams: {
+    getExams: (params) => api.get('/api/exams', { params }),
+    createExam: (examData) => api.post('/api/exams', examData),
+    getExam: (id) => api.get(`/api/exams/${id}`),
+    updateExam: (id, data) => api.put(`/api/exams/${id}`, data),
+    deleteExam: (id) => api.delete(`/api/exams/${id}`),
+  },
+  
+  // Exam registration endpoints
+  examRegistrations: {
+    getRegistrations: (params) => api.get('/api/exam-registrations', { params }),
+    registerForExam: (data) => api.post('/api/exam-registrations', data),
+    getRegistration: (id) => api.get(`/api/exam-registrations/${id}`),
+    cancelRegistration: (id) => api.put(`/api/exam-registrations/${id}/cancel`),
+    getExamStudents: (examId, params) => api.get(`/api/exam-registrations/exams/${examId}/students`, { params }),
+    updateRegistrationStatus: (id, data) => api.put(`/api/exam-registrations/${id}/update-status`, data),
   },
 };
 

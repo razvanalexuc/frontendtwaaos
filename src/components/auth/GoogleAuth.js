@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useGoogleLogin } from '@react-oauth/google';
 import { useAuth } from '../../utils/AuthContext';
+import api from '../../utils/api';
 import './GoogleAuth.css';
 import { Alert } from 'react-bootstrap';
 
@@ -95,24 +96,12 @@ const GoogleAuth = ({ onLoginSuccess, onLogout }) => {
       // Salvăm tokenul Google în localStorage pentru referință
       localStorage.setItem('googleToken', googleToken);
       
-      // Facem cerere către backend pentru a obține token JWT
-      const authResponse = await fetch(`${API_URL}/api/auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ googleToken }),
-      });
-      
-      if (!authResponse.ok) {
-        const errorData = await authResponse.json();
-        throw new Error(errorData.message || 'Autentificare eșuată');
-      }
-      
-      const authData = await authResponse.json();
+      // Folosim API-ul nostru care gestionează CORS corect
+      // folosind metoda auth.loginWithGoogle din api.js
+      const authResponse = await api.auth.loginWithGoogle(googleToken);
       
       // Extragem tokenul JWT și datele utilizatorului din răspunsul backend-ului
-      const { access_token, refresh_token, user } = authData;
+      const { access_token, refresh_token, user } = authResponse;
       
       if (!access_token || !user) {
         throw new Error('Răspuns invalid de la server');
@@ -121,13 +110,14 @@ const GoogleAuth = ({ onLoginSuccess, onLogout }) => {
       // Clear any previous errors
       setError(null);
       
+      // Important: Salvăm tokenurile și datele utilizatorului în localStorage
+      // Același lucru pe care îl facem în metoda de bypass care funcționează corect
+      localStorage.setItem('accessToken', access_token);
+      localStorage.setItem('refreshToken', refresh_token || '');
+      localStorage.setItem('userData', JSON.stringify(user));
+      
       // Folosim funcția login din contextul de autentificare cu tokenul JWT primit de la backend
       await login(user, access_token);
-      
-      // Salvăm și refresh token-ul dacă există
-      if (refresh_token) {
-        localStorage.setItem('refreshToken', refresh_token);
-      }
       
       // Update local state
       setUser(user);
