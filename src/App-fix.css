@@ -1,0 +1,27 @@
+/* FIȘIER DE OVERRIDE CSS TEMPORAR PENTRU REZOLVAREA PROBLEMEI DE AFIȘARE */
+/* A se adăuga în index.html după App.css pentru a forța afișarea componentelor */
+
+.main-app {
+  opacity: 1 !important;  /* Force visibility */
+}
+
+.home-container {
+  opacity: 1 !important;  /* Force visibility */
+  transform: translateY(0) !important;
+}
+
+.role-card {
+  opacity: 1 !important;  /* Force visibility */
+}
+
+.subtitle, .subtitle-university, .welcome-card, .app-title {
+  opacity: 1 !important;  /* Force visibility */
+  animation: none !important;
+}
+
+/* Forțează afișarea tuturor elementelor animate */
+[class*="animated"], [class*="fade"] {
+  opacity: 1 !important;
+  animation: none !important;
+  transform: none !important;
+}
