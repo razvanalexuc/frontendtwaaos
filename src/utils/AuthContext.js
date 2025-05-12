@@ -99,6 +99,51 @@ export const AuthProvider = ({ children }) => {
     console.log('User logged out');
   };
 
+  // Funcție pentru a reîmprospăta token-ul de autentificare
+  const refreshUserAuth = async () => {
+    console.log('Attempting to refresh user authentication...');
+    try {
+      // Verificăm dacă avem un token de refresh
+      const refreshToken = localStorage.getItem('refreshToken');
+      if (!refreshToken) {
+        console.error('No refresh token available');
+        logout();
+        return false;
+      }
+      
+      // Facem cererea pentru a obține un nou token
+      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/auth/refresh`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ refresh_token: refreshToken }),
+      });
+      
+      if (!response.ok) {
+        console.error('Failed to refresh token, status:', response.status);
+        logout();
+        return false;
+      }
+      
+      const data = await response.json();
+      if (!data.access_token) {
+        console.error('No access token in refresh response');
+        logout();
+        return false;
+      }
+      
+      // Salvăm noul token în localStorage
+      localStorage.setItem('accessToken', data.access_token);
+      console.log('Token refreshed successfully');
+      return true;
+    } catch (error) {
+      console.error('Error refreshing auth token:', error);
+      logout();
+      return false;
+    }
+  };
+  
   // Context value
   const value = {
     currentUser,
@@ -106,6 +151,7 @@ export const AuthProvider = ({ children }) => {
     error,
     login,
     logout,
+    refreshUserAuth,
     isAuthenticated: !!currentUser,
   };
 

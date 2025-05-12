@@ -18,21 +18,50 @@ const handleResponse = async (response) => {
       errorData = { message: 'An unknown error occurred' };
     }
     
-    // If it's a 401 Unauthorized error, try to refresh the token
-    if (response.status === 401) {
+    // If it's a 401 Unauthorized error or missing authorization header, try to refresh the token
+    if (response.status === 401 || 
+        (errorData && errorData.msg && errorData.msg.includes('Authorization'))) {
+      console.log('Authentication error detected, attempting to refresh token...');
+      
+      // Încercăm să reîmprospătăm token-ul
       const refreshed = await refreshToken();
       if (refreshed) {
         // Retry the original request with the new token
+        const token = localStorage.getItem('accessToken');
+        
+        // Creăm un nou obiect Headers pentru a putea modifica header-urile
+        const newHeaders = {};
+        for (const [key, value] of Object.entries(response.headers)) {
+          newHeaders[key] = value;
+        }
+        newHeaders['Authorization'] = `Bearer ${token}`;
+        
+        // Refacem cererea cu noul token
         return makeRequest(response.url, {
           method: response.method,
-          headers: response.headers,
+          headers: newHeaders,
           body: response.body
         });
+      } else {
+        // Dacă reîmprospătarea a eșuat, încercam să redirectăm utilizatorul către pagina de autentificare
+        console.error('Token refresh failed, redirecting to login page');
+        
+        // Ștergem datele de autentificare
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        localStorage.removeItem('userData');
+        
+        // Redirectăm către pagina principală pentru a forța o nouă autentificare
+        if (typeof window !== 'undefined') {
+          setTimeout(() => {
+            window.location.href = '/';
+          }, 1000);
+        }
       }
     }
     
     // Throw error with message from response
-    throw new Error(errorData.message || `API error: ${response.status}`);
+    throw new Error(errorData.message || errorData.msg || `API error: ${response.status}`);
   }
   
   // Parse JSON response
@@ -133,7 +162,28 @@ const uploadFile = async (endpoint, file, additionalData = {}, options = {}) => 
 
 // Convenience methods for common HTTP methods
 const api = {
-  get: (endpoint, options = {}) => makeRequest(endpoint, { ...options, method: 'GET' }),
+  get: (endpoint, options = {}) => {
+    // Procesăm parametrii de query dacă există
+    if (options.params && Object.keys(options.params).length > 0) {
+      const queryParams = new URLSearchParams();
+      Object.entries(options.params).forEach(([key, value]) => {
+        if (value !== undefined && value !== null) {
+          queryParams.append(key, value);
+        }
+      });
+      
+      // Adăugăm parametrii la endpoint
+      const queryString = queryParams.toString();
+      if (queryString) {
+        endpoint = `${endpoint}${endpoint.includes('?') ? '&' : '?'}${queryString}`;
+      }
+    }
+    
+    // Eliminăm params din options pentru a evita duplicarea
+    const { params, ...restOptions } = options;
+    
+    return makeRequest(endpoint, { ...restOptions, method: 'GET' });
+  },
   post: (endpoint, data, options = {}) => makeRequest(endpoint, { 
     ...options, 
     method: 'POST',
@@ -214,6 +264,8 @@ const api = {
   courses: {
     getCourses: (params) => api.get('/api/courses', { params }),
     syncCourses: () => api.post('/api/courses/sync'),
+    proposeExamDate: (courseId, data) => api.post(`/api/courses/${courseId}/propose-date`, data),
+    getCourse: (courseId) => api.get(`/api/courses/${courseId}`),
   },
   
   // Exam management endpoints
