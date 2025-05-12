@@ -101,6 +101,9 @@ const SecretariatDashboard = () => {
         // Încărcăm șefii de grupă
         await fetchGroupLeaders();
         
+        // Încărcăm disciplinele
+        await fetchCourses();
+        
         setLoading(false);
       } catch (error) {
         console.error('Error fetching secretary data:', error);
@@ -111,6 +114,28 @@ const SecretariatDashboard = () => {
     
     fetchData();
   }, []);
+  
+  // Funcția pentru încărcarea disciplinelor
+  const fetchCourses = async () => {
+    try {
+      // Construim parametrii pentru filtrare (dacă avem nevoie de filtre)
+      const params = {};
+      
+      // Apelăm API-ul pentru a obține disciplinele
+      const response = await api.courses.getCourses(params);
+      
+      if (response && response.data) {
+        setDisciplines(response.data);
+      } else {
+        // Dacă nu avem date, setăm o listă goală
+        setDisciplines([]);
+        console.log('Nu s-au găsit discipline.');
+      }
+    } catch (error) {
+      console.error('Error fetching courses:', error);
+      setError('Failed to load courses. Please try again later.');
+    }
+  };
   
   // Funcția pentru încărcarea șefilor de grupă
   const fetchGroupLeaders = async () => {
