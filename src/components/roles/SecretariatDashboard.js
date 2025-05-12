@@ -114,7 +114,7 @@ const SecretariatDashboard = () => {
     
     fetchData();
   }, []);
-  
+
   // Funcția pentru încărcarea disciplinelor
   const fetchCourses = async () => {
     try {
@@ -148,19 +148,33 @@ const SecretariatDashboard = () => {
       if (studyProgramFilter) params.study_program = studyProgramFilter;
       if (yearOfStudyFilter) params.year_of_study = yearOfStudyFilter;
       if (groupFilter) params.group_name = groupFilter;
-      if (semesterFilter) params.semester = semesterFilter;
+      if (semesterFilter) params.current_semester = semesterFilter; // Corectăm numele parametrului pentru semestru
       if (academicYearFilter) params.academic_year = academicYearFilter;
+      
+      console.log('Parametri pentru filtrare șefi de grupă:', params);
       
       try {
         // Încercăm să folosim endpoint-ul specific pentru secretariat
         const response = await api.secretary.getGroupLeaders(params);
+        console.log('Răspuns API pentru șefi de grupă:', response);
         
+        // Verificăm diferite formate posibile de răspuns
         if (response && response.group_leaders) {
+          // Format: { group_leaders: [...] }
           setGroupLeaders(response.group_leaders);
+          console.log('Șefi de grupă încărcați (format 1):', response.group_leaders);
+        } else if (response && response.data) {
+          // Format: { status: 'success', data: [...] }
+          setGroupLeaders(response.data);
+          console.log('Șefi de grupă încărcați (format 2):', response.data);
+        } else if (Array.isArray(response)) {
+          // Format: [...]
+          setGroupLeaders(response);
+          console.log('Șefi de grupă încărcați (format 3):', response);
         } else {
           // Dacă nu avem date de la endpoint, setăm o listă goală
           setGroupLeaders([]);
-          console.log('Nu s-au găsit șefi de grupă pentru parametrii specificați.');
+          console.log('Nu s-au găsit șefi de grupă pentru parametrii specificați. Răspuns:', response);
         }
       } catch (apiError) {
         console.error('Eroare la apelul API pentru șefi de grupă:', apiError.message);
@@ -189,8 +203,9 @@ const SecretariatDashboard = () => {
       
       console.log('Deleting group leader with ID:', id);
       
-      // Apelăm API-ul pentru a șterge șeful de grupă
-      await api.secretary.deleteGroupLeader(id);
+      console.log('Trimit cerere DELETE la /api/group-leaders/' + id);
+    // Apelăm API-ul pentru a șterge șeful de grupă - folosim direct delete pentru că ruta este pe alt controller
+    await api.delete(`/api/group-leaders/${id}`);
       
       // Afișăm notificare de succes
       setNotification({
@@ -490,40 +505,86 @@ const SecretariatDashboard = () => {
     }
   };
 
-  // Function to generate available rooms
+  // Function to generate available rooms list from Orar USV API
   const generateRoomsList = async () => {
     try {
-      // Call the API to import rooms from USV
-      await api.admin.importUsvSchedule({ rooms_only: true });
+      setLoading(true);
+      console.log('Generating rooms list from Orar USV API...');
       
-      // Refresh rooms data
-      const roomsResponse = await api.student.getRooms();
-      if (roomsResponse.rooms) {
-        setRooms(roomsResponse.rooms);
-      }
-      
-      setNotification({
-        show: true,
-        message: 'Rooms list generated successfully',
-        type: 'success'
+      // Call the API to import rooms from USV Orar system
+      const importResponse = await api.admin.importUsvSchedule({ 
+        rooms_only: true,
+        source: 'orar.usv.ro', // Specificăm sursa pentru a folosi API-ul Orar USV
+        force_recreate: true // Forțăm ștergerea și recrearea tuturor sălilor pentru a actualiza corect proprietățile
       });
       
-      // Hide notification after 3 seconds
+      console.log('Import response:', importResponse);
+      
+      // Refresh rooms data - folosim endpoint-ul pentru secretariat
+      const roomsResponse = await api.secretary.getRooms();
+      console.log('Rooms response:', roomsResponse); // Log complet pentru depanare
+      
+      if (roomsResponse && roomsResponse.rooms && roomsResponse.rooms.length > 0) {
+        // Verificăm și procesăm fiecare sală pentru a ne asigura că toate proprietățile sunt corecte
+        const processedRooms = roomsResponse.rooms.map(room => {
+          console.log('Processing room:', room); // Log pentru fiecare sală
+          return {
+            id: room.id,
+            name: room.name || 'N/A',
+            capacity: room.capacity !== undefined ? room.capacity : 'N/A',
+            building: room.building || 'N/A',
+            floor: room.floor !== undefined ? room.floor : 'N/A',
+            room_type: room.room_type || 'N/A',
+            features: room.features || [],
+            description: room.description || ''
+          };
+        });
+        
+        setRooms(processedRooms);
+        console.log(`Loaded ${processedRooms.length} rooms from the database`);
+        
+        // Afișăm statistici despre sălile importate
+        let successMessage = 'Lista de săli a fost generată cu succes din sistemul Orar USV';
+        if (importResponse.stats) {
+          const stats = importResponse.stats;
+          successMessage += `\nSăli importate: ${stats.rooms_imported || 0}`;
+          successMessage += `\nSăli actualizate: ${stats.rooms_updated || 0}`;
+        }
+        
+        setNotification({
+          show: true,
+          message: successMessage,
+          type: 'success'
+        });
+      } else {
+        console.warn('No rooms found or invalid response format:', roomsResponse);
+        setNotification({
+          show: true,
+          message: 'Lista de săli a fost generată, dar nu s-au găsit săli disponibile',
+          type: 'warning'
+        });
+      }
+      
+      // Hide notification after 5 seconds
       setTimeout(() => {
         setNotification({ show: false, message: '', type: '' });
-      }, 3000);
+      }, 5000);
+      
+      setLoading(false);
     } catch (error) {
-      console.error('Error generating rooms list:', error);
+      console.error('Error generating rooms list from Orar USV:', error);
       setNotification({
         show: true,
-        message: `Error generating rooms list: ${error.message}`,
+        message: `Eroare la generarea listei de săli: ${error.message}`,
         type: 'error'
       });
       
-      // Hide notification after 3 seconds
+      // Hide notification after 5 seconds
       setTimeout(() => {
         setNotification({ show: false, message: '', type: '' });
-      }, 3000);
+      }, 5000);
+      
+      setLoading(false);
     }
   };
 
@@ -782,14 +843,35 @@ const SecretariatDashboard = () => {
         type: 'info'
       });
       
-      const response = await api.courses.syncCourses();
+      // Parametrii pentru sincronizare
+      const syncParams = {
+        faculty: 'FIESC', // Valoare implicită pentru Facultatea de Inginerie Electrică și Știința Calculatoarelor
+        study_program: studyProgramFilter || undefined,
+        year_of_study: yearOfStudyFilter || undefined,
+        semester: semesterFilter || undefined,
+        group_name: groupFilter || undefined
+      };
+      
+      console.log('Sending sync request with params:', syncParams);
+      
+      // Apelăm API-ul pentru sincronizare
+      const response = await api.courses.syncCourses(syncParams);
+      
+      console.log('Sync response:', response);
       
       if (response.status === 'success') {
+        // Calculăm statistici
+        const results = response.results || {};
+        const created = results.created || 0;
+        const updated = results.updated || 0;
+        const errors = results.errors || 0;
+        
         setNotification({
           show: true,
-          message: `Sincronizare reușită! ${response.data.created} discipline create, ${response.data.updated} actualizate.`,
+          message: `Sincronizare reușită! ${created} discipline create, ${updated} actualizate, ${errors} erori.`,
           type: 'success'
         });
+        
         // Actualizăm lista de discipline
         const coursesResponse = await api.courses.getCourses();
         if (coursesResponse.status === 'success') {
@@ -807,7 +889,7 @@ const SecretariatDashboard = () => {
       console.error('Error syncing disciplines:', error);
       setNotification({
         show: true,
-        message: 'Eroare la sincronizarea disciplinelor. Încercați din nou.',
+        message: `Eroare la sincronizarea disciplinelor: ${error.message}`,
         type: 'error'
       });
       setLoading(false);
@@ -837,7 +919,7 @@ const SecretariatDashboard = () => {
           className={activeTab === 'rooms' ? 'active' : ''} 
           onClick={() => setActiveTab('rooms')}
         >
-          Rooms
+          Săli Examinare
         </button>
         <button 
           className={activeTab === 'groupLeaders' ? 'active' : ''} 
@@ -849,13 +931,13 @@ const SecretariatDashboard = () => {
           className={activeTab === 'examPeriods' ? 'active' : ''} 
           onClick={() => setActiveTab('examPeriods')}
         >
-          Exam Periods
+          Perioade Examinare
         </button>
         <button 
           className={activeTab === 'reports' ? 'active' : ''} 
           onClick={() => setActiveTab('reports')}
         >
-          Reports
+          Rapoarte și Statistici
         </button>
       </div>
       
@@ -941,31 +1023,53 @@ const SecretariatDashboard = () => {
         {/* Rooms Tab */}
         {activeTab === 'rooms' && (
           <div className="tab-content">
-            <h2>Examination Rooms</h2>
+            <h2>Managementul Sălilor de Examinare</h2>
             <div className="action-buttons">
-              <button onClick={generateRoomsList}>Generate Rooms List</button>
+              <button onClick={generateRoomsList}>Generează Lista de Săli</button>
+              <p className="info-text">Apăsați butonul pentru a importa sălile disponibile din sistemul Orar USV.</p>
             </div>
             
             <div className="data-table">
-              <h3>Available Rooms</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Room</th>
-                    <th>Capacity</th>
-                    <th>Building</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {rooms.map(room => (
-                    <tr key={room.id}>
-                      <td>{room.name}</td>
-                      <td>{room.capacity}</td>
-                      <td>{room.building}</td>
+              <h3>Săli Disponibile</h3>
+              {rooms.length === 0 ? (
+                <p>Nu există săli încă. Generați lista de săli folosind butonul de mai sus.</p>
+              ) : (
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Sală</th>
+                      <th>Capacitate</th>
+                      <th>Clădire</th>
+                      <th>Etaj</th>
+                      <th>Tip Sală</th>
+                      <th>Descriere</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {rooms.map((room, index) => {
+                      console.log(`Room ${index} data:`, JSON.stringify(room)); // Debug log pentru a vedea datele primite
+                      return (
+                        <tr key={room.id || index}>
+                          <td>{room.name || 'N/A'}</td>
+                          <td>
+                            {room.capacity !== undefined && room.capacity !== null 
+                              ? (typeof room.capacity === 'number' ? room.capacity : 'N/A') 
+                              : 'N/A'}
+                          </td>
+                          <td>{room.building || 'N/A'}</td>
+                          <td>
+                            {room.floor !== undefined && room.floor !== null 
+                              ? (typeof room.floor === 'number' ? room.floor : 'N/A') 
+                              : 'N/A'}
+                          </td>
+                          <td>{room.room_type || 'N/A'}</td>
+                          <td>{room.description || 'N/A'}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              )}
             </div>
           </div>
         )}
@@ -1105,52 +1209,71 @@ const SecretariatDashboard = () => {
         {/* Exam Periods Tab */}
         {activeTab === 'examPeriods' && (
           <div className="tab-content">
-            <h2>Examination Periods Configuration</h2>
+            <h2>Configurare Perioade de Examinare</h2>
+            <p className="info-text">Configurați perioadele permise pentru colocvii și examene. Alocarea datelor de examinare se poate face doar în limitele acestor perioade.</p>
             
             <div className="period-config">
-              <h3>Exam Period</h3>
-              <div className="date-inputs">
-                <div>
-                  <label>Start Date:</label>
-                  <input 
-                    type="date" 
-                    value={examPeriod.start} 
-                    onChange={(e) => setExamPeriod({...examPeriod, start: e.target.value})} 
-                  />
+              <div className="period-section">
+                <h3>Perioada de Examene</h3>
+                <div className="date-inputs">
+                  <div className="date-input">
+                    <label>Data de început:</label>
+                    <input 
+                      type="date" 
+                      value={examPeriod.start} 
+                      onChange={(e) => setExamPeriod({...examPeriod, start: e.target.value})}
+                    />
+                  </div>
+                  <div className="date-input">
+                    <label>Data de sfârșit:</label>
+                    <input 
+                      type="date" 
+                      value={examPeriod.end} 
+                      onChange={(e) => setExamPeriod({...examPeriod, end: e.target.value})}
+                    />
+                  </div>
                 </div>
-                <div>
-                  <label>End Date:</label>
-                  <input 
-                    type="date" 
-                    value={examPeriod.end} 
-                    onChange={(e) => setExamPeriod({...examPeriod, end: e.target.value})} 
-                  />
-                </div>
+                <button onClick={saveExamPeriod} disabled={!examPeriod.start || !examPeriod.end || loading}>
+                  {loading ? 'Se salvează...' : 'Salvează Perioada de Examene'}
+                </button>
               </div>
-              <button onClick={saveExamPeriod}>Save Exam Period</button>
+              
+              <div className="period-section">
+                <h3>Perioada de Colocvii</h3>
+                <div className="date-inputs">
+                  <div className="date-input">
+                    <label>Data de început:</label>
+                    <input 
+                      type="date" 
+                      value={colloquiumPeriod.start} 
+                      onChange={(e) => setColloquiumPeriod({...colloquiumPeriod, start: e.target.value})}
+                    />
+                  </div>
+                  <div className="date-input">
+                    <label>Data de sfârșit:</label>
+                    <input 
+                      type="date" 
+                      value={colloquiumPeriod.end} 
+                      onChange={(e) => setColloquiumPeriod({...colloquiumPeriod, end: e.target.value})}
+                    />
+                  </div>
+                </div>
+                <button onClick={saveColloquiumPeriod} disabled={!colloquiumPeriod.start || !colloquiumPeriod.end || loading}>
+                  {loading ? 'Se salvează...' : 'Salvează Perioada de Colocvii'}
+                </button>
+              </div>
             </div>
             
-            <div className="period-config">
-              <h3>Colloquium Period</h3>
-              <div className="date-inputs">
-                <div>
-                  <label>Start Date:</label>
-                  <input 
-                    type="date" 
-                    value={colloquiumPeriod.start} 
-                    onChange={(e) => setColloquiumPeriod({...colloquiumPeriod, start: e.target.value})} 
-                  />
-                </div>
-                <div>
-                  <label>End Date:</label>
-                  <input 
-                    type="date" 
-                    value={colloquiumPeriod.end} 
-                    onChange={(e) => setColloquiumPeriod({...colloquiumPeriod, end: e.target.value})} 
-                  />
-                </div>
+            <div className="current-settings">
+              <h3>Setări Curente</h3>
+              <div className="settings-info">
+                <p><strong>Perioada de Examene:</strong> {examPeriod.start && examPeriod.end ? 
+                  `${new Date(examPeriod.start).toLocaleDateString('ro-RO')} - ${new Date(examPeriod.end).toLocaleDateString('ro-RO')}` : 
+                  'Neconfigurata'}</p>
+                <p><strong>Perioada de Colocvii:</strong> {colloquiumPeriod.start && colloquiumPeriod.end ? 
+                  `${new Date(colloquiumPeriod.start).toLocaleDateString('ro-RO')} - ${new Date(colloquiumPeriod.end).toLocaleDateString('ro-RO')}` : 
+                  'Neconfigurata'}</p>
               </div>
-              <button onClick={saveColloquiumPeriod}>Save Colloquium Period</button>
             </div>
           </div>
         )}
@@ -1158,41 +1281,81 @@ const SecretariatDashboard = () => {
         {/* Reports Tab */}
         {activeTab === 'reports' && (
           <div className="tab-content">
-            <h2>Examination Reports</h2>
+            <h2>Rapoarte și Statistici</h2>
             
             <div className="reports-section">
-              <h3>Download Exam Schedule</h3>
-              <div className="action-buttons">
-                <button onClick={downloadExcelSchedule}>Download as Excel</button>
-                <button onClick={downloadPdfSchedule}>Download as PDF</button>
+              <h3>Rapoarte Planificare Examene</h3>
+              <p className="info-text">Descărcați planificarea examenelor în diferite formate pentru a o distribui sau tipări.</p>
+              <div className="report-actions">
+                <button onClick={downloadExcelSchedule} disabled={loading}>
+                  {loading ? 'Se pregătește...' : 'Descarcă Planificare în Excel'}
+                </button>
+                <button onClick={downloadPdfSchedule} disabled={loading}>
+                  {loading ? 'Se pregătește...' : 'Descarcă Planificare în PDF'}
+                </button>
               </div>
             </div>
             
-            <div className="completion-status">
-              <h3>Exam Schedule Completion Status</h3>
-              {examStats.total > 0 ? (
-                <>
-                  <p>Completed: {examStats.completed}/{examStats.total} exams scheduled</p>
-                  <div className="progress-bar">
-                    <div 
-                      className="progress" 
-                      style={{ width: `${(examStats.completed / examStats.total) * 100}%` }}
-                    ></div>
-                  </div>
-                  {examStats.incomplete && examStats.incomplete.length > 0 && (
-                    <div className="incomplete-exams">
-                      <h4>Incomplete Exams:</h4>
-                      <ul>
-                        {examStats.incomplete.map((exam, index) => (
-                          <li key={index}>{exam.name} - {exam.group}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </>
-              ) : (
-                <p>No exam data available. Please check the connection to the server.</p>
+            <div className="stats-section">
+              <h3>Statistici Completare Examene</h3>
+              <p className="info-text">Verificați gradul de completare a datelor de examen, cu sublinierea celor care încă nu au fost stabilite.</p>
+              
+              <div className="stats-info">
+                <p><strong>Total Examene:</strong> {examStats.total}</p>
+                <p><strong>Examene Planificate:</strong> {examStats.completed}</p>
+                <p><strong>Examene Neplanificate:</strong> {examStats.total - examStats.completed}</p>
+                <div className="progress-bar">
+                  <div 
+                    className="progress" 
+                    style={{
+                      width: `${examStats.total ? (examStats.completed / examStats.total) * 100 : 0}%`,
+                      backgroundColor: examStats.total && examStats.completed === examStats.total ? '#4CAF50' : '#FFA500'
+                    }}
+                  ></div>
+                </div>
+                <p className="progress-text">
+                  {examStats.total ? `${Math.round((examStats.completed / examStats.total) * 100)}% completat` : 'Nu există date'}
+                </p>
+              </div>
+              
+              {examStats.incomplete && examStats.incomplete.length > 0 && (
+                <div className="incomplete-exams">
+                  <h4>Examene Neplanificate:</h4>
+                  <table className="data-table">
+                    <thead>
+                      <tr>
+                        <th>Disciplină</th>
+                        <th>Cadru Didactic</th>
+                        <th>Program Studiu</th>
+                        <th>An/Grupă</th>
+                        <th>Acțiuni</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {examStats.incomplete.map((exam, index) => (
+                        <tr key={index} className="incomplete-exam-row">
+                          <td>{exam.name}</td>
+                          <td>{exam.teacher}</td>
+                          <td>{exam.study_program}</td>
+                          <td>{exam.year_of_study}/{exam.group_name}</td>
+                          <td>
+                            <button className="small-button">Planifică</button>
+                            <button className="small-button">Notifică</button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               )}
+            </div>
+            
+            <div className="notification-section">
+              <h3>Notificare Șefi de Grupă</h3>
+              <p className="info-text">Trimiteți notificări prin email către șefii de grupă despre planificarea examenelor.</p>
+              <button onClick={notifyGroupLeaders} disabled={loading}>
+                {loading ? 'Se trimit notificări...' : 'Notifică Șefii de Grupă'}
+              </button>
             </div>
           </div>
         )}

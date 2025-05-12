@@ -15,8 +15,18 @@ const handleResponse = async (response) => {
     try {
       errorData = await response.json();
     } catch (e) {
-      errorData = { message: 'An unknown error occurred' };
+      console.error('Error parsing error response:', e);
+      errorData = { message: `Error ${response.status}: ${response.statusText || 'An unknown error occurred'}` };
     }
+    
+    // Afișăm informații detaliate despre eroare pentru debugging
+    console.error(`API Error (${response.status})`, {
+      url: response.url,
+      method: response.method,
+      status: response.status,
+      statusText: response.statusText,
+      errorData
+    });
     
     // If it's a 401 Unauthorized error or missing authorization header, try to refresh the token
     if (response.status === 401 || 
@@ -51,13 +61,18 @@ const handleResponse = async (response) => {
         localStorage.removeItem('refreshToken');
         localStorage.removeItem('userData');
         
-        // Redirectăm către pagina principală pentru a forța o nouă autentificare
-        if (typeof window !== 'undefined') {
-          setTimeout(() => {
-            window.location.href = '/';
-          }, 1000);
-        }
+        // Redirectăm către pagina principală
+        window.location.href = '/';
+        
+        return null;
       }
+    }
+    
+    // Pentru eroarea 422, încercăm să returnăm un obiect gol în loc să aruncăm o eroare
+    // Acest lucru permite aplicației să continue să funcționeze chiar dacă API-ul returnează erori
+    if (response.status === 422) {
+      console.warn('Received 422 error, returning empty data instead of throwing');
+      return { data: [], message: errorData.message || 'No data available' };
     }
     
     // Throw error with message from response
@@ -65,7 +80,12 @@ const handleResponse = async (response) => {
   }
   
   // Parse JSON response
-  return response.json();
+  try {
+    return response.json();
+  } catch (e) {
+    console.error('Error parsing JSON response:', e);
+    throw new Error('Invalid JSON response from server');
+  }
 };
 
 // Function to refresh the auth token
@@ -224,19 +244,22 @@ const api = {
   // Secretary endpoints
   secretary: {
     getPendingReservations: () => api.get('/api/secretary/reservations/pending'),
-    approveReservation: (id) => api.put(`/api/secretary/reservations/${id}/approve`),
-    rejectReservation: (id, data) => api.put(`/api/secretary/reservations/${id}/reject`, data),
-    editReservation: (id, data) => api.put(`/api/secretary/reservations/${id}`, data),
+    approveReservation: (id) => api.post(`/api/secretary/reservations/${id}/approve`),
+    rejectReservation: (id, reason) => api.post(`/api/secretary/reservations/${id}/reject`, { reason }),
     getReservationHistory: (params) => api.get('/api/secretary/reservations/history', { params }),
     getDailyReport: (date) => api.get(`/api/secretary/reports/daily?date=${date}`),
     getPeriodReport: (startDate, endDate) => api.get(`/api/secretary/reports/period?date_from=${startDate}&date_to=${endDate}`),
     getExamStats: () => api.get('/api/secretary/exam-stats'),
-    // New endpoints for group leaders management
-    getGroupLeaders: (params) => api.get('/api/group-leaders', { params }),
+    // Group leaders management
+    getGroupLeaders: (params) => api.get('/api/secretary/group-leaders', { params }),
+    addGroupLeader: (data) => api.post('/api/secretary/group-leaders', data),
+    removeGroupLeader: (id) => api.delete(`/api/secretary/group-leaders/${id}`),
     getGroupLeaderTemplate: () => api.get('/api/group-leaders/template'),
     downloadGroupLeaderTemplate: () => `${API_URL}/api/group-leaders/download-template`,
-    uploadGroupLeaders: (file, data) => api.uploadFile('/api/group-leaders/upload', file, data),
+    uploadGroupLeaders: (file, data) => api.uploadFile('/api/secretary/group-leaders/upload', file, data),
     deleteGroupLeader: (id) => api.delete(`/api/group-leaders/${id}`),
+    // Rooms management
+    getRooms: (filters) => api.get('/api/secretary/rooms', { params: filters }),
   },
   
   // Student endpoints
@@ -263,9 +286,11 @@ const api = {
   // Course management endpoints
   courses: {
     getCourses: (params) => api.get('/api/courses', { params }),
-    syncCourses: () => api.post('/api/courses/sync'),
+    syncCourses: (data) => api.post('/api/courses/sync', data),
     proposeExamDate: (courseId, data) => api.post(`/api/courses/${courseId}/propose-date`, data),
     getCourse: (courseId) => api.get(`/api/courses/${courseId}`),
+    approveExamProposal: (courseId, data) => api.put(`/api/courses/${courseId}/review`, { action: 'approve', ...data }),
+    rejectExamProposal: (courseId, data) => api.put(`/api/courses/${courseId}/review`, { action: 'reject', ...data }),
   },
   
   // Exam management endpoints

@@ -45,11 +45,9 @@ const GroupLeaderDashboard = ({ user }) => {
       }
       console.log('Fetching courses for group:', userGroup);
     
-    // Construim parametrii pentru cerere
+    // Construim parametrii pentru cerere - nu mai filtrăm după grupă pentru a obține toate disciplinele
+    // similar cu SecretariatDashboard
     const params = {};
-    if (userGroup) {
-      params.group_name = userGroup;
-    }
     
     console.log('Request params:', params);
     
@@ -76,13 +74,39 @@ const GroupLeaderDashboard = ({ user }) => {
     
     console.log('Processed courses data:', courses);
     
+    // Verificăm structura datelor despre profesori
+    if (courses && courses.length > 0) {
+      console.log('Exemplu de profesor:', courses[0].teacher);
+    }
+    
     // Verificăm dacă avem un mesaj de la backend
     if (coursesResponse?.message) {
       console.log('Backend message:', coursesResponse.message);
     }
     
     if (courses && Array.isArray(courses) && courses.length > 0) {
-      const availableDisciplines = courses.map(discipline => {
+      // Afișăm informații detaliate despre primele discipline pentru debugging
+      console.log('Exemplu de disciplină (prima din listă):', JSON.stringify(courses[0], null, 2));
+      
+      // Filtrăm disciplinele pentru a păstra doar cele care au un profesor asociat
+      // Relaxăm condițiile pentru a permite mai multe discipline
+      const filteredCourses = courses.filter(discipline => {
+        // Verificăm dacă disciplina are un profesor asociat (chiar și parțial)
+        const hasTeacher = discipline.teacher !== null && discipline.teacher !== undefined;
+        
+        // Verificăm dacă disciplina are un nume (toate ar trebui să aibă)
+        const hasName = discipline.name && discipline.name.length > 0;
+        
+        // Afișăm informații despre fiecare disciplină pentru debugging
+        console.log(`Disciplina ${discipline.name || 'fără nume'}: hasTeacher=${hasTeacher}, hasName=${hasName}`);
+        
+        // Păstrăm toate disciplinele care au un nume și un profesor (chiar dacă informațiile sunt incomplete)
+        return hasName && hasTeacher;
+      });
+      
+      console.log(`Filtrat ${courses.length} discipline la ${filteredCourses.length} discipline valide`);
+      
+      const availableDisciplines = filteredCourses.map(discipline => {
         // Căutăm dacă există un examen propus pentru această disciplină
         const proposedExam = exams && Array.isArray(exams) ? exams.find(
           exam => exam.discipline_id === discipline.id || exam.course?.id === discipline.id
@@ -92,14 +116,56 @@ const GroupLeaderDashboard = ({ user }) => {
             id: discipline.id,
             name: discipline.name,
             code: discipline.code,
-            teacher: discipline.teacher ? `${discipline.teacher.title || ''} ${discipline.teacher.first_name} ${discipline.teacher.last_name}` : 'Nedefinit',
+            teacher: discipline.teacher ? (
+              typeof discipline.teacher === 'string' ? discipline.teacher : 
+              `${discipline.teacher.title || ''} ${discipline.teacher.first_name || ''} ${discipline.teacher.last_name || ''}`
+            ) : 'Nedefinit',
             teacherEmail: discipline.teacher?.email,
             examType: discipline.exam_type || 'examen',
             group_name: discipline.group_name,
             study_program: discipline.study_program,
             year_of_study: discipline.year_of_study,
-            proposedDate: proposedExam ? new Date(proposedExam.date).toISOString().split('T')[0] : '',
-            status: proposedExam ? proposedExam.status : 'pending',
+            // Verificăm mai multe surse posibile pentru data propusă
+            proposedDate: (() => {
+              // Prima dată verificăm dacă există un examen propus
+              if (proposedExam && proposedExam.date) {
+                const dateObj = new Date(proposedExam.date);
+                if (!isNaN(dateObj.getTime())) {
+                  return dateObj.toISOString().split('T')[0];
+                }
+              }
+              
+              // Apoi verificăm dacă disciplina în sine are o dată propusă
+              if (discipline.proposed_date) {
+                const dateObj = new Date(discipline.proposed_date);
+                if (!isNaN(dateObj.getTime())) {
+                  return dateObj.toISOString().split('T')[0];
+                }
+              }
+              
+              // Dacă nu găsim nicio dată validă, returnăm string gol
+              return '';
+            })(),
+            // Verificăm mai multe surse posibile pentru status
+            status: (() => {
+              // Prima dată verificăm dacă există un examen propus cu status
+              if (proposedExam && proposedExam.status) {
+                return proposedExam.status;
+              }
+              
+              // Apoi verificăm dacă disciplina în sine are un status
+              if (discipline.status) {
+                return discipline.status;
+              }
+              
+              // Dacă disciplina are o dată propusă dar nu are status, presupunem că e în așteptare
+              if (discipline.proposed_date || proposedExam?.date) {
+                return 'pending';
+              }
+              
+              // Dacă nu găsim niciun status și nu există o dată propusă, returnăm 'unconfigured'
+              return 'unconfigured';
+            })(),
             rejectionReason: proposedExam?.rejection_reason || '',
           };
         });
@@ -137,11 +203,23 @@ const GroupLeaderDashboard = ({ user }) => {
   }
   };
   
-  // Încarcă discipline din backend la încărcarea componentei
+  // Încărcăm datele la încărcarea componentei
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchDisciplines();
-  }, [user]); // Depinde de user
+  }, []); // Depinde de user
 
+  // Funcție pentru debugging
+  const logApiStatus = () => {
+    console.log('API Status Check:');
+    console.log('- Access Token:', localStorage.getItem('accessToken') ? 'Present' : 'Missing');
+    console.log('- User Data:', user ? 'Present' : 'Missing');
+    if (user) {
+      console.log('- User Email:', user.email);
+      console.log('- User Group:', user.group_name || user.group || user.data?.group_name || 'Not found');
+    }
+  };
+  
   const handleDateChange = (id, date) => {
     setDisciplines(disciplines.map(discipline => 
       discipline.id === id ? { ...discipline, proposedDate: date } : discipline
@@ -197,14 +275,24 @@ const GroupLeaderDashboard = ({ user }) => {
     
     try {
       setSubmitting(true);
+      logApiStatus(); // Afișăm informații de debugging
+      
+      // Validăm data propusă
+      const dateObj = new Date(`${proposalDate}T${proposalTime}:00`);
+      if (isNaN(dateObj.getTime())) {
+        throw new Error('Data sau ora propusă nu este validă');
+      }
       
       // Combinăm data și ora într-un format ISO
       const proposedDateTime = `${proposalDate}T${proposalTime}:00`;
+      console.log('Trimit propunere cu data:', proposedDateTime);
       
       // Trimitem propunerea către backend
-      await api.courses.proposeExamDate(selectedDiscipline.id, {
+      const response = await api.courses.proposeExamDate(selectedDiscipline.id, {
         proposed_date: proposedDateTime
       });
+      
+      console.log('Răspuns propunere:', response);
       
       // Actualizăm starea locală pentru a reflecta trimiterea
       setDisciplines(disciplines.map(d => 
@@ -220,11 +308,15 @@ const GroupLeaderDashboard = ({ user }) => {
       closeProposalModal();
       showNotification(`Propunere trimisă cu succes pentru ${selectedDiscipline.name}.`, 'success');
       
-      // Reîncărcăm datele pentru a reflecta schimbările
-      await fetchDisciplines();
+      // Reîncărcăm datele de la server pentru a vedea schimbările
+      setTimeout(() => {
+        console.log('Reîncărcăm disciplinele după trimiterea propunerii...');
+        fetchDisciplines();
+      }, 1000); // Așteptăm 1 secundă pentru a permite serverului să proceseze cererea
+      
     } catch (error) {
       console.error('Error submitting proposal:', error);
-      showNotification('A apărut o eroare la trimiterea propunerii. Vă rugăm să încercați din nou.', 'error');
+      showNotification(`Eroare: ${error.message || 'A apărut o eroare la trimiterea propunerii. Vă rugăm să încercați din nou.'}`, 'error');
     } finally {
       setSubmitting(false);
     }
@@ -272,6 +364,17 @@ const GroupLeaderDashboard = ({ user }) => {
         </div>
       )}
       
+      {/* Buton de debug */}
+      <button 
+        onClick={() => {
+          logApiStatus();
+          showNotification('Informații de debugging au fost afișate în consolă', 'info');
+        }}
+        style={{ marginBottom: '10px', padding: '5px 10px', fontSize: '12px', backgroundColor: '#6c757d', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
+      >
+        Debug API Status
+      </button>
+      
       <div className="disciplines-container">
         <h3>Discipline</h3>
         {disciplines.length === 0 ? (
@@ -309,6 +412,7 @@ const GroupLeaderDashboard = ({ user }) => {
                   </td>
                   <td>
                     <div className={`status-badge ${discipline.status}`}>
+                      {discipline.status === 'unconfigured' && 'Neconfigurat'}
                       {discipline.status === 'pending' && 'În așteptare'}
                       {discipline.status === 'pending_approval' && 'Trimis spre aprobare'}
                       {discipline.status === 'rejected' && (
@@ -326,12 +430,13 @@ const GroupLeaderDashboard = ({ user }) => {
                     </div>
                   </td>
                   <td>
-                    {(discipline.status === 'pending' || discipline.status === 'rejected') && (
+                    {(discipline.status === 'pending' || discipline.status === 'rejected' || discipline.status === 'unconfigured') && (
                       <button 
                         className="submit-button"
                         onClick={() => handleSubmitProposal(discipline.id)}
                       >
-                        {discipline.status === 'rejected' ? 'Retrimite' : 'Propune dată'}
+                        {discipline.status === 'rejected' ? 'Retrimite' : 
+                         discipline.status === 'unconfigured' ? 'Configurează' : 'Propune dată'}
                       </button>
                     )}
                     {discipline.status === 'pending_approval' && (

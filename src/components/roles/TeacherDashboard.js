@@ -16,11 +16,65 @@ const TeacherDashboard = ({ user }) => {
     const fetchData = async () => {
       try {
         setLoading(true);
+        console.log('Începem încărcarea datelor pentru cadrul didactic...');
         
-        // Obținem propunerile de examen pentru profesor
-        const proposalsResponse = await api.teacher.getExamProposals();
-        if (proposalsResponse && proposalsResponse.proposals) {
-          setExamProposals(proposalsResponse.proposals);
+        // Obținem propunerile de examen pentru profesor - încercăm mai multe căi posibile pentru date
+        let proposalsResponse;
+        try {
+          proposalsResponse = await api.teacher.getExamProposals();
+          console.log('Răspuns propuneri examene:', proposalsResponse);
+        } catch (error) {
+          console.error('Eroare la obținerea propunerilor prin API-ul de profesor:', error);
+          proposalsResponse = { data: [] };
+        }
+        
+        // Procesăm datele - verificăm toate locațiile posibile pentru propuneri
+        const proposals = proposalsResponse?.proposals || proposalsResponse?.data || proposalsResponse;
+        
+        if (proposals && Array.isArray(proposals)) {
+          console.log(`Am găsit ${proposals.length} propuneri de examene`);
+          setExamProposals(proposals);
+        } else {
+          console.log('Nu am găsit propuneri de examene în formatul așteptat, încercăm metode alternative');
+          
+          // Încercăm să obținem propunerile direct de la API-ul de cursuri
+          try {
+            const coursesResponse = await api.courses.getCourses();
+            console.log('Răspuns de la API-ul de cursuri:', coursesResponse);
+            
+            const courses = coursesResponse?.data || coursesResponse;
+            if (courses && Array.isArray(courses)) {
+              // Filtrăm doar cursurile care au propuneri de examen în așteptare
+              const coursesWithProposals = courses.filter(course => 
+                course.proposed_date && (course.status === 'pending' || !course.status)
+              );
+              
+              console.log(`Am găsit ${coursesWithProposals.length} cursuri cu propuneri de examen`);
+              setExamProposals(coursesWithProposals);
+            }
+          } catch (courseError) {
+            console.error('Eroare la obținerea cursurilor:', courseError);
+          }
+          
+          // Încercăm și API-ul de examene ca ultimă soluție
+          try {
+            const fallbackResponse = await api.exams.getExams({ status: 'pending' });
+            console.log('Răspuns alternativ pentru propuneri de la API-ul de examene:', fallbackResponse);
+            
+            const fallbackProposals = fallbackResponse?.exams || fallbackResponse?.data || [];
+            if (fallbackProposals && Array.isArray(fallbackProposals) && fallbackProposals.length > 0) {
+              console.log(`Am găsit ${fallbackProposals.length} propuneri alternative`);
+              setExamProposals(fallbackProposals);
+            }
+          } catch (examError) {
+            console.error('Eroare la obținerea examenelor:', examError);
+          }
+          
+          // Dacă tot nu am găsit nimic, setăm o listă goală
+          if (examProposals.length === 0) {
+            console.log('Nu am putut găsi propuneri prin nicio metodă');
+            setExamProposals([]);
+          }
         }
         
         // Obținem examenele aprobate
@@ -54,17 +108,29 @@ const TeacherDashboard = ({ user }) => {
 
   const handleApproveProposal = async (id) => {
     try {
-      // Trimitem cererea de aprobare la backend
-      const response = await api.teacher.approveExamProposal(id);
+      // Obținem detaliile sălii și duratei examenului
+      const roomId = prompt('Introduceți ID-ul sălii pentru examen:');
+      const examDuration = prompt('Introduceți durata examenului (în ore):', '2');
       
-      if (response && response.success) {
+      if (!roomId || !examDuration) {
+        alert('Trebuie să specificați sala și durata examenului pentru aprobare.');
+        return;
+      }
+      
+      // Trimitem cererea de aprobare la backend folosind API-ul de cursuri
+      const response = await api.courses.approveExamProposal(id, {
+        exam_room_id: parseInt(roomId),
+        exam_duration: parseInt(examDuration)
+      });
+      
+      if (response && response.status === 'success') {
         // Actualizăm starea locală
         const proposal = examProposals.find(p => p.id === id);
         if (proposal) {
           const approvedProposal = {
             ...proposal,
             status: 'approved',
-            room: '',
+            room: roomId,
             startTime: '',
             endTime: '',
             assistants: []
@@ -76,10 +142,10 @@ const TeacherDashboard = ({ user }) => {
           // Comutăm la tab-ul de examene aprobate
           setActiveTab('approved');
           
-          alert(`Propunerea pentru ${proposal.examType === 'examen' ? 'examenul' : 'colocviul'} de ${proposal.disciplineName} a fost aprobată. Acum puteți configura sala și asistenții.`);
+          alert(`Propunerea pentru ${proposal.examType === 'examen' ? 'examenul' : 'colocviul'} de ${proposal.disciplineName} a fost aprobată. Șeful de grupă a fost notificat.`);
         }
       } else {
-        throw new Error('Nu s-a putut aproba propunerea de examen.');
+        throw new Error(response?.message || 'Nu s-a putut aproba propunerea de examen.');
       }
     } catch (error) {
       console.error('Error approving proposal:', error);
@@ -91,10 +157,12 @@ const TeacherDashboard = ({ user }) => {
     const reason = prompt('Introduceți motivul respingerii:');
     if (reason !== null && reason.trim() !== '') {
       try {
-        // Trimitem cererea de respingere la backend
-        const response = await api.teacher.rejectExamProposal(id, { reason });
+        // Trimitem cererea de respingere la backend folosind API-ul de cursuri
+        const response = await api.courses.rejectExamProposal(id, { 
+          rejection_reason: reason 
+        });
         
-        if (response && response.success) {
+        if (response && response.status === 'success') {
           // Actualizăm starea locală
           setExamProposals(examProposals.map(proposal => 
             proposal.id === id ? { ...proposal, status: 'rejected', rejectionReason: reason } : proposal
@@ -102,7 +170,7 @@ const TeacherDashboard = ({ user }) => {
           
           alert('Propunerea a fost respinsă și șeful de grupă a fost notificat.');
         } else {
-          throw new Error('Nu s-a putut respinge propunerea de examen.');
+          throw new Error(response?.message || 'Nu s-a putut respinge propunerea de examen.');
         }
       } catch (error) {
         console.error('Error rejecting proposal:', error);
@@ -200,9 +268,24 @@ const TeacherDashboard = ({ user }) => {
       <div className="tab-content">
         {activeTab === 'proposals' && (
           <div className="proposals-container">
-            <h3>Propuneri de examene/colocvii</h3>
+            <h3>Propuneri de examene/colocvii de la șefii de grupă</h3>
+            
+            {/* Buton de debug pentru a verifica datele */}
+            <button 
+              onClick={() => {
+                console.log('Propuneri de examene în stare:', examProposals);
+                alert(`Există ${examProposals.length} propuneri de examene în sistem.`);
+              }}
+              style={{ marginBottom: '10px', padding: '5px 10px', fontSize: '12px', backgroundColor: '#6c757d', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
+            >
+              Debug Propuneri
+            </button>
+            
             {examProposals.length === 0 ? (
-              <p className="no-data">Nu există propuneri în așteptare.</p>
+              <div className="no-data-container">
+                <p className="no-data">Nu există propuneri de examene în așteptare.</p>
+                <p className="help-text">Propunerile vor apărea aici după ce șefii de grupă trimit date pentru examene.</p>
+              </div>
             ) : (
               <table className="proposals-table">
                 <thead>
@@ -212,33 +295,76 @@ const TeacherDashboard = ({ user }) => {
                     <th>Grupă</th>
                     <th>Șef grupă</th>
                     <th>Dată propusă</th>
+                    <th>Status</th>
                     <th>Acțiuni</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {examProposals.map(proposal => (
-                    <tr key={proposal.id} className="proposal-row">
-                      <td>{proposal.disciplineName}</td>
-                      <td>{proposal.examType === 'examen' ? 'Examen' : 'Colocviu'}</td>
-                      <td>{proposal.group} (Anul {proposal.year})</td>
-                      <td>{proposal.groupLeader}</td>
-                      <td>{proposal.proposedDate}</td>
-                      <td className="actions">
-                        <button 
-                          className="approve-button"
-                          onClick={() => handleApproveProposal(proposal.id)}
-                        >
-                          Aprobă
-                        </button>
-                        <button 
-                          className="reject-button"
-                          onClick={() => handleRejectProposal(proposal.id)}
-                        >
-                          Respinge
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
+                  {examProposals.map(proposal => {
+                    // Extragem informațiile din propunere - gestionăm diferite formate posibile
+                    const id = proposal.id || proposal.course_id || proposal.discipline_id;
+                    const disciplineName = proposal.disciplineName || proposal.name || proposal.course?.name || 'Disciplină necunoscută';
+                    const examType = proposal.examType || proposal.exam_type || 'examen';
+                    const group = proposal.group || proposal.group_name || '';
+                    const year = proposal.year || proposal.year_of_study || '';
+                    const groupLeader = proposal.groupLeader || (proposal.group_leader ? `${proposal.group_leader.first_name} ${proposal.group_leader.last_name}` : 'Necunoscut');
+                    const proposedDate = proposal.proposedDate || proposal.date || proposal.proposed_date || '';
+                    const status = proposal.status || 'pending';
+                    
+                    // Formăm data pentru afișare
+                    let formattedDate = proposedDate;
+                    if (proposedDate) {
+                      try {
+                        const date = new Date(proposedDate);
+                        if (!isNaN(date.getTime())) {
+                          formattedDate = date.toLocaleDateString('ro-RO') + ' ' + date.toLocaleTimeString('ro-RO', { hour: '2-digit', minute: '2-digit' });
+                        }
+                      } catch (e) {
+                        console.error('Eroare la formatarea datei:', e);
+                      }
+                    }
+                    
+                    return (
+                      <tr key={id} className={`proposal-row ${status}`}>
+                        <td>{disciplineName}</td>
+                        <td>{examType === 'examen' || examType === 'exam' ? 'Examen' : examType === 'colocviu' || examType === 'colloquium' ? 'Colocviu' : examType}</td>
+                        <td>{group}{year ? ` (Anul ${year})` : ''}</td>
+                        <td>{groupLeader}</td>
+                        <td>{formattedDate || 'Dată nespecificată'}</td>
+                        <td>
+                          <span className={`status-badge ${status}`}>
+                            {status === 'pending' ? 'În așteptare' : 
+                             status === 'approved' ? 'Aprobat' : 
+                             status === 'rejected' ? 'Respins' : status}
+                          </span>
+                        </td>
+                        <td className="actions">
+                          {status === 'pending' && (
+                            <>
+                              <button 
+                                className="approve-button"
+                                onClick={() => handleApproveProposal(id)}
+                              >
+                                Aprobă
+                              </button>
+                              <button 
+                                className="reject-button"
+                                onClick={() => handleRejectProposal(id)}
+                              >
+                                Respinge
+                              </button>
+                            </>
+                          )}
+                          {status === 'approved' && (
+                            <span className="approved-text">Aprobat</span>
+                          )}
+                          {status === 'rejected' && (
+                            <span className="rejected-text">Respins</span>
+                          )}
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             )}
