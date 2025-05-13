@@ -17,6 +17,8 @@ const SecretariatDashboard = () => {
   const [pendingReservations, setPendingReservations] = useState([]);
   const [reservationHistory, setReservationHistory] = useState([]);
   const [examStats, setExamStats] = useState({ total: 0, completed: 0, incomplete: [] });
+  const [selectedExam, setSelectedExam] = useState(null);
+  const [showPlanificaModal, setShowPlanificaModal] = useState(false);
   
   // Filtre pentru șefi de grupă
   const [facultyFilter, setFacultyFilter] = useState('');
@@ -716,7 +718,7 @@ const SecretariatDashboard = () => {
       const a = document.createElement('a');
       
       // Request the Excel report from the backend
-      const response = await fetch(`${api.API_URL}/secretary/reports/period?format=excel`, {
+      const response = await fetch(`http://localhost:5000/api/secretary/reports/period?format=excel`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
@@ -770,7 +772,7 @@ const SecretariatDashboard = () => {
       const a = document.createElement('a');
       
       // Request the PDF report from the backend
-      const response = await fetch(`${api.API_URL}/secretary/reports/period?format=pdf`, {
+      const response = await fetch(`http://localhost:5000/api/secretary/reports/period?format=pdf`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
@@ -833,6 +835,42 @@ const SecretariatDashboard = () => {
     }
   };
 
+  // Function to plan an exam
+  const planificaExam = (exam) => {
+    console.log('Planificare examen:', exam);
+    setSelectedExam(exam);
+    setShowPlanificaModal(true);
+    
+    // Show notification for now until the modal is implemented
+    setNotification({
+      show: true,
+      message: `Planificare examen pentru ${exam.name}. Această funcționalitate va fi implementată în curând.`,
+      type: 'info'
+    });
+    
+    // Hide notification after 5 seconds
+    setTimeout(() => {
+      setNotification({ show: false, message: '', type: '' });
+    }, 5000);
+  };
+  
+  // Function to notify about an exam
+  const notificaExam = (exam) => {
+    console.log('Notificare pentru examen:', exam);
+    
+    // Show notification
+    setNotification({
+      show: true,
+      message: `Notificare trimisă pentru examenul ${exam.name}.`,
+      type: 'success'
+    });
+    
+    // Hide notification after 3 seconds
+    setTimeout(() => {
+      setNotification({ show: false, message: '', type: '' });
+    }, 3000);
+  };
+  
   // Function to sync disciplines from Orar API
   const syncDisciplines = async () => {
     try {
@@ -1339,8 +1377,8 @@ const SecretariatDashboard = () => {
                           <td>{exam.study_program}</td>
                           <td>{exam.year_of_study}/{exam.group_name}</td>
                           <td>
-                            <button className="small-button">Planifică</button>
-                            <button className="small-button">Notifică</button>
+                            <button className="small-button" onClick={() => planificaExam(exam)}>Planifică</button>
+                            <button className="small-button" onClick={() => notificaExam(exam)}>Notifică</button>
                           </td>
                         </tr>
                       ))}
