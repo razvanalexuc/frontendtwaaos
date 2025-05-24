@@ -712,37 +712,20 @@ const SecretariatDashboard = () => {
   };
 
   // Function to download exam schedule as Excel
-  const downloadExcelSchedule = async () => {
+  const downloadExcelSchedule = () => {
     try {
-      // Create a temporary anchor element to trigger download
-      const a = document.createElement('a');
+      // Obținem token-ul de autentificare
+      const token = localStorage.getItem('accessToken');
       
-      // Request the Excel report from the backend
-      const response = await fetch(`http://localhost:5000/api/secretary/reports/period?format=excel`, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
-        }
-      });
+      // Creăm URL-ul pentru descărcare
+      const downloadUrl = `http://localhost:5000/api/secretary/reports/period?format=excel&token=${token}`;
       
-      if (!response.ok) throw new Error('Failed to download report');
-      
-      // Create a blob from the response
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      a.href = url;
-      a.download = 'exam_schedule.xlsx';
-      
-      // Trigger download
-      document.body.appendChild(a);
-      a.click();
-      
-      // Cleanup
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(a);
+      // Deschidem URL-ul într-o fereastră nouă (sau tab) - browserul va gestiona descărcarea
+      window.open(downloadUrl, '_blank');
       
       setNotification({
         show: true,
-        message: 'Exam schedule downloaded as Excel successfully',
+        message: 'Descărcarea planificării în Excel a început. Verificați folderul de descărcări.',
         type: 'success'
       });
       
@@ -754,7 +737,7 @@ const SecretariatDashboard = () => {
       console.error('Error downloading Excel schedule:', error);
       setNotification({
         show: true,
-        message: `Error downloading Excel schedule: ${error.message}`,
+        message: `Eroare la descărcarea planificării în Excel: ${error.message}`,
         type: 'error'
       });
       
@@ -766,37 +749,20 @@ const SecretariatDashboard = () => {
   };
 
   // Function to download exam schedule as PDF
-  const downloadPdfSchedule = async () => {
+  const downloadPdfSchedule = () => {
     try {
-      // Create a temporary anchor element to trigger download
-      const a = document.createElement('a');
+      // Obținem token-ul de autentificare
+      const token = localStorage.getItem('accessToken');
       
-      // Request the PDF report from the backend
-      const response = await fetch(`http://localhost:5000/api/secretary/reports/period?format=pdf`, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
-        }
-      });
+      // Creăm URL-ul pentru descărcare
+      const downloadUrl = `http://localhost:5000/api/secretary/reports/period?format=pdf&token=${token}`;
       
-      if (!response.ok) throw new Error('Failed to download report');
-      
-      // Create a blob from the response
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      a.href = url;
-      a.download = 'exam_schedule.pdf';
-      
-      // Trigger download
-      document.body.appendChild(a);
-      a.click();
-      
-      // Cleanup
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(a);
+      // Deschidem URL-ul într-o fereastră nouă (sau tab) - browserul va gestiona descărcarea
+      window.open(downloadUrl, '_blank');
       
       setNotification({
         show: true,
-        message: 'Exam schedule downloaded as PDF successfully',
+        message: 'Descărcarea planificării în PDF a început. Verificați folderul de descărcări.',
         type: 'success'
       });
       
@@ -808,7 +774,7 @@ const SecretariatDashboard = () => {
       console.error('Error downloading PDF schedule:', error);
       setNotification({
         show: true,
-        message: `Error downloading PDF schedule: ${error.message}`,
+        message: `Eroare la descărcarea planificării în PDF: ${error.message}`,
         type: 'error'
       });
       
@@ -951,7 +917,7 @@ const SecretariatDashboard = () => {
           className={activeTab === 'disciplines' ? 'active' : ''} 
           onClick={() => setActiveTab('disciplines')}
         >
-          Disciplines
+          Discipline
         </button>
         <button 
           className={activeTab === 'rooms' ? 'active' : ''} 
@@ -963,7 +929,7 @@ const SecretariatDashboard = () => {
           className={activeTab === 'groupLeaders' ? 'active' : ''} 
           onClick={() => setActiveTab('groupLeaders')}
         >
-          Group Leaders
+          Șefi de grupă
         </button>
         <button 
           className={activeTab === 'examPeriods' ? 'active' : ''} 
@@ -987,37 +953,23 @@ const SecretariatDashboard = () => {
             <h2>Managementul Disciplinelor</h2>
             
             <div className="upload-section">
-              <h3>Încărcare Fișier</h3>
+              <h3>Încărcare fișier discipline</h3>
               <input 
-                id="file-upload"
+                id="file-upload-disciplines"
                 type="file" 
                 accept=".xls,.xlsx,.csv" 
-                onChange={handleFileUpload} 
+                onChange={e => { setFileUpload(e.target.files[0]); setFileUploadType('disciplines'); }}
                 className="file-input"
               />
-              <div className="file-type-selection">
-                <label>Tip fișier:</label>
-                <select 
-                  value={fileUploadType} 
-                  onChange={(e) => setFileUploadType(e.target.value)}
-                >
-                  <option value="">Selectați tipul</option>
-                  <option value="disciplines">Discipline</option>
-                  <option value="group_leaders">Șefi de grupă</option>
-                </select>
-              </div>
               <div className="upload-actions">
-                <button onClick={submitFile} disabled={!fileUpload || loading}>
-                  {loading ? 'Se încarcă...' : 'Încarcă Fișier'}
+                <button onClick={submitFile} disabled={!fileUpload || fileUploadType !== 'disciplines' || loading}>
+                  {loading ? 'Se încarcă...' : 'Încarcă fișier discipline'}
                 </button>
                 <button onClick={() => downloadTemplate('disciplines')} disabled={loading}>
-                  Descarcă Template Discipline
-                </button>
-                <button onClick={() => downloadTemplate('groupLeaders')} disabled={loading}>
-                  Descarcă Template Șefi Grupă
+                  Descarcă template discipline
                 </button>
                 <button onClick={syncDisciplines} disabled={loading}>
-                  Sincronizează cu Orar
+                  Sincronizează orar
                 </button>
               </div>
             </div>
@@ -1115,8 +1067,27 @@ const SecretariatDashboard = () => {
         {/* Group Leaders Tab */}
         {activeTab === 'groupLeaders' && (
           <div className="tab-content">
-            <h2>Managementul Șefilor de Grupă</h2>
+            <h2>Managementul Șefilor de grupă</h2>
             
+            <div className="upload-section">
+              <h3>Încărcare șefi de grupă</h3>
+              <input 
+                id="file-upload-group-leaders"
+                type="file" 
+                accept=".xls,.xlsx,.csv" 
+                onChange={e => { setFileUpload(e.target.files[0]); setFileUploadType('group_leaders'); }}
+                className="file-input"
+              />
+              <div className="upload-actions">
+                <button onClick={submitFile} disabled={!fileUpload || fileUploadType !== 'group_leaders' || loading}>
+                  {loading ? 'Se încarcă...' : 'Încarcă fișier șefi de grupă'}
+                </button>
+                <button onClick={() => downloadTemplate('groupLeaders')} disabled={loading}>
+                  Descarcă template șefi grupă
+                </button>
+              </div>
+            </div>
+
             <div className="filter-section">
               <h3>Filtrare</h3>
               <div className="filters-grid">
@@ -1325,12 +1296,14 @@ const SecretariatDashboard = () => {
               <h3>Rapoarte Planificare Examene</h3>
               <p className="info-text">Descărcați planificarea examenelor în diferite formate pentru a o distribui sau tipări.</p>
               <div className="report-actions">
-                <button onClick={downloadExcelSchedule} disabled={loading}>
-                  {loading ? 'Se pregătește...' : 'Descarcă Planificare în Excel'}
-                </button>
-                <button onClick={downloadPdfSchedule} disabled={loading}>
-                  {loading ? 'Se pregătește...' : 'Descarcă Planificare în PDF'}
-                </button>
+                <div className="download-actions">
+                  <button className="green-download" onClick={downloadExcelSchedule} disabled={loading}>
+                    Descarcă Planificare în Excel
+                  </button>
+                  <button className="green-download" onClick={downloadPdfSchedule} disabled={loading}>
+                    Descarcă Planificare în PDF
+                  </button>
+                </div>
               </div>
             </div>
             

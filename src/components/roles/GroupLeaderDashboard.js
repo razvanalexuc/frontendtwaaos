@@ -33,9 +33,16 @@ const GroupLeaderDashboard = ({ user }) => {
       }
       
       // Încercăm să obținem grupa din toate posibilele locații
+      // Whitelist pentru adrese de email care primesc automat o grupă
+      const whitelistedEmails = {
+        'test@student.usv.ro': '3201A',
+        'razvan.alexuc2@student.usv.ro': '3201A',
+        'samuel.dascalu2@student.usv.ro': '3201A'
+      };
+      
       const userGroup = user.group_name || user.group || user.data?.group_name || 
                        (typeof user === 'object' && Object.prototype.hasOwnProperty.call(user, 'email') && 
-                        user.email === 'test@student.usv.ro' ? '3201A' : null);
+                        whitelistedEmails[user.email] ? whitelistedEmails[user.email] : null);
       
       if (!userGroup) {
         console.error('User does not have a group assigned:', user);
