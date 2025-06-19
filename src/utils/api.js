@@ -311,6 +311,17 @@ const api = {
     getExamStudents: (examId, params) => api.get(`/api/exam-registrations/exams/${examId}/students`, { params }),
     updateRegistrationStatus: (id, data) => api.put(`/api/exam-registrations/${id}/update-status`, data),
   },
+  
+  // External API endpoints
+  external: {
+    getTeachers: () => api.get('/api/external/teachers'),
+  },
+  
+  // Teacher management endpoints
+  teacherManagement: {
+    addTeacher: (data) => api.post('/api/teacher-management/add-teacher', data),
+    addExamProposal: (data) => api.post('/api/teacher-management/add-exam-proposal', data),
+  },
 };
 
 export default api;

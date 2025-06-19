@@ -26,7 +26,6 @@ const AdminApp = () => {
         {isAuthenticated && (
           <div className="user-welcome">
             <span>Welcome, {user.name}</span>
-            <button className="logout-button" onClick={handleLogout}>Logout</button>
           </div>
         )}
       </header>

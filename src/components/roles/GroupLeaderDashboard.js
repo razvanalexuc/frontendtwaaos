@@ -12,7 +12,37 @@ const GroupLeaderDashboard = ({ user }) => {
   const [proposalTime, setProposalTime] = useState('12:00');
   const [submitting, setSubmitting] = useState(false);
   const [notification, setNotification] = useState({ show: false, message: '', type: '' });
+  const [teachers, setTeachers] = useState([]);
 
+  // Funcție pentru încărcarea profesorilor de la API-ul USV
+  const fetchTeachers = async () => {
+    try {
+      console.log('Se încearcă lista de profesori de la API-ul USV...');
+      const response = await api.external.getTeachers();
+      if (response && response.assistants) {
+        console.log('Profesori obținuți de la API-ul USV:', response.assistants);
+        console.log('Număr de profesori obținuți:', response.assistants.length);
+        
+        // Afișăm primii 5 profesori pentru debugging
+        if (response.assistants.length > 0) {
+          console.log('Primii 5 profesori:');
+          response.assistants.slice(0, 5).forEach((teacher, index) => {
+            console.log(`${index + 1}. ${teacher.name} (${teacher.email || 'fără email'})`);
+          });
+        }
+        
+        setTeachers(response.assistants);
+        return response.assistants;
+      } else {
+        console.warn('API-ul nu a returnat profesori sau structura răspunsului este incorectă:', response);
+        return [];
+      }
+    } catch (error) {
+      console.error('Eroare la obținerea profesorilor de la API-ul USV:', error);
+      return [];
+    }
+  };
+  
   // Funcție pentru încărcarea disciplinelor
   const fetchDisciplines = async () => {
     try {
@@ -113,20 +143,30 @@ const GroupLeaderDashboard = ({ user }) => {
       
       console.log(`Filtrat ${courses.length} discipline la ${filteredCourses.length} discipline valide`);
       
+      // Distribuim profesorii din API pentru fiecare disciplină (doar pentru testare)
+      // Folosim un seed bazat pe ID-ul disciplinei pentru a avea o distribuție consistentă
+      const getRandomTeacher = (disciplineId) => {
+        if (teachers.length === 0) return 'Nedefinit';
+        
+        // Folosim ID-ul disciplinei ca seed pentru a obține același profesor pentru aceeași disciplină
+        const seed = disciplineId % teachers.length;
+        return teachers[seed].name;
+      };
+      
       const availableDisciplines = filteredCourses.map(discipline => {
         // Căutăm dacă există un examen propus pentru această disciplină
         const proposedExam = exams && Array.isArray(exams) ? exams.find(
           exam => exam.discipline_id === discipline.id || exam.course?.id === discipline.id
         ) : null;
+        
+        // Pentru testare, atribuim un profesor diferit pentru fiecare disciplină
+        const teacherName = getRandomTeacher(discipline.id);
           
           return {
             id: discipline.id,
             name: discipline.name,
             code: discipline.code,
-            teacher: discipline.teacher ? (
-              typeof discipline.teacher === 'string' ? discipline.teacher : 
-              `${discipline.teacher.title || ''} ${discipline.teacher.first_name || ''} ${discipline.teacher.last_name || ''}`
-            ) : 'Nedefinit',
+            teacher: teacherName,
             teacherEmail: discipline.teacher?.email,
             examType: discipline.exam_type || 'examen',
             group_name: discipline.group_name,
@@ -210,10 +250,12 @@ const GroupLeaderDashboard = ({ user }) => {
   }
   };
   
-  // Încărcăm datele la încărcarea componentei
+  // Încărcăm disciplinele și profesorii la prima randare
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    fetchDisciplines();
+    fetchTeachers().then(() => {
+      fetchDisciplines();
+    });
   }, []); // Depinde de user
 
   // Funcție pentru debugging
@@ -227,6 +269,7 @@ const GroupLeaderDashboard = ({ user }) => {
     }
   };
   
+  // eslint-disable-next-line no-unused-vars
   const handleDateChange = (id, date) => {
     setDisciplines(disciplines.map(discipline => 
       discipline.id === id ? { ...discipline, proposedDate: date } : discipline
@@ -329,6 +372,43 @@ const GroupLeaderDashboard = ({ user }) => {
     }
   };
 
+  // Funcție pentru debugging
+  const handleDebugClick = () => {
+    if (teachers && teachers.length > 0) {
+      console.log('Lista de profesori:');
+      teachers.forEach((teacher, index) => {
+        console.log(`${index + 1}. ${teacher.name} (${teacher.email || 'fără email'})`);
+      });
+    }
+  };
+  
+  // Funcție pentru adăugarea profesorului de test
+  const handleAddTestTeacher = async () => {
+    try {
+      setNotification({ show: true, message: 'Se adaugă profesorul de test...', type: 'info' });
+      
+      const response = await api.teacherManagement.addTeacher({
+        email: 'teacher.test@usm.ro',
+        first_name: 'Test',
+        last_name: 'Teacher',
+        title: 'Prof.',
+        department: 'Informatică'
+      });
+      
+      if (response && response.success) {
+        setNotification({ show: true, message: 'Profesorul de test a fost adăugat cu succes!', type: 'success' });
+        console.log('Profesor de test adăugat:', response);
+        // Reîncărcăm lista de profesori
+        fetchTeachers();
+      } else {
+        setNotification({ show: true, message: 'Eroare la adăugarea profesorului de test: ' + (response?.message || 'Eroare necunoscută'), type: 'error' });
+      }
+    } catch (error) {
+      console.error('Eroare la adăugarea profesorului de test:', error);
+      setNotification({ show: true, message: 'Eroare la adăugarea profesorului de test: ' + (error.message || 'Eroare necunoscută'), type: 'error' });
+    }
+  };
+
   if (loading) {
     return <div className="loading">Se încarcă disciplinele...</div>;
   }
@@ -360,7 +440,18 @@ const GroupLeaderDashboard = ({ user }) => {
 
   return (
     <div className="group-leader-dashboard">
-      <h2>Panou Șef Grupă</h2>
+      <h2>Panou Șef de Grupă</h2>
+      
+      {/* Butoane pentru debugging și adăugare profesor de test */}
+      <div style={{ marginBottom: '15px' }}>
+        <button onClick={handleDebugClick} className="debug-button" style={{ marginRight: '10px' }}>
+          Debug Profesori
+        </button>
+        
+        <button onClick={handleAddTestTeacher} className="debug-button" style={{ backgroundColor: '#4CAF50' }}>
+          Adaugă Profesor Test
+        </button>
+      </div>
       <p>Bine ai venit, {user?.name || 'Șef de Grupă'}! Aici poți propune date pentru examenele și colocviile grupei tale.</p>
       
       {/* Notificări */}
@@ -403,7 +494,15 @@ const GroupLeaderDashboard = ({ user }) => {
                 <tr key={discipline.id} className={`discipline-row ${discipline.status}`}>
                   <td>{discipline.name}</td>
                   <td>{discipline.examType === 'exam' ? 'Examen' : discipline.examType === 'colloquium' ? 'Colocviu' : discipline.examType}</td>
-                  <td>{discipline.teacher}</td>
+                  <td>
+                    {discipline.teacher?.name || 
+                     (teachers.find(t => 
+                       t.email === discipline.teacher?.email || 
+                       t.name.includes(discipline.teacher?.lastName || '') || 
+                       t.name.includes(discipline.teacher?.firstName || '')
+                     )?.name) || 
+                     'Nespecificat'}
+                  </td>
                   <td>
                     {discipline.status === 'approved' ? (
                       <span>{new Date(discipline.proposedDate).toLocaleDateString('ro-RO')}</span>

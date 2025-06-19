@@ -45,20 +45,6 @@ const TeacherApp = () => {
         {isAuthenticated && (
           <div className="user-welcome" style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
             <span>Welcome, {user.name}</span>
-            <button 
-              onClick={handleLogout}
-              style={{ 
-                padding: '6px 12px', 
-                backgroundColor: '#e74c3c', 
-                color: 'white', 
-                border: 'none', 
-                borderRadius: '4px', 
-                fontWeight: 'bold',
-                cursor: 'pointer'
-              }}
-            >
-              Sign Out
-            </button>
           </div>
         )}
       </header>

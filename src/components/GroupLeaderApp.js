@@ -20,20 +20,6 @@ const GroupLeaderApp = () => {
         </div>
         <div className="user-welcome" style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
           <span>Bine ai venit, {currentUser.first_name || currentUser.name}!</span>
-          <button 
-            onClick={logout}
-            style={{ 
-              padding: '6px 12px', 
-              backgroundColor: '#e74c3c', 
-              color: 'white', 
-              border: 'none', 
-              borderRadius: '4px', 
-              fontWeight: 'bold',
-              cursor: 'pointer'
-            }}
-          >
-            Sign Out
-          </button>
         </div>
       </header>
 

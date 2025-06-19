@@ -337,18 +337,7 @@ const GoogleAuth = ({ onLoginSuccess, onLogout }) => {
           Se încarcă...
         </div>
       )}
-      {/* Buton de Sign Out global - mereu vizibil dacă există un token */}
-      {hasToken && (
-        <div style={{ marginBottom: '20px' }}>
-          <button 
-            className="signout-button"
-            onClick={handleSignOut}
-            style={{ padding: '8px 16px', backgroundColor: '#e74c3c', color: 'white', border: 'none', borderRadius: '4px', fontWeight: 'bold', width: '100%' }}
-          >
-            Sign Out
-          </button>
-        </div>
-      )}
+      {/* Global Sign Out button removed to avoid duplication */}
       
       {!isSignedIn ? (
         <div>

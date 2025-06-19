@@ -19,6 +19,7 @@ const SecretariatDashboard = () => {
   const [examStats, setExamStats] = useState({ total: 0, completed: 0, incomplete: [] });
   const [selectedExam, setSelectedExam] = useState(null);
   const [showPlanificaModal, setShowPlanificaModal] = useState(false);
+  const [teachers, setTeachers] = useState([]);
   
   // Filtre pentru șefi de grupă
   const [facultyFilter, setFacultyFilter] = useState('');
@@ -33,6 +34,17 @@ const SecretariatDashboard = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
+        
+        // Fetch teachers from USV API
+        try {
+          const teachersResponse = await api.external.getTeachers();
+          if (teachersResponse && teachersResponse.assistants) {
+            console.log('Profesori obținuți de la API-ul USV:', teachersResponse.assistants.length);
+            setTeachers(teachersResponse.assistants);
+          }
+        } catch (error) {
+          console.error('Eroare la obținerea profesorilor de la API-ul USV:', error);
+        }
         
         // Fetch rooms
         const roomsResponse = await api.student.getRooms();
@@ -127,7 +139,45 @@ const SecretariatDashboard = () => {
       const response = await api.courses.getCourses(params);
       
       if (response && response.data) {
-        setDisciplines(response.data);
+        // Adăugăm profesorii de la API-ul USV la disciplinele din baza de date
+        const enhancedDisciplines = response.data.map(discipline => {
+          // Căutăm profesorul în lista de profesori de la API-ul USV
+          let teacherName = discipline.teacher?.name || 'Nedefinit';
+          
+          // Dacă avem profesori încărcați de la API-ul USV
+          if (teachers.length > 0) {
+            // Folosim un seed bazat pe ID-ul disciplinei pentru a avea o distribuție consistentă
+            // Doar pentru disciplinele care nu au profesor definit
+            if (teacherName === 'Nedefinit') {
+              const seed = discipline.id % teachers.length;
+              teacherName = teachers[seed].name;
+            } else {
+              // Încercăm să găsim un profesor mai potrivit în lista de la API-ul USV
+              // Căutăm după nume sau email
+              const teacherObj = discipline.teacher;
+              const lastName = teacherObj?.last_name;
+              const firstName = teacherObj?.first_name;
+              const email = teacherObj?.email;
+              
+              const matchingTeacher = teachers.find(t => 
+                (email && t.email === email) || 
+                (lastName && t.name.includes(lastName)) ||
+                (firstName && t.name.includes(firstName))
+              );
+              
+              if (matchingTeacher) {
+                teacherName = matchingTeacher.name;
+              }
+            }
+          }
+          
+          return {
+            ...discipline,
+            teacherName: teacherName
+          };
+        });
+        
+        setDisciplines(enhancedDisciplines);
       } else {
         // Dacă nu avem date, setăm o listă goală
         setDisciplines([]);
@@ -996,7 +1046,7 @@ const SecretariatDashboard = () => {
                       <tr key={index}>
                         <td>{discipline.code}</td>
                         <td>{discipline.name}</td>
-                        <td>{discipline.teacher?.first_name} {discipline.teacher?.last_name}</td>
+                        <td>{discipline.teacherName || discipline.teacher?.name || 'Nedefinit'}</td>
                         <td>{discipline.group_name}</td>
                         <td>{discipline.study_program}</td>
                         <td>{discipline.year_of_study}</td>
